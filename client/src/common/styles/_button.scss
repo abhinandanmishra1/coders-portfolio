@@ -1,0 +1,30 @@
+.btn {
+    @include flex;
+    @include justify-c;
+    @include align-c;
+
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 8rem;
+    
+    &__type1 {
+        background-color: $hr-green-color;
+        color: $white;
+        transition: 1s;
+        
+        &:hover {
+            background-color: lighten($color: $hr-green-color, $amount: 8);
+        }
+    }
+
+    &__type2 {
+        background-color: $hr-gray-color;
+        color: $black;
+        transition: 1s;
+
+        &:hover {
+            background-color: lighten($color: $hr-gray-color, $amount: 8);
+        }
+    }
+}

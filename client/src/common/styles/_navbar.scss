@@ -1,0 +1,41 @@
+.nav {
+    @include flex;
+    @include justify-between;
+
+    width: 100%;
+    padding-top: 1rem;
+    max-height: 10vh;
+    position: sticky;
+    top: 0;
+    left: 0;
+    
+    &__left {
+        &--title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-left: 1rem;
+            cursor: pointer;
+
+            &::after {
+                content: "";
+                display: inline-block;
+                background: lighten($hr-green-color, 10);
+                margin-left: 0.1rem;
+                height: 2rem;
+                width: 1.2rem;
+            }
+        }
+    }
+
+    &__middle {
+        color: green;
+    }
+
+    &__right {
+        @include flex;
+        @include justify-between;
+
+        margin-right: 1rem;
+        width: 15%;
+    }
+}
