@@ -1,4 +1,6 @@
 import Home from "components/Home";
+import About from "components/About";
+
 import {
     createBrowserRouter,
 } from "react-router-dom";
@@ -9,7 +11,8 @@ const router = createBrowserRouter([
         element: <Home />,
     },
     {
-        path: "/skills",
+        path: "/:username/profile/hackerrank",
+        element: <About />,
     }
 ]);
 

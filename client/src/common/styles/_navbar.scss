@@ -4,6 +4,7 @@
 
     width: 100%;
     padding-top: 1rem;
+    margin: 1rem;
     max-height: 10vh;
     position: sticky;
     top: 0;
@@ -34,8 +35,31 @@
     &__right {
         @include flex;
         @include justify-between;
+        @include align-c;
 
-        margin-right: 1rem;
-        width: 15%;
+        margin-right: 4rem;
+        width: 10%;
+    }
+
+    &__login-btn {
+        text-decoration: none;
+        line-height: 1.538em;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: $hr-black-color;
+    }
+
+    &__signup-btn {
+        font-size: 1.8rem;
+        text-decoration: none;
+        color: $white;
+        padding: 1rem 2rem;
+        background-color: $hr-green-color;
+        border-radius: 0.5rem;
+        transition: 1s;
+
+        &:hover {
+            background-color: lighten($hr-green-color, 5);
+        }
     }
 }

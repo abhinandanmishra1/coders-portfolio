@@ -17,8 +17,7 @@ const Home = () => {
                     Do you want to hire someone or visit this website?
                 </div>
                 <div className="home__next">
-                    <Button type="type1" title="I want to hire" onlick={() => { }} customClass="home__btn" />
-                    <Button type="type1" title="I want to visit" onlick={() => { }} customClass="home__btn" />
+                    <Button type="type1" title="Get Started" onlick={() => { }} customClass="home__btn" />
                 </div>
             </div>
         </>

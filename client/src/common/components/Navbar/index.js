@@ -1,6 +1,7 @@
 import React from 'react'
 import NavItem from './NavItem';
 import Button from 'common/components/Button';
+import { Link } from 'react-router-dom';
 
 const Navbar = ({left, middle, right}) => {
   const button1 = right? right[0] : {
@@ -32,8 +33,8 @@ const Navbar = ({left, middle, right}) => {
             )
         }
         <div className="nav__right">
-            <Button {...button1} />
-            <Button {...button2} />
+            <Link to={'/login'} className="nav__login-btn"> Login </Link>
+            <Link to={'/signup'} className="nav__signup-btn"> Signup </Link>
         </div>
     </div>
   )

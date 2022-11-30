@@ -1,10 +1,3 @@
-export const SKILLS = [
-    {
-        title: 'Algorithms',
-        skillicon: "https://icongr.am/devicon",
-    }
-];
-
 export const hrProfileApiUrl = "https://www.hackerrank.com/rest/contests/master/hackers";
 export const hrBadgesApiUrl = "https://www.hackerrank.com/rest/hackers/abhi_mishra_1/badges";
 export const hrScoresApiUrl = "https://www.hackerrank.com/rest/hackers/abhi_mishra_1/scores_elo";
