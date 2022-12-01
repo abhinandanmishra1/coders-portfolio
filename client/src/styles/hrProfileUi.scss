@@ -10,216 +10,201 @@ $star3-offset-color-2: #f9d641;
 // linear gradient
 
 @mixin badge-color-linear-gradient($color1, $color2) {
-	background: linear-gradient($color1, $color2);
+  background: linear-gradient($color1, $color2);
 }
 
 .hr-badge {
-	width: 10rem;
-	height: 5.7rem;
-	position: relative;
-	margin: 3rem 1rem;
-	border-radius: 0.5rem;
+  width: 9rem;
+  margin: 4rem 1rem;
+  position: relative;
+  filter: url("../assets/svg/badge-filter.svg#goo");
 
-	&:before {
-		content: "";
-		position: absolute;
-		top: -2.6rem;
-		left: 0;
-		width: 0;
-		height: 0;
-		border-left: 5rem solid transparent;
-		border-right: 5rem solid transparent;
-		border-radius: 0.3rem;
-	}
+  &:before {
+	  content: "";
+    position: absolute;
+    top: -3rem;
+    left: 0rem;
+    display: block;
+    width: 100%;
+    padding-top: 120%;
+    border-radius: inherit;
+    clip-path: polygon(0% 25%,0% 75%,50% 100%,100% 75%,100% 25%,50% 0%);  
+  }
 
-	&:after {
-		content: "";
-		position: absolute;
-		bottom: -2.6rem;
-		left: 0;
-		width: 0;
-		height: 0;
-		border-left: 5rem solid transparent;
-		border-right: 5rem solid transparent;
-		border-radius: 0.3rem;
-	}
+  &--1star,
+  &--2star {
+    &:before {
+		@include badge-color-linear-gradient(
+			$star1-offset-color-1,
+			$star1-offset-color-2
+		);
+    }
+  }
 
-	&--1star, &--2star {
-		@include badge-color-linear-gradient($star1-offset-color-1, $star1-offset-color-2);
+  &--3star,
+  &--4star {
+    &:before {
+		@include badge-color-linear-gradient(
+			$star2-offset-color-1,
+			$star2-offset-color-2
+		);
+    }
+  }
 
-		&:before {
-			border-bottom: 2.8rem solid $star1-offset-color-1;
-		}
+  &--5star,
+  &--6star {
+    &:before {
+		@include badge-color-linear-gradient(
+			$star3-offset-color-1,
+			$star3-offset-color-2
+		);
+    }
+  }
 
-		&:after {
-			border-top: 2.8rem solid $star1-offset-color-2;
-		}
-	}
+  &__title {
+    @include flex;
+    @include justify-c;
 
-	&--3star, &--4star {
-		@include badge-color-linear-gradient($star2-offset-color-1, $star2-offset-color-2);
+    position: relative;
+    font-size: 1rem;
+    bottom: 0;
+    font-weight: 700;
+    font-family: "Open Sans", sans-serif;
+    color: #39424e;
+  }
 
-		&:before {
-			border-bottom: 2.8rem solid $star2-offset-color-1;
-		}
+  &__stars {
+    @include flex;
+    @include justify-c;
+    position: relative;
+  }
 
-		&:after {
-			border-top: 2.8rem solid $star2-offset-color-2;
-		}
-	}
-
-	&--5star, &--6star {
-		@include badge-color-linear-gradient($star3-offset-color-1, $star3-offset-color-2);
-
-		&:before {
-			border-bottom: 2.8rem solid $star3-offset-color-1;
-		}
-
-		&:after {
-			border-top: 2.8rem solid $star3-offset-color-2;
-		}
-	}
-
-	&__title {
-		@include flex;
-		@include justify-c;
-
-		position: relative;
-		font-size: 1.2rem;
-		bottom: 0;
-		font-weight: 700;
-		font-family: 'Open Sans', sans-serif;
-		color: #39424e;
-	}
-	&__stars {
-		@include flex;
-		@include justify-c;
-	}
-	&__star {
-		background: url("../assets/svg/badge-star.svg");
-		width: 1rem;
-		height: 1rem;
-		color: #39424e;
-		margin-left: 0.2rem;
-	}
+  &__star {
+    background: url("../assets/svg/badge-star.svg");
+    width: 1rem;
+    height: 1rem;
+    color: #39424e;
+    margin-left: 0.2rem;
+  }
 }
 
 .hr-certificate {
-	min-width: 100px;
-	width: 12rem;
-	margin-right: 1.5rem;
-	margin-top: 1.5rem;
+  min-width: 100px;
+  width: 12rem;
+  margin-right: 1.5rem;
+  margin-top: 1.5rem;
 
-	&__container{
-		padding-top: 133.33%;
-		min-width: 100px;
-		width: 100%;
-		position: relative;
-		background-color: #1ba94c;
-		box-shadow: -6px 6px 10px 0 rgb(0 0 0 / 20%);
+  &__container {
+    padding-top: 133.33%;
+    min-width: 100px;
+    width: 100%;
+    position: relative;
+    background-color: #1ba94c;
+    box-shadow: -6px 6px 10px 0 rgb(0 0 0 / 20%);
 
-		&:before {
-			filter: brightness(1000%);
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: url("../assets/svg/hr-certi-badge.svg") transparent no-repeat 10% 10%;
-			background-size: 17.5%;
-			content: "";
-		}
-	}
+    &:before {
+      filter: brightness(1000%);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("../assets/svg/hr-certi-badge.svg") transparent no-repeat
+        10% 10%;
+      background-size: 17.5%;
+      content: "";
+    }
+  }
 
-	&--folded-corner {
-		position: absolute;
-		top: 0;
-		right: 0;
-		overflow: hidden;
-		padding-top: 35%;
-		width: 35%;
-		height: 0;
+  &--folded-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    padding-top: 35%;
+    width: 35%;
+    height: 0;
 
-		&:before {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: #32c766;
-			content: "";
-			transform: rotate(45deg) scale(1.5) translateY(50%);
-		}
-	}
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #32c766;
+      content: "";
+      transform: rotate(45deg) scale(1.5) translateY(50%);
+    }
+  }
 
-	&__content {
-		position: absolute;
-		bottom: 0;
-		display: flex;
-		flex-direction: column;
-		box-sizing: border-box;
-		justify-content: space-between;
-		padding: 10%;
-		height: 60%;
-	}
+  &__content {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 10%;
+    height: 60%;
+  }
 
-	&__heading {
-		margin: 0;
-		color: $white;
-		font-weight: 400;
-		font-size: 1.5rem;
-		line-height: 1.4;
-		letter-spacing: -0.06rem;
-	}
+  &__heading {
+    margin: 0;
+    color: $white;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    letter-spacing: -0.06rem;
+  }
 }
 
 .hr-section-card {
-	&__header {
-		@include flex;
-		@include align-c;
-		
-		margin-left: -5px;
-		&--certificates {
-			width: 2rem;
-			height: 2rem;
-			margin-right: 1rem;
-			background: url("../assets/svg/certificates-section-header.svg");
-		}
+  &__header {
+    @include flex;
+    @include align-c;
 
-		&--badges {
-			width: 2rem;
-			height: 3rem;
-			margin-right: 1rem;
-			background: url("../assets/svg/badges-section-header.svg");
-		}
+    margin-left: -5px;
+    &--certificates {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+      background: url("../assets/svg/certificates-section-header.svg");
+    }
 
-		&--work-experience {
-			width: 2rem;
-			height: 2rem;
-			margin-right: 1rem;
-			background: url("../assets/svg/work-experience-section-header.svg");
-		}
+    &--badges {
+      width: 2rem;
+      height: 3rem;
+      margin-right: 1rem;
+      background: url("../assets/svg/badges-section-header.svg");
+    }
 
-		&--education {
-			width: 2rem;
-			height: 2rem;
-			margin-right: 1rem;
-			background: url("../assets/svg/education-section-header.svg");
-		}
-	}
+    &--work-experience {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+      background: url("../assets/svg/work-experience-section-header.svg");
+    }
 
-	&__icon {
-		position: relative;
-		top: -1px;
-		margin: 5px 10px 0 0;
-		color: $color-shade-dark;
-		font-size: 18px;
-	}
+    &--education {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+      background: url("../assets/svg/education-section-header.svg");
+    }
+  }
 
-	&__heading {
-		color: $color-text-medium-dark;
-		font-weight: 700;
-		font-size: 18px;
-		line-height: 1.4;
-	}
+  &__icon {
+    position: relative;
+    top: -1px;
+    margin: 5px 10px 0 0;
+    color: $color-shade-dark;
+    font-size: 18px;
+  }
+
+  &__heading {
+    color: $color-text-medium-dark;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.4;
+  }
 }
