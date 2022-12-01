@@ -1,12 +1,12 @@
 import { applyMiddleware, combineReducers, legacy_createStore as createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-import profileData from "./profileData";
+import hrProfile from "./hackerrankProfile";
 
 const middleware = [thunk];
 
 const reducers = combineReducers({
-  profileData,
+  hackerrank: hrProfile,
 });
 
 const composeEnhancers = compose;

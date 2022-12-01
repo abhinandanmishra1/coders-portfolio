@@ -1,8 +1,11 @@
 import React from 'react'
+import HackerrankProfile from './Hackerrank'
 
 const UserProfile = () => {
   return (
-    <div>UserProfile</div>
+    <div>
+      <HackerrankProfile />
+    </div>
   )
 }
 

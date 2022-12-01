@@ -1,0 +1,190 @@
+.hr-profile {
+    @include flex;
+    @include justify-c;
+    width: 100%;
+    margin: 4rem 0;
+
+    &__left {
+        @include flex-col;
+        width: 25%;
+        padding-right: 2rem;
+    }
+
+    &__basic {
+
+        &--logo {
+            border-radius: 0.5rem;
+            img {
+                border-radius: 0.5rem;
+                height: 8rem;
+            }
+        }
+
+        &--name {
+            font-family: $font-family-text;
+            color: $color-shade-darker;
+            font-size: 2.6rem;
+            font-weight: $fontWeights-3;
+            margin: 2rem 0 0;
+            text-transform: capitalize;
+            word-break: break-all;
+            line-height: 1.2;
+        }
+
+        &--username {
+            font-weight: 400;
+            font-family: $font-family-input;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: $color-text-dark-faded;
+            font-size: 1.6rem;
+
+            &:before{
+                content: '@';
+            }
+        }
+
+        &--jobs-headline {
+            font-weight: 200;
+        }
+
+        &--country {
+            color: $color-text-dark-faded;
+            margin-bottom: 1.6rem;
+        }
+    }
+
+    &__social {
+        @include flex;
+
+        width: 70%;
+        margin-bottom: 1.6rem;
+        color: $black;
+
+        a {
+            color: $black;
+            position: relative;
+            margin-right: 1.5rem;
+
+            &:hover {
+                color: $color-text-medium-dark;
+                
+
+                &:before {
+                    content: attr(data-element);
+                    position: absolute;
+                    background-color: $black;
+                    font-size: 1.4rem;
+                    padding: 0.5rem;
+                    color: $white;
+                    top: -3rem;
+                    right: -2rem;
+                    transform: translateY(-1rem);
+                }
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: -1.4rem;
+                    left: 50%;
+                    margin-left: -0.5rem;
+                    border-width: 0.5rem;
+                    border-style: solid;
+                    border-color: $black transparent transparent transparent;
+                }
+            }
+        }
+    }
+
+    &__about {
+        border-top: 0.1rem solid gray;
+        padding-top: 2rem;
+        margin-top: 1rem;
+        &--heading {
+            margin-bottom: 2rem;
+        }
+
+        &--school {
+            margin-bottom: 1.6rem;
+            h4 {
+                font-size: 1.5rem;
+                font-weight: normal;
+                color: $color-text-dark-faded;
+            }
+
+            p {
+                font-weight: bold;
+                margin-top: 0.5rem;
+            }
+        }
+
+        &--me {
+            h4 {
+                font-size: 1.5rem;
+                font-weight: normal;
+                color: $color-text-dark-faded;
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+
+    &__right {
+        width: 60%;
+    }
+
+    &__section {
+        @include flex-col;
+        margin-bottom: 1rem;
+    }
+
+    &__text {
+        @include flex;
+        @include justify-c;
+        
+        padding: 1rem;
+        color: $color-shade-dark;
+    }
+
+    &__badges {
+        @include flex;
+        
+        padding: 2rem 0.5rem;
+    }
+
+    &__certificates {
+        @include flex;
+
+        flex-wrap: wrap;
+    }
+
+    &__school {
+        display: grid; 
+        grid-template-columns: 0.2fr 1.8fr; 
+        grid-template-rows: 1fr 1fr; 
+
+        &--icon {
+            grid-column: 1/2;
+            grid-row: 1/3;
+            padding: 1rem;
+        }
+
+        &--name {
+            font-size: 1.6rem;
+            margin-top: 1rem;
+            grid-column: 2/3;
+            grid-row: 1/2;
+        }
+
+        &--timeline {
+            grid-area: 3;
+            font-size: 1.4rem;
+            margin-top: 0.5rem;
+            grid-column: 2/3;
+            grid-row: 2/3;
+
+            span {
+                color: $color-text-dark-faded;
+            }
+        }
+    }
+}

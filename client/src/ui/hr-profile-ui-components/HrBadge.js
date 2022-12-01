@@ -1,6 +1,6 @@
 import React from 'react';
 
-const hrBadge = ({skill}) => {
+const HrBadge = ({skill}) => {
   return (
     <div className="hr-badge">
         
@@ -8,4 +8,4 @@ const hrBadge = ({skill}) => {
   )
 }
 
-export default hrBadge
+export default HrBadge

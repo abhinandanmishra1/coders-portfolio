@@ -1,0 +1,156 @@
+$hr-linear-gradient-yellow-badge: linear-gradient(#f8bc36, #f9d641);
+
+.hr-badge {
+	width: 100px;
+	height: 57.735px;
+	background: $hr-linear-gradient-yellow-badge;
+	position: relative;
+	margin: 1rem;
+	border-radius: 0.5rem;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: -2.6rem;
+		left: 0;
+		width: 0;
+		height: 0;
+		border-left: 5rem solid transparent;
+		border-right: 5rem solid transparent;
+		border-bottom: 2.8rem solid #f8bc36;
+		border-radius: 0.3rem;
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		bottom: -2.6rem;
+		left: 0;
+		width: 0;
+		height: 0;
+		border-left: 5rem solid transparent;
+		border-right: 5rem solid transparent;
+		border-top: 2.8rem solid #f9d641;
+		border-radius: 0.3rem;
+	}
+}
+
+.hr-certificate {
+	min-width: 100px;
+	width: 12rem;
+	margin-right: 1.5rem;
+	margin-top: 1.5rem;
+
+	&__container{
+		padding-top: 133.33%;
+		min-width: 100px;
+		width: 100%;
+		position: relative;
+		background-color: #1ba94c;
+		box-shadow: -6px 6px 10px 0 rgb(0 0 0 / 20%);
+
+		&:before {
+			filter: brightness(1000%);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: url("../assets/svg/hr-certi-badge.svg") transparent no-repeat 10% 10%;
+			background-size: 17.5%;
+			content: "";
+		}
+	}
+
+	&--folded-corner {
+		position: absolute;
+		top: 0;
+		right: 0;
+		overflow: hidden;
+		padding-top: 35%;
+		width: 35%;
+		height: 0;
+
+		&:before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #32c766;
+			content: "";
+			transform: rotate(45deg) scale(1.5) translateY(50%);
+		}
+	}
+
+	&__content {
+		position: absolute;
+		bottom: 0;
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		justify-content: space-between;
+		padding: 10%;
+		height: 60%;
+	}
+
+	&__heading {
+		margin: 0;
+		color: $white;
+		font-weight: 400;
+		font-size: 1.5rem;
+		line-height: 1.4;
+		letter-spacing: -0.06rem;
+	}
+}
+
+.hr-section-card {
+	&__header {
+		@include flex;
+		@include align-c;
+		
+		margin-left: -5px;
+		&--certificates {
+			width: 2rem;
+			height: 2rem;
+			margin-right: 1rem;
+			background: url("../assets/svg/certificates-section-header.svg");
+		}
+
+		&--badges {
+			width: 2rem;
+			height: 3rem;
+			margin-right: 1rem;
+			background: url("../assets/svg/badges-section-header.svg");
+		}
+
+		&--work-experience {
+			width: 2rem;
+			height: 2rem;
+			margin-right: 1rem;
+			background: url("../assets/svg/work-experience-section-header.svg");
+		}
+
+		&--education {
+			width: 2rem;
+			height: 2rem;
+			margin-right: 1rem;
+			background: url("../assets/svg/education-section-header.svg");
+		}
+	}
+
+	&__icon {
+		position: relative;
+		top: -1px;
+		margin: 5px 10px 0 0;
+		color: $color-shade-dark;
+		font-size: 18px;
+	}
+
+	&__heading {
+		color: $color-text-medium-dark;
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 1.4;
+	}
+}
