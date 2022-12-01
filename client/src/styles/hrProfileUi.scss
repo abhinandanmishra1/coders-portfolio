@@ -1,11 +1,23 @@
-$hr-linear-gradient-yellow-badge: linear-gradient(#f8bc36, #f9d641);
+// 1star and 2star
+$star1-offset-color-1: #ffc5ab;
+$star1-offset-color-2: #ffa38a;
+// 3star and 4star
+$star2-offset-color-1: #cee3eb;
+$star2-offset-color-2: #aec8c7;
+// 5star and 6star
+$star3-offset-color-1: #f8bc36;
+$star3-offset-color-2: #f9d641;
+// linear gradient
+
+@mixin badge-color-linear-gradient($color1, $color2) {
+	background: linear-gradient($color1, $color2);
+}
 
 .hr-badge {
-	width: 100px;
-	height: 57.735px;
-	background: $hr-linear-gradient-yellow-badge;
+	width: 10rem;
+	height: 5.7rem;
 	position: relative;
-	margin: 1rem;
+	margin: 3rem 1rem;
 	border-radius: 0.5rem;
 
 	&:before {
@@ -17,7 +29,6 @@ $hr-linear-gradient-yellow-badge: linear-gradient(#f8bc36, #f9d641);
 		height: 0;
 		border-left: 5rem solid transparent;
 		border-right: 5rem solid transparent;
-		border-bottom: 2.8rem solid #f8bc36;
 		border-radius: 0.3rem;
 	}
 
@@ -30,8 +41,66 @@ $hr-linear-gradient-yellow-badge: linear-gradient(#f8bc36, #f9d641);
 		height: 0;
 		border-left: 5rem solid transparent;
 		border-right: 5rem solid transparent;
-		border-top: 2.8rem solid #f9d641;
 		border-radius: 0.3rem;
+	}
+
+	&--1star, &--2star {
+		@include badge-color-linear-gradient($star1-offset-color-1, $star1-offset-color-2);
+
+		&:before {
+			border-bottom: 2.8rem solid $star1-offset-color-1;
+		}
+
+		&:after {
+			border-top: 2.8rem solid $star1-offset-color-2;
+		}
+	}
+
+	&--3star, &--4star {
+		@include badge-color-linear-gradient($star2-offset-color-1, $star2-offset-color-2);
+
+		&:before {
+			border-bottom: 2.8rem solid $star2-offset-color-1;
+		}
+
+		&:after {
+			border-top: 2.8rem solid $star2-offset-color-2;
+		}
+	}
+
+	&--5star, &--6star {
+		@include badge-color-linear-gradient($star3-offset-color-1, $star3-offset-color-2);
+
+		&:before {
+			border-bottom: 2.8rem solid $star3-offset-color-1;
+		}
+
+		&:after {
+			border-top: 2.8rem solid $star3-offset-color-2;
+		}
+	}
+
+	&__title {
+		@include flex;
+		@include justify-c;
+
+		position: relative;
+		font-size: 1.2rem;
+		bottom: 0;
+		font-weight: 700;
+		font-family: 'Open Sans', sans-serif;
+		color: #39424e;
+	}
+	&__stars {
+		@include flex;
+		@include justify-c;
+	}
+	&__star {
+		background: url("../assets/svg/badge-star.svg");
+		width: 1rem;
+		height: 1rem;
+		color: #39424e;
+		margin-left: 0.2rem;
 	}
 }
 

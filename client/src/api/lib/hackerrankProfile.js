@@ -6,13 +6,13 @@ function loadProfile(username = null){
 }
 
 function loadBadges(username = null){
-    const profileUrl = `/hackerrank/badges`;
-    return axiosClient.get(profileUrl, {username});
+    const badgesUrl = `/hackerrank/badges`;
+    return axiosClient.get(badgesUrl, {username});
 }
 
 function loadCertificates(username = null){
-    const profileUrl = `/hackerrank/certificates`;
-    return axiosClient.get(profileUrl, {username});
+    const certificateUrl = `/hackerrank/certificates`;
+    return axiosClient.get(certificateUrl, {username});
 }
 
 const Functions = {

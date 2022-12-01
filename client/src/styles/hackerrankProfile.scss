@@ -148,7 +148,8 @@
     &__badges {
         @include flex;
         
-        padding: 2rem 0.5rem;
+        flex-wrap: wrap;
+        padding: 1rem 0rem;
     }
 
     &__certificates {

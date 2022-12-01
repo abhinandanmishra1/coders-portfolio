@@ -17,3 +17,19 @@ export const formatCertificateData = (certificateData) => {
         }
     })
 }
+
+export const formatBadgesData = (badgesData) => {
+    return badgesData.map((badgeData) =>  {
+        const {
+            badge_name: title,
+            badge_short_name: short_title,
+            stars,
+        } = badgeData;
+        
+        return {
+            title,
+            short_title,
+            stars,
+        }
+    })
+}

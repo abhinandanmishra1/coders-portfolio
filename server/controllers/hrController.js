@@ -41,7 +41,7 @@ const getHrBadges = asyncHandler(async (req, res) => {
   const { username } = req.query;
   request(
     {
-      url: `https://www.hackerrank.com/rest/contests/master/hackers/${username}/profile`,
+      url: `https://www.hackerrank.com/rest/hackers/${username}/badges`,
       headers: {
         "User-Agent": "postman-request",
       },
@@ -56,10 +56,10 @@ const getHrBadges = asyncHandler(async (req, res) => {
         return;
       }
       const result = JSON.parse(body);
-      
+      const json = result.models;
       res.status(statusCode).send({
         success: true,
-        json: result,
+        json
       });
     }
   );
@@ -86,15 +86,6 @@ const getCertificates = asyncHandler(async (req, res) => {
       }
       
       const result = JSON.parse(body);
-      // if (!result.model) {
-      //   res.status(404).send({
-      //     data: {
-      //       success: false,
-      //       error: "User not found",
-      //     },
-      //   });
-      //   return;
-      // }
       const json = result.data;
       res.status(statusCode).send({
         success: true,

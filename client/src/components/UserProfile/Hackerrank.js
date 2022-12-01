@@ -5,7 +5,11 @@ import { FiGithub, FiGlobe } from "react-icons/fi";
 import { RiLinkedinLine } from "react-icons/ri";
 import { CgShapeHexagon } from "react-icons/cg";
 
-import { loadCertificates, loadProfile } from "stores/hackerrankProfile";
+import { 
+  loadCertificates,
+  loadProfile,
+  loadBadges,
+} from "stores/hackerrankProfile";
 import Section from "common/components/SectionCard";
 import HrBadge from "ui/hr-profile-ui-components/HrBadge";
 import HrCertificate from "ui/hr-profile-ui-components/HrCertificate";
@@ -78,18 +82,18 @@ const LeftProfileUi = ({ profile }) => {
   );
 };
 
-const RightProfileUi = ({ profile, certificates }) => {
+const RightProfileUi = ({ profile, certificates, badges }) => {
   if (!profile) return null;
   return (
     <div className="hr-profile__right">
       <Section extraClass="hr-profile__section">
         <HrSectionHeader title="Badges" />
         <div className="hr-profile__badges">
-          <HrBadge />
-          <HrBadge />
-          <HrBadge />
-          <HrBadge />
-          <HrBadge />
+            {
+              badges && (
+                badges.map((badge) => <HrBadge title={badge.title} shortTitle={badge.short_title} stars={badge.stars}/>)
+              )
+            }
         </div>
       </Section>
       <Section extraClass="hr-profile__section">
@@ -136,13 +140,12 @@ const HackerrankProfile = () => {
   const dispatch = useDispatch();
   const hrProfile = useSelector((store) => store.hackerrank.userProfile);
   const certificates = useSelector((store) => store.hackerrank.certificates);
-  const store = useSelector(store => store.hackerrank);
-
-  console.log(username, store);
+  const badges = useSelector(store => store.hackerrank.badges);
 
   useEffect(() => {
     dispatch(loadProfile(username));
     dispatch(loadCertificates(username));
+    dispatch(loadBadges(username));
   }, [dispatch, username]);
 
   return (
@@ -150,7 +153,7 @@ const HackerrankProfile = () => {
       {hrProfile ? (
         <div className="hr-profile">
           <LeftProfileUi profile={hrProfile} />
-          <RightProfileUi profile={hrProfile} certificates={certificates} />
+          <RightProfileUi profile={hrProfile} certificates={certificates} badges={badges} />
         </div>
       ) : (
         <h1>Loading...</h1>
