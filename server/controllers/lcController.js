@@ -110,7 +110,7 @@ const getUserProblemsSolvedInfo = asyncHandler(async (req, res) => {
         });
         return;
       }
-      console.log(body);
+
       const result = JSON.parse(body);
       if (result.errors) {
         res.status(404).send({
@@ -142,7 +142,7 @@ const getUserBadgesInfo = asyncHandler(async (req, res) => {
         });
         return;
       }
-      console.log(body);
+
       const result = JSON.parse(body);
       if (result.errors) {
         res.status(404).send({
@@ -174,7 +174,7 @@ const getUserRecentAcSubmissions = asyncHandler(async (req, res) => {
         });
         return;
       }
-      console.log(body);
+
       const result = JSON.parse(body);
       if (result.errors) {
         res.status(404).send({

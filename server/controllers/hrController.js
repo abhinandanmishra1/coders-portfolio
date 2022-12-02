@@ -67,7 +67,7 @@ const getHrBadges = asyncHandler(async (req, res) => {
 
 const getCertificates = asyncHandler(async (req, res) => {
   const { username } = req.query;
-  console.log( username);
+
   request(
     {
       url: `https://www.hackerrank.com/community/v1/test_results/hacker_certificate?username=${username}`,
