@@ -61,6 +61,17 @@ $star3-offset-color-2: #f9d641;
     }
   }
 
+  &__image {
+    @include flex;
+
+    width: 3rem;
+    height: 3rem;
+    left: 30%;
+    top: -10%;
+    position: relative;
+    fill: $black;
+  }
+
   &__title {
     @include flex;
     @include justify-c;
