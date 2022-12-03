@@ -4,6 +4,7 @@ const lcController = require('../controllers/lcController')
 
 const router = express.Router()
 
+router.get('/userInfo', lcController.getUserInfo);
 router.get('/languages', lcController.getLanguagesCount);
 router.get('/tagProblemCounts', lcController.getTagProblemCounts);
 router.get('/userContestRatingInfo', lcController.getUserContestRatingInfo);

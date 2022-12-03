@@ -2,6 +2,37 @@ const asyncHandler = require("express-async-handler");
 const request = require("postman-request");
 const { lcOptions } = require("../helpers");
 
+const getUserInfo = asyncHandler(async (req, res) => {
+  const { username } = req.query;
+  var options = lcOptions("userInfo", username);
+  request(
+    options,
+    function (error, response, body) {
+      const statusCode = (response && response.statusCode) || 500;
+      if (error) {
+        res.status(statusCode).send({
+          success: false,
+          error,
+          response,
+        });
+        return;
+      }
+      const result = JSON.parse(body);
+      if (result.errors) {
+        res.status(404).send({
+            success: false,
+            error: result.errors,
+          });
+      }
+      const json = result.data;
+      res.status(statusCode).send({
+        success: true,
+        json,
+      });
+    }
+  );
+});
+
 const getLanguagesCount = asyncHandler(async (req, res) => {
   const { username } = req.query;
   var options = lcOptions("languageStats", username);
@@ -192,6 +223,7 @@ const getUserRecentAcSubmissions = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+  getUserInfo,
   getLanguagesCount,
   getTagProblemCounts,
   getUserContestRatingInfo,

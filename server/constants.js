@@ -14,6 +14,28 @@ const hrContestHistoryApiUrl =
   "https://www.hackerrank.com/rest/hackers/abhi_mishra_1/contest_participation?offset=0&limit=5";
 
 const lcQueries = {
+  userInfo: `query userInfo($username: String!) {
+    matchedUser(username: $username) {
+      username
+      githubUrl
+      linkedinUrl
+      twitterUrl
+      profile {
+        realName 
+        userAvatar
+        gender
+        aboutMe
+        location
+        birthday
+        jobTitle
+        company
+        school
+        websites
+        ranking
+        skillTags
+      }
+    }
+  }`,
   languageStats: `query languageStats($username: String!) {
         matchedUser(username: $username) {
             languageProblemCount {
@@ -68,7 +90,7 @@ const lcQueries = {
     }
   }
 }`,
-userProblemsSolvedInfo: `
+  userProblemsSolvedInfo: `
 query userProblemsSolved($username: String!) {
 allQuestionsCount {
 difficulty
@@ -87,7 +109,7 @@ submitStatsGlobal {
 }
 }
 }`,
-userBadgesInfo: `
+  userBadgesInfo: `
 query userBadges($username: String!) {
 matchedUser(username: $username) {
 badges {
@@ -114,7 +136,7 @@ upcomingBadges {
 }
 }
 }`,
-userRecentAcSubmissions: `
+  userRecentAcSubmissions: `
     query recentAcSubmissions($username: String!, $limit: Int!) {
         recentAcSubmissionList(username: $username, limit: $limit) {
             id
@@ -123,7 +145,7 @@ userRecentAcSubmissions: `
             timestamp
         }
     }
-`
+`,
 };
 
 module.exports = {
