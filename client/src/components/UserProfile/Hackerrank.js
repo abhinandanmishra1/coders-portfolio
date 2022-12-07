@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { batch, useDispatch, useSelector } from "react-redux";
 import { FiGithub, FiGlobe } from "react-icons/fi";
 import { RiLinkedinLine } from "react-icons/ri";
 import { CgShapeHexagon } from "react-icons/cg";
@@ -143,9 +143,11 @@ const HackerrankProfile = () => {
   const badges = useSelector(store => store.hackerrank.badges);
 
   useEffect(() => {
-    dispatch(loadProfile(username));
-    dispatch(loadCertificates(username));
-    dispatch(loadBadges(username));
+    batch(() => {
+      dispatch(loadProfile(username));
+      dispatch(loadCertificates(username));
+      dispatch(loadBadges(username));
+    })
   }, [dispatch, username]);
 
   return (

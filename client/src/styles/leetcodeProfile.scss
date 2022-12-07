@@ -1,0 +1,256 @@
+$lc-color-text-1: rgba(239, 241, 246, 0.75);
+$lc-color-text-2: rgba(239,242,246,.6);
+$lc-color-text-2-hover: rgba(239,242,246,.4);
+$lc-color-bg-1: hsla(0,0%,100%,.1);
+$lc-red-color: rgb(239 71 67);
+$lc-yellow-color: rgb(255 192 30);
+$lc-green-color: rgb(44 187 93);
+
+
+@mixin language-style {
+    color: $lc-color-text-2;
+    background-color: $lc-color-bg-1;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    border-radius: 9999px;
+    font-size: 1.3rem;
+}
+
+.lc-profile {
+    @include flex;
+    @include justify-between;
+
+    background-color: rgb(26, 26, 26);
+    color: $white;
+    padding: 2rem;
+
+    &__left {
+        width: 25%;
+        padding: 2rem;
+    }
+
+    &__right {
+        width: 65%;
+        height: 100vh;
+
+        &--diagrams {
+            @include flex;
+        }
+
+        &--more-details {
+            @include flex;
+
+            height: 35%;
+        }
+    }
+
+    &__header {
+        @include flex;
+        @include justify-between;
+
+        width: 80%;
+        margin-bottom: 2rem;
+
+        &--image {
+            height: 8rem;
+            width: 8rem;
+            border-radius: 1rem;
+        }
+    }
+
+    &__identity {
+        @include flex-col;
+        @include justify-between;
+
+        height: 8rem;
+
+        &--details {
+
+        }
+
+        &--name {
+            letter-spacing: 0.05rem;
+        }
+
+        &--username {
+            font-size: 1.5rem;
+            color: $lc-color-text-1;
+        }
+
+        &--ranking {
+
+            span {
+                color: $lc-color-text-1;
+            }
+        }
+    }
+
+    &__aboutMe {
+        color: $lc-color-text-1;
+        font-weight: 400;
+    }
+
+
+
+    &__strip {
+        @include flex;
+        @include align-c;
+
+        color: $white;
+        width: 100%;
+        padding: 1rem 0;
+
+        &--icon {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        &--skills {
+            @include flex;
+            @include justify-around;
+
+            width: 50%;
+        }
+
+        &--skill {
+            color: $lc-color-text-1;
+        }
+
+        &--desc {
+            color: $lc-color-text-1;
+            font-size: 1.6rem;
+            text-overflow: ellipsis;    
+            white-space: nowrap;
+            overflow: hidden;
+            margin-left: 1rem; 
+            transition:  all 1s;
+            cursor: pointer;
+
+            &:hover {
+                color: $white;
+            }
+        }
+    }
+
+    &__languages {
+        border-top: 0.1rem solid $lc-color-text-1;
+        padding-top: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    &__language {
+        @include flex;
+        @include justify-between;
+        margin-top: 1rem;
+
+        &--name {
+            @include language-style;
+        }
+
+        &--solved {
+            font-size: 1.5rem;
+            span {
+                color: $lc-color-text-1;
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    &__taggedProblems {
+        @include flex;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    &__tag {
+        @include flex;
+        @include justify-between;
+
+        padding: 1rem;
+
+        &--name {
+            @include language-style;
+            margin-right: 0.5rem;
+            font-size: 1.3rem;
+            transition: all 0.5s;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $lc-color-text-2-hover;
+            }
+        }
+
+        &--count {
+            color: $lc-color-text-1;
+            
+            span {
+                font-size: 1.4rem;
+            }
+        }
+    }
+
+    &__skills {
+        @include flex-col;
+        border-top: 0.1rem solid $lc-color-text-1;
+        padding-top: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    &__skill {
+        &--title {
+            font-weight: $fontWeights-3;
+            text-transform: capitalize;
+
+            &:before {
+                content: '•';
+                width: 1rem;
+                height: 1rem;
+                margin-right: 0.2rem;
+            }
+        }
+
+        &--advanced {
+            
+            &:before {
+                color: $lc-red-color;
+            }
+        }
+
+        &--intermediate {
+
+            &:before {
+                color: $lc-yellow-color;
+            }
+        }
+
+        &--fundamental {
+
+            &:before {
+                color: $lc-green-color;
+            }
+        }
+    }
+}
+
+
+.lc-section {
+    background-color: rgb(40, 40, 40);
+    border-radius: 1rem;
+    margin: 1rem 0.5rem;
+}
+
+.highcharts-connector-seriesonpoint {
+    margin: 0;
+}
+
+.highcharts-point {
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.highcharts-container {
+    height: 10vh;
+    border-radius: 1rem;
+}

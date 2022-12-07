@@ -1,19 +1,36 @@
-import leetcodeProfileApi from "api/lib/hackerrankProfile";
+import leetcodeProfileApi from "api/lib/leetcodeProfile";
+import { formatLeecodeContestHistoryData, formatCalendarData } from "utils/helpers";
 
 const GET_INIT = "lc/profile/GET_INIT";
 const GET_ERROR = "lc/profile/GET_ERROR";
+const GET_USER_INFO = "lc/profile/GET_USER_INFO";
 const GET_LANGUAGES_COUNT = "lc/profile/GET_LANGUAGES_COUNT";
 const GET_TAG_PROBLEMS_COUNT = "lc/profile/GET_TAG_PROBLEMS_COUNT";
 const GET_CONTEST_RATING_INFO = "lc/profile/GET_CONTEST_RATING_INFO";
+const GET_CONTEST_RATING_HISTOGRAM_INFO = "lc/profile/GET_CONTEST_RATING_HISTOGRAM_INFO";
 const GET_PROBLEMS_SOLVED_INFO = "lc/profile/GET_PROBLEMS_SOLVED_INFO";
 const GET_BADGES_INFO = "lc/profile/GET_BADGES_INFO";
 const GET_RECENT_SUBMISSIONS = "lc/profile/GET_RECENT_SUBMISSIONS";
+const GET_USER_PROFILE_CALENDAR = "lc/profile/GET_USER_PROFILE_CALENDAR";
+
+export function loadUserProfile(username) {
+  return async (dispatch) => {
+    dispatch({ type: GET_INIT });
+    try {
+      const { data } = await leetcodeProfileApi.getUserInfo(username);
+      const { json } = data;
+      dispatch({ type: GET_USER_INFO, payload: json });
+    } catch (error) {
+      dispatch({ type: GET_ERROR });
+    }
+  };
+}
 
 export function loadLanguagesCounts(username) {
   return async (dispatch) => {
     dispatch({ type: GET_INIT });
     try {
-      const { data } = await leetcodeProfileApi.loadProfile(username);
+      const { data } = await leetcodeProfileApi.getLanguagesCount(username);
       const { json } = data;
       dispatch({ type: GET_LANGUAGES_COUNT, payload: json });
     } catch (error) {
@@ -26,7 +43,7 @@ export function loadTagProblemCounts(username) {
   return async (dispatch) => {
     dispatch({ type: GET_INIT });
     try {
-      const { data } = await leetcodeProfileApi.loadProfile(username);
+      const { data } = await leetcodeProfileApi.getTagProblemCounts(username);
       const { json } = data;
       dispatch({ type: GET_TAG_PROBLEMS_COUNT, payload: json });
     } catch (error) {
@@ -39,9 +56,22 @@ export function loadUserContestRatingInfo(username) {
   return async (dispatch) => {
     dispatch({ type: GET_INIT });
     try {
-      const { data } = await leetcodeProfileApi.loadProfile(username);
+      const { data } = await leetcodeProfileApi.getUserContestRatingInfo(username);
       const { json } = data;
       dispatch({ type: GET_CONTEST_RATING_INFO, payload: json });
+    } catch (error) {
+      dispatch({ type: GET_ERROR });
+    }
+  };
+}
+
+export function loadUserContestRatingHistogram(username) {
+  return async (dispatch) => {
+    dispatch({ type: GET_INIT });
+    try {
+      const { data } = await leetcodeProfileApi.getUserContestRatingHistogram(username);
+      const { json } = data;
+      dispatch({ type: GET_CONTEST_RATING_HISTOGRAM_INFO, payload: json });
     } catch (error) {
       dispatch({ type: GET_ERROR });
     }
@@ -52,7 +82,7 @@ export function loadUserProblemsSolvedInfo(username) {
   return async (dispatch) => {
     dispatch({ type: GET_INIT });
     try {
-      const { data } = await leetcodeProfileApi.loadProfile(username);
+      const { data } = await leetcodeProfileApi.getUserProblemsSolvedInfo(username);
       const { json } = data;
       dispatch({ type: GET_PROBLEMS_SOLVED_INFO, payload: json });
     } catch (error) {
@@ -65,7 +95,7 @@ export function loadUserBadgesInfo(username) {
   return async (dispatch) => {
     dispatch({ type: GET_INIT });
     try {
-      const { data } = await leetcodeProfileApi.loadProfile(username);
+      const { data } = await leetcodeProfileApi.getUserBadgesInfo(username);
       const { json } = data;
       dispatch({ type: GET_BADGES_INFO, payload: json });
     } catch (error) {
@@ -78,9 +108,23 @@ export function loadUserRecentAcSubmissions(username) {
   return async (dispatch) => {
     dispatch({ type: GET_INIT });
     try {
-      const { data } = await leetcodeProfileApi.loadProfile(username);
+      const { data } = await leetcodeProfileApi.getUserRecentAcSubmissions(username);
       const { json } = data;
       dispatch({ type: GET_RECENT_SUBMISSIONS, payload: json });
+    } catch (error) {
+      dispatch({ type: GET_ERROR });
+    }
+  };
+}
+
+export function loadUserProfileCalendar(username) {
+  return async (dispatch) => {
+    dispatch({ type: GET_INIT });
+    try {
+      const { data } = await leetcodeProfileApi.getUserProfileCalendar(username);
+      console.log(data)
+      const { json } = data;
+      dispatch({ type: GET_USER_PROFILE_CALENDAR, payload: json });
     } catch (error) {
       dispatch({ type: GET_ERROR });
     }
@@ -91,18 +135,28 @@ export default function reducer(
   state = {
     isLoading: false,
     loadError: null,
+    userInfo: null,
     languages: null,
     tagProblems: null,
     contestRatings: null,
+    contestRatingHistogram: null,
     solvedProblems: null,
     badges: [],
     recentSubmissions: null,
+    userProfileCalendar: null,
   },
   action
 ) {
   switch (action.type) {
     case GET_INIT:
       return { ...state, isLoading: true, loadError: null };
+    case GET_USER_INFO:
+      return {
+        ...state,
+        isLoading: false,
+        loadError: null,
+        userInfo: action.payload,
+      };
     case GET_LANGUAGES_COUNT:
       return {
         ...state,
@@ -122,7 +176,14 @@ export default function reducer(
         ...state,
         isLoading: false,
         loadError: null,
-        contestRatings: action.payload,
+        contestRatings: formatLeecodeContestHistoryData(action.payload),
+      };
+    case GET_CONTEST_RATING_HISTOGRAM_INFO:
+      return {
+        ...state,
+        isLoading: false,
+        loadError: null,
+        contestRatingHistogram: action.payload,
       };
     case GET_PROBLEMS_SOLVED_INFO:
       return {
@@ -144,6 +205,13 @@ export default function reducer(
         isLoading: false,
         loadError: null,
         recentSubmissions: action.payload,
+      };
+    case GET_USER_PROFILE_CALENDAR:
+      return {
+        ...state,
+        isLoading: false,
+        loadError: null,
+        userProfileCalendar: formatCalendarData(action.payload),
       };
     case GET_ERROR:
       return { ...state, isLoading: false, loadError: true };

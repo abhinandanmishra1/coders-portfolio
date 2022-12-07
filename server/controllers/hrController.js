@@ -55,7 +55,25 @@ const getHrBadges = asyncHandler(async (req, res) => {
         });
         return;
       }
+      if (!body) {
+        res.status(404).send({
+          data: {
+            success: false,
+            error: "User not found",
+          },
+        });
+        return;
+      }
       const result = JSON.parse(body);
+      if (!result.models) {
+        res.status(404).send({
+          data: {
+            success: false,
+            error: "User not found",
+          },
+        });
+        return;
+      }
       const json = result.models;
       res.status(statusCode).send({
         success: true,
@@ -86,6 +104,17 @@ const getCertificates = asyncHandler(async (req, res) => {
       }
       
       const result = JSON.parse(body);
+      console.log(body)
+      if (result.data.length === 0) {
+        console.log("cgushsjhhjs")
+        res.status(404).send({
+          data: {
+            success: false,
+            error: "Certificates are not available",
+          },
+        });
+        return;
+      }
       const json = result.data;
       res.status(statusCode).send({
         success: true,

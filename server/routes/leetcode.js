@@ -11,5 +11,7 @@ router.get('/userContestRatingInfo', lcController.getUserContestRatingInfo);
 router.get('/userProblemsSolvedInfo', lcController.getUserProblemsSolvedInfo);
 router.get('/userBadgesInfo', lcController.getUserBadgesInfo);
 router.get('/userRecentAcSubmissions', lcController.getUserRecentAcSubmissions);
+router.get('/userContestRatingHistogram', lcController.getUserContestRatingHistogram);
+router.get('/userProfileCalendar', lcController.getUserProfileCalendar);
 
 module.exports = router

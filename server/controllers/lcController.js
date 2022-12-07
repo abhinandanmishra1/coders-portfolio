@@ -22,7 +22,8 @@ const getUserInfo = asyncHandler(async (req, res) => {
         res.status(404).send({
             success: false,
             error: result.errors,
-          });
+        });
+        return;
       }
       const json = result.data;
       res.status(statusCode).send({
@@ -53,7 +54,8 @@ const getLanguagesCount = asyncHandler(async (req, res) => {
         res.status(404).send({
             success: false,
             error: result.errors,
-          });
+        });
+        return;
       }
       const json = result.data;
       res.status(statusCode).send({
@@ -84,7 +86,8 @@ const getTagProblemCounts = asyncHandler(async (req, res) => {
         res.status(404).send({
             success: false,
             error: result.errors,
-          });
+        });
+        return;
       }
       const json = result.data;
       res.status(statusCode).send({
@@ -115,7 +118,40 @@ const getUserContestRatingInfo = asyncHandler(async (req, res) => {
         res.status(404).send({
             success: false,
             error: result.errors,
-          });
+        });
+        return;
+      }
+      const json = result.data;
+      res.status(statusCode).send({
+        success: true,
+        json
+      });
+    }
+  );
+});
+
+const getUserContestRatingHistogram = asyncHandler(async (req, res) => {
+  const { username } = req.query;
+  var options = lcOptions("userContestRatingHistogram", username);
+  request(
+    options,
+    function (error, response, body) {
+      const statusCode = (response && response.statusCode) || 500;
+      if (error) {
+        res.status(statusCode).send({
+          success: false,
+          error,
+          response,
+        });
+        return;
+      }
+      const result = JSON.parse(body);
+      if (result.errors) {
+        res.status(404).send({
+            success: false,
+            error: result.errors,
+        });
+        return;
       }
       const json = result.data;
       res.status(statusCode).send({
@@ -147,7 +183,8 @@ const getUserProblemsSolvedInfo = asyncHandler(async (req, res) => {
         res.status(404).send({
             success: false,
             error: result.errors,
-          });
+        });
+        return;
       }
       const json = result.data;
       res.status(statusCode).send({
@@ -179,7 +216,8 @@ const getUserBadgesInfo = asyncHandler(async (req, res) => {
         res.status(404).send({
             success: false,
             error: result.errors,
-          });
+        });
+        return;
       }
       const json = result.data;
       res.status(statusCode).send({
@@ -211,7 +249,41 @@ const getUserRecentAcSubmissions = asyncHandler(async (req, res) => {
         res.status(404).send({
             success: false,
             error: result.errors,
-          });
+        });
+        return;
+      }
+      const json = result.data;
+      res.status(statusCode).send({
+        success: true,
+        json
+      });
+    }
+  );
+});
+
+const getUserProfileCalendar = asyncHandler(async (req, res) => {
+  const { username } = req.query;
+  var options = lcOptions("userProfileCalendar", username, 10);
+  request(
+    options,
+    function (error, response, body) {
+      const statusCode = (response && response.statusCode) || 500;
+      if (error) {
+        res.status(statusCode).send({
+          success: false,
+          error,
+          response,
+        });
+        return;
+      }
+
+      const result = JSON.parse(body);
+      if (result.errors) {
+        res.status(404).send({
+            success: false,
+            error: result.errors,
+        });
+        return;
       }
       const json = result.data;
       res.status(statusCode).send({
@@ -227,7 +299,9 @@ module.exports = {
   getLanguagesCount,
   getTagProblemCounts,
   getUserContestRatingInfo,
+  getUserContestRatingHistogram,
   getUserProblemsSolvedInfo,
   getUserBadgesInfo,
   getUserRecentAcSubmissions,
+  getUserProfileCalendar,
 };
