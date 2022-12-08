@@ -21,24 +21,26 @@ const LcSolvedProblems = () => {
 
   return (
     <div className="lc-solved lc-section">
-      <div className="lc-solved__title">Solved Problems</div>
       <div
         className="lc-solved__stats"
         aria-valuenow="65"
         aria-valuemin="0"
         aria-valuemax="100"
       >
-        <CircularProgressBar
-          indicatorColor="rgba(255, 161, 22, 1)"
-          progress="60"
-          progressContent="60%"
-          trackWidth="5"
-          indicatorWidth="7"
-          label="Solved"
-          labelColor="#fff"
-          trackColor="hsla(0,0%,100%,.1)"
-          size={120}
-        />
+        <div className="lc-solved__bar">
+          <div className="lc-solved__title">Solved Problems</div>
+          <CircularProgressBar
+            indicatorColor="rgba(255, 161, 22, 1)"
+            progress="60"
+            progressContent="60%"
+            trackWidth="5"
+            indicatorWidth="7"
+            label="Solved"
+            labelColor="#fff"
+            trackColor="hsla(0,0%,100%,.1)"
+            size={120}
+          />
+        </div>
         <div className="lc-solved__pcount">
           <div className="lc-solved__pcount--level">
             <div className="lc-solved__pcount--progress">
@@ -58,7 +60,7 @@ const LcSolvedProblems = () => {
             <div className="lc-solved__pcount--progress">
               <div className="lc-solved__pcount--title">Medium</div>
               <div className="lc-solved__pcount--details">
-              <span>{userTotal.medium}</span>/{total.medium}
+                <span>{userTotal.medium}</span>/{total.medium}
               </div>
               <div className="lc-solved__pcount--beats">
                 Beats {getPercentage(userTotal.medium, total.medium)}
@@ -72,7 +74,7 @@ const LcSolvedProblems = () => {
             <div className="lc-solved__pcount--progress">
               <div className="lc-solved__pcount--title">Hard</div>
               <div className="lc-solved__pcount--details">
-              <span>{userTotal.hard}</span>/{total.hard}
+                <span>{userTotal.hard}</span>/{total.hard}
               </div>
               <div className="lc-solved__pcount--beats">
                 Beats {getPercentage(userTotal.hard, total.hard)}

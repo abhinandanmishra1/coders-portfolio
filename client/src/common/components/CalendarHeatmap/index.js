@@ -1,4 +1,7 @@
 import moment from "moment";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useCallback } from "react";
 import "./index.scss";
 
 const DayNames = {
@@ -11,6 +14,10 @@ function Cell({ color }) {
   let style = {
     backgroundColor: color,
   };
+
+  if (color === 'transparent') {
+    style.borderColor ='none';
+  }
 
   return <div className="timeline-cells-cell" style={style}></div>;
 }
@@ -33,15 +40,7 @@ function Timeline({ range, data, colorFunc, showWeekDays = false, showMonths = f
   let cells = Array.from(new Array(days));
   let weekDays = Array.from(new Array(7));
   let months = Array.from(new Array(Math.floor(days / 7)));
-
-//   console.log({
-//     days,
-//     cells,
-//     weekDays,
-//     months,
-//     data
-//   })
-  
+ 
   let min = Math.min(0, ...data.map((d) => d.value));
   let max = Math.max(...data.map((d) => d.value));
 
@@ -49,6 +48,51 @@ function Timeline({ range, data, colorFunc, showWeekDays = false, showMonths = f
 
   let startDate = range[0];
   const DayFormat = "DDMMYYYY";
+  const [cellComponents, setCellComponents] = useState();
+
+  const generateCells = useCallback(() => {
+    let prevMonth = startDate.month();
+
+    const resultCells = cells.map((_, index) => {
+      let date = moment(startDate).add(index, "day");
+      let dataPoint = data.find(
+        (d) =>
+          moment(date).format(DayFormat) ===
+          moment(d.date).format(DayFormat)
+      );
+      let alpha = colorMultiplier * dataPoint.value;
+      let color = colorFunc(dataPoint.value, alpha);
+      let currentMonth = date._d.getMonth();
+      let result = [];
+
+      if (currentMonth!==prevMonth) {
+        result = weekDays.map((_, it) => { 
+          return {index, key: `${index}-${it}`, date, color: 'transparent'};
+        });
+        prevMonth = currentMonth;
+      }
+
+      result.push({...{key: index, index, date, color}});
+      return result;
+    });
+
+    let cellComponents = [];
+
+    for( let x of resultCells){
+      if (Array.isArray(x)){
+        cellComponents = [...cellComponents, ...x];
+      }else{
+        cellComponents.push(x);
+      }
+    }
+
+    return cellComponents;
+  }, [cells, colorFunc, colorMultiplier, data, startDate, weekDays]);
+
+  useEffect(() => {
+    setCellComponents(generateCells());
+  }, [])
+  
 
   return (
     <div className="timeline">
@@ -66,18 +110,7 @@ function Timeline({ range, data, colorFunc, showWeekDays = false, showMonths = f
         </div>
 
         <div className="timeline-cells">
-          {cells.map((_, index) => {
-            let date = moment(startDate).add(index, "day");
-            let dataPoint = data.find(
-              (d) =>
-                moment(date).format(DayFormat) ===
-                moment(d.date).format(DayFormat)
-            );
-            let alpha = colorMultiplier * dataPoint.value;
-            let color = colorFunc(dataPoint.value, alpha);
-
-            return <Cell key={index} index={index} date={date} color={color} />;
-          })}
+          {cellComponents && cellComponents.map((cellProperties) => <Cell  {...cellProperties} />)}
         </div>
       </div>
     </div>

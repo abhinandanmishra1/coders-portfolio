@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { ReactComponent as RecentSubmissionsIcons} from "assets/svg/lc/recentSubmissions.svg";
+import { ReactComponent as SolutionsIcons} from "assets/svg/lc/solutions.svg";
+import { ReactComponent as DiscussionsIcons} from "assets/svg/lc/discussions.svg";
 
 const LcRecentSubmissions = ({ recentSubmissions }) => {
+  const [tab, setTab] = useState(0);
   if (!recentSubmissions) return <h1>No data available</h1>;
 
   const { recentAcSubmissionList } = recentSubmissions;
+  console.log(recentAcSubmissionList);
 
   const getDiff = (timestamp) => {
     const currTimeStamp = new Date().getTime();
@@ -29,12 +34,19 @@ const LcRecentSubmissions = ({ recentSubmissions }) => {
   return (
     <div className="lc-recentSubmissions lc-section">
       <div className="lc-recentSubmissions__header">
-        <div className="lc-recentSubmissions__recentAc">Recent AC</div>
+        <div className={`lc-recentSubmissions__header--tab ${tab===0?'lc-recentSubmissions__header--active':''}`} onClick={()=> setTab(0)}><RecentSubmissionsIcons /> Recent AC</div>
+        <div className={`lc-recentSubmissions__header--tab ${tab===1?'lc-recentSubmissions__header--active':''}`} onClick={()=> setTab(1)}><SolutionsIcons /> Solutions</div>
+        <div className={`lc-recentSubmissions__header--tab ${tab===2?'lc-recentSubmissions__header--active':''}`} onClick={()=> setTab(2)}><DiscussionsIcons /> Discussions</div>
       </div>
       <div className="lc-recentSubmissions__details">
-        {recentAcSubmissionList.map((submission) => {
+        {tab===0 && recentAcSubmissionList.map((submission) => {
           return (
-            <div className="lc-recentSubmissions__detail">
+            <div className="lc-recentSubmissions__detail" onClick={
+              () => {
+                const url = `https://leetcode.com/problems/${submission.titleSlug}/submissions/${submission.id}`
+                window.open(url, '_blank');
+              }
+            }>
               <div className="lc-recentSubmissions__detail--title">
                 {submission.title}
               </div>
@@ -44,6 +56,16 @@ const LcRecentSubmissions = ({ recentSubmissions }) => {
             </div>
           );
         })}
+        {
+          tab===1 && (
+            <h1>Solutions</h1>
+          )
+        }
+        {
+          tab===2 && (
+            <h1>Discussions</h1>
+          )
+        }
       </div>
     </div>
   );

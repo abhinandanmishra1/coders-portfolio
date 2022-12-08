@@ -230,7 +230,7 @@ const getUserBadgesInfo = asyncHandler(async (req, res) => {
 
 const getUserRecentAcSubmissions = asyncHandler(async (req, res) => {
   const { username } = req.query;
-  var options = lcOptions("userRecentAcSubmissions", username, 10);
+  var options = lcOptions("userRecentAcSubmissions", username, 20);
   request(
     options,
     function (error, response, body) {
@@ -263,7 +263,7 @@ const getUserRecentAcSubmissions = asyncHandler(async (req, res) => {
 
 const getUserProfileCalendar = asyncHandler(async (req, res) => {
   const { username } = req.query;
-  var options = lcOptions("userProfileCalendar", username, 10);
+  var options = lcOptions("userProfileCalendar", username);
   request(
     options,
     function (error, response, body) {

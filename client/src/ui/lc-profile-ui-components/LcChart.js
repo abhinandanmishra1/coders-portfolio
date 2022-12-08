@@ -14,6 +14,7 @@ const LeetCodeChart = ({data, startYear, currentYear}) => {
       backgroundColor: 'rgb(38, 38, 38)',
       height: '200vh',
       marginLeft: 10,
+      renderTo: 'container',
     },
     credits: {
       enabled: false,

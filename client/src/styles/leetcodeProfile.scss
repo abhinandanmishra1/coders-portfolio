@@ -16,6 +16,7 @@ $lc-green-color: rgb(44 187 93);
     padding-bottom: 0.4rem;
     border-radius: 9999px;
     font-size: 1.3rem;
+    cursor: pointer;
 }
 
 .lc-profile {
@@ -25,24 +26,33 @@ $lc-green-color: rgb(44 187 93);
     background-color: rgb(26, 26, 26);
     color: $white;
     padding: 2rem;
+    max-height: 600vh;
+    min-height: 100vh;
+    height: auto;
 
     &__left {
         width: 25%;
-        padding: 2rem;
+        padding: 2rem 1rem;
     }
 
     &__right {
-        width: 65%;
-        height: 100vh;
+        width: 72%;
+        height: auto;
 
         &--diagrams {
             @include flex;
+
+            @include tablet {
+                @include flex-col;
+            }
         }
 
         &--more-details {
             @include flex;
 
-            height: 35%;
+            @include tablet {
+                @include flex-col;
+            }
         }
     }
 
@@ -50,7 +60,7 @@ $lc-green-color: rgb(44 187 93);
         @include flex;
         @include justify-between;
 
-        width: 80%;
+        width: 90%;
         margin-bottom: 2rem;
 
         &--image {
@@ -65,13 +75,14 @@ $lc-green-color: rgb(44 187 93);
         @include justify-between;
 
         height: 8rem;
-
+        padding-left:0.2rem;
         &--details {
-
+            width: 100%;
         }
 
         &--name {
             letter-spacing: 0.05rem;
+            word-wrap: normal;
         }
 
         &--username {
@@ -109,18 +120,20 @@ $lc-green-color: rgb(44 187 93);
 
         &--skills {
             @include flex;
-            @include justify-around;
 
-            width: 50%;
+            flex-wrap: wrap;
+            width: 90%;
         }
 
         &--skill {
+            @include language-style;
             color: $lc-color-text-1;
+            margin: 0.5rem;
         }
 
         &--desc {
             color: $lc-color-text-1;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             text-overflow: ellipsis;    
             white-space: nowrap;
             overflow: hidden;

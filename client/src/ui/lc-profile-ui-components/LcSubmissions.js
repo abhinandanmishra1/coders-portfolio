@@ -22,14 +22,22 @@ const LcSubmissions = ({calendarData}) => {
     };
   });
 
+  const getColor = (value) => {
+    if (value > 1) return '#6BCF8E';
+
+    if (value === 0) return 'hsla(0,0%,100%,.1)';
+    
+    return `rgba(44, 181, 93, 0.5)`;
+  }
+
   return (
     <div className='lc-submissions lc-section'>
-        <Timeline range={dateRange} data={data} colorFunc={(value, alpha) => value>1? '#6BCF8E' :`rgba(44, 181, 93, ${alpha===0?0:0.5})`} />
+        <Timeline range={dateRange} data={data} colorFunc={(value) => getColor(value)} />
     </div>
   )
 }
 
-export default LcSubmissions
+export default LcSubmissions;
 
 // add a feature like we can show the current streak on place where it is hovered
 // recent contest participation and number of questions solved 

@@ -1,20 +1,35 @@
 .lc-chart {
     width: 50%;
     border-radius: 1rem;
+
+    @include tablet {
+        width: 100%;
+    }
 }
 
 .lc-histogram {
     width: 50%;
+
+    @include tablet {
+        width: 100%;
+    }
 }
 
 .lc-solved {
     width: 50%;
+    height: 30vh;
     margin: 1rem 0.5rem;
-    
+
+    &__bar {
+        @include flex-col;
+    }
+
     &__title {
         color: $lc-color-text-1;
         font-size: 1.4rem;
         margin: 1rem;
+        text-align: left;
+        width: 100%;
     }
 
     &__stats {
@@ -26,6 +41,9 @@
 
     &__pcount {
         width: 50%;
+        
+        @include flex-col;
+        @include justify-c;
 
         &--level {
             @include flex-col;
@@ -45,25 +63,72 @@
             }
         }
     }
+
+    @include tablet {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .lc-badges {
     width: 50%;
     margin: 1rem 0.5rem;
+    height: 30vh;
+    padding: 1rem;
+    @include flex-col;
+    @include justify-between;
+
+    &__icon {
+        height: 100%;
+
+        &--3-0 {
+            order: 1;
+        }
+
+        &--3-1 {
+            order: 0;
+        }
+
+        &--3-2 {
+            order: 2;
+        }
+    }
+
+    &__header {
+        @include flex;
+        @include justify-between;
+
+        p:nth-child(1) {
+            color: $lc-color-text-1;
+        }
+    }
+
+    &__display {
+        @include flex;
+        @include justify-evenly;
+
+        height: 45%;
+    }
+
+    &__footer {
+        p:nth-child(1) {
+            color: $lc-color-text-1;
+        }
+    }
 }
 
 .lc-submissions {
     @include flex;
     @include align-c;
     @include justify-c;
-
-    height: 30%;
+    
+    padding: 0.5rem;
+    height: 25vh;
     width: 100%;
+    overflow: hidden;
 }
 
 .lc-recentSubmissions {
-    height: 100%;
-
     &__details {
         @include flex-col;
         
@@ -71,17 +136,47 @@
 
     &__header {
         padding: 1rem;
+        @include flex;
+
+        &--tab {
+            padding: 1rem;
+            @include flex;
+            @include align-c;
+            border-radius: 0.5rem;
+            cursor: pointer;
+
+            svg {
+                margin-right: 0.5rem;
+            }
+        }
+
+        &--active {
+            background-color: $lc-color-bg-1;
+        }
     }
 
     &__detail {
         @include flex;
         @include justify-between;
-        padding: 1.5rem 1rem;
-        margin: 0.5rem 1rem;
-        border-radius: 1rem;
+        padding: 1.7rem 1rem;
+        margin: 0.2rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 1.4rem;
 
         &:nth-child(odd) {
             background-color: $lc-color-bg-1;
+        }
+
+        &--title {
+            font-weight: 500;
+            letter-spacing: 0.01rem;
+            line-height: 2rem;
+            tab-size: 4;
+        }
+
+        &--daysAgo {
+            color: $lc-color-text-1;
         }
     }
 }
