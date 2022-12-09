@@ -171,8 +171,34 @@ query userProfileCalendar($username: String!, $year: Int) {
       submissionCalendar
     }
   }
+}    
+`,
+userDiscussionSolutions: `
+query userSolutionTopics($username: String!, $orderBy: TopicSortingOption, $skip: Int, $first: Int) {
+  userSolutionTopics(
+    username: $username
+    orderBy: $orderBy
+    skip: $skip
+    first: $first
+  ) {
+    pageInfo {
+      hasNextPage
+    }
+    edges {
+      node {
+        id
+        title
+        url
+        viewCount
+        questionTitle
+        post {
+          creationDate
+          voteCount
+        }
+      }
+    }
+  }
 }
-    
 `
 };
 

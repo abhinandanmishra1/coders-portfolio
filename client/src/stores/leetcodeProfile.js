@@ -11,6 +11,7 @@ const GET_CONTEST_RATING_HISTOGRAM_INFO = "lc/profile/GET_CONTEST_RATING_HISTOGR
 const GET_PROBLEMS_SOLVED_INFO = "lc/profile/GET_PROBLEMS_SOLVED_INFO";
 const GET_BADGES_INFO = "lc/profile/GET_BADGES_INFO";
 const GET_RECENT_SUBMISSIONS = "lc/profile/GET_RECENT_SUBMISSIONS";
+const GET_USER_DISCUSSION_SOLUTIONS = "lc/profile/GET_USER_DISCUSSION_SOLUTIONS";
 const GET_USER_PROFILE_CALENDAR = "lc/profile/GET_USER_PROFILE_CALENDAR";
 
 export function loadUserProfile(username) {
@@ -117,12 +118,25 @@ export function loadUserRecentAcSubmissions(username) {
   };
 }
 
+export function loadUserDiscussionSolutions(username, orderBy="newest_to_oldest") {
+  return async (dispatch) => {
+    dispatch({ type: GET_INIT });
+    try {
+      const { data } = await leetcodeProfileApi.getUserDiscussionSolutions(username, orderBy);
+      const { json } = data;
+      dispatch({ type: GET_USER_DISCUSSION_SOLUTIONS, payload: json });
+    } catch (error) {
+      dispatch({ type: GET_ERROR });
+    }
+  };
+}
+
 export function loadUserProfileCalendar(username) {
   return async (dispatch) => {
     dispatch({ type: GET_INIT });
     try {
       const { data } = await leetcodeProfileApi.getUserProfileCalendar(username);
-      console.log(data)
+
       const { json } = data;
       dispatch({ type: GET_USER_PROFILE_CALENDAR, payload: json });
     } catch (error) {
@@ -142,7 +156,8 @@ export default function reducer(
     contestRatingHistogram: null,
     solvedProblems: null,
     badges: [],
-    recentSubmissions: null,
+    recentSubmissions: {},
+    userDiscussionSolutions: {},
     userProfileCalendar: null,
   },
   action
@@ -205,6 +220,13 @@ export default function reducer(
         isLoading: false,
         loadError: null,
         recentSubmissions: action.payload,
+      };
+    case GET_USER_DISCUSSION_SOLUTIONS:
+      return {
+        ...state,
+        isLoading: false,
+        loadError: null,
+        userDiscussionSolutions: action.payload,
       };
     case GET_USER_PROFILE_CALENDAR:
       return {

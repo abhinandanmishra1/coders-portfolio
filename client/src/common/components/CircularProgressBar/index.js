@@ -12,7 +12,8 @@ const ProgressBar = ({
     label = `Loading...`,
     labelColor = `#333`,
     spinnerMode = false,
-    spinnerSpeed = 1
+    spinnerSpeed = 1,
+    changeProgressContent
   }) => {
   const center = size / 2,
         radius = center - (trackWidth > indicatorWidth ? trackWidth : indicatorWidth),

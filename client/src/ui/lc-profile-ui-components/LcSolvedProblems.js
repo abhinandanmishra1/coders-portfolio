@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import CircularProgressBar from "common/components/CircularProgressBar";
 import ProgressBar from "common/components/ProgressBar";
 
-const LcSolvedProblems = () => {
+const LcSolvedProblems = ({solvedProblems}) => {
+  console.log(solvedProblems)
   const total = {
     easy: 611,
     medium: 1330,
@@ -19,6 +20,41 @@ const LcSolvedProblems = () => {
     return `${((userTotal / total) * 100).toFixed(1)}%`;
   };
 
+  const completedQuestionProgress = useCallback((userTotal, total) => {
+      return Math.round(userTotal/total *100);
+  }, [])
+
+  const [ progressContent, setProgressContent ] = useState(1);
+
+  const changeProgressContent = useCallback(
+    () => {
+      setProgressContent(!progressContent);
+    },
+    [progressContent, setProgressContent],
+  );
+
+  if ( !solvedProblems || !solvedProblems.matchedUser || !solvedProblems.matchedUser.submitStatsGlobal) {
+    return null;
+  }
+
+  const { allQuestionsCount } = solvedProblems || {};
+  const { problemsSolvedBeatsStats: solvedStats } = solvedProblems?.matchedUser || {};
+  const { acSubmissionNum } = solvedProblems?.matchedUser?.submitStatsGlobal || {};
+
+  const { count: solvedProblemsCounts } = acSubmissionNum[0] || {};
+  const { count: solvedEasyProblemsCounts } = acSubmissionNum[1] || {};
+  const { count: solvedMediumProblemsCounts } = acSubmissionNum[2] || {};
+  const { count: solvedHardProblemsCounts } = acSubmissionNum[3] || {};
+
+  const { count: allProblemsCounts } = allQuestionsCount[0] || {};
+  const { count: allEasyProblemsCounts } = allQuestionsCount[1] || {};
+  const { count: allMediumProblemsCounts } = allQuestionsCount[2] || {};
+  const { count: allHardProblemsCounts } = allQuestionsCount[3] || {};
+
+  const solvedProblemsPercentage = (solvedProblemsCounts/allProblemsCounts*100).toFixed(1);
+  const progressContent1 = solvedProblemsCounts;
+  const progressContent2 = `${solvedProblemsPercentage}%`;
+
   return (
     <div className="lc-solved lc-section">
       <div
@@ -29,59 +65,63 @@ const LcSolvedProblems = () => {
       >
         <div className="lc-solved__bar">
           <div className="lc-solved__title">Solved Problems</div>
-          <CircularProgressBar
-            indicatorColor="rgba(255, 161, 22, 1)"
-            progress="60"
-            progressContent="60%"
-            trackWidth="5"
-            indicatorWidth="7"
-            label="Solved"
-            labelColor="#fff"
-            trackColor="hsla(0,0%,100%,.1)"
-            size={120}
-          />
+          <div className="lc-solved__circular-stats" onMouseEnter={changeProgressContent}
+          onMouseLeave={changeProgressContent}>
+            <CircularProgressBar
+              indicatorColor="rgba(255, 161, 22, 1)"
+              progress={solvedProblemsPercentage}
+              progressContent={progressContent? progressContent1 : progressContent2}
+              trackWidth="5"
+              indicatorWidth="7"
+              label="Solved"
+              labelColor="#fff"
+              trackColor="hsla(0,0%,100%,.1)"
+              size={120}
+              changeProgressContent={changeProgressContent}
+            />
+          </div>
         </div>
         <div className="lc-solved__pcount">
           <div className="lc-solved__pcount--level">
             <div className="lc-solved__pcount--progress">
               <div className="lc-solved__pcount--title">Easy</div>
               <div className="lc-solved__pcount--details">
-                <span>{userTotal.easy}</span>/{total.easy}
+                <span>{solvedEasyProblemsCounts}</span>/{allEasyProblemsCounts}
               </div>
               <div className="lc-solved__pcount--beats">
-                Beats {getPercentage(userTotal.easy, total.easy)}
+                Beats {getPercentage(solvedEasyProblemsCounts, allEasyProblemsCounts)}
               </div>
             </div>
             <div className="lc-solved__pcount--progressBar">
-              <ProgressBar completed={50} bgcolor="green" />
+              <ProgressBar completed={completedQuestionProgress(solvedEasyProblemsCounts,allEasyProblemsCounts)} bgcolor="green" />
             </div>
           </div>
           <div className="lc-solved__pcount--level">
             <div className="lc-solved__pcount--progress">
               <div className="lc-solved__pcount--title">Medium</div>
               <div className="lc-solved__pcount--details">
-                <span>{userTotal.medium}</span>/{total.medium}
+                <span>{solvedMediumProblemsCounts}</span>/{allMediumProblemsCounts}
               </div>
               <div className="lc-solved__pcount--beats">
-                Beats {getPercentage(userTotal.medium, total.medium)}
+                Beats {getPercentage(solvedMediumProblemsCounts, allMediumProblemsCounts)}
               </div>
             </div>
             <div className="lc-solved__pcount--progressBar">
-              <ProgressBar completed={50} bgcolor="yellow" />
+              <ProgressBar completed={completedQuestionProgress(solvedMediumProblemsCounts,allMediumProblemsCounts)} bgcolor="yellow" />
             </div>
           </div>
           <div className="lc-solved__pcount--level">
             <div className="lc-solved__pcount--progress">
               <div className="lc-solved__pcount--title">Hard</div>
               <div className="lc-solved__pcount--details">
-                <span>{userTotal.hard}</span>/{total.hard}
+                <span>{solvedHardProblemsCounts}</span>/{allHardProblemsCounts}
               </div>
               <div className="lc-solved__pcount--beats">
-                Beats {getPercentage(userTotal.hard, total.hard)}
+                Beats {getPercentage(solvedHardProblemsCounts, allHardProblemsCounts)}
               </div>
             </div>
             <div className="lc-solved__pcount--progressBar">
-              <ProgressBar completed={50} bgcolor="red" />
+              <ProgressBar completed={completedQuestionProgress(solvedHardProblemsCounts,allHardProblemsCounts)} bgcolor="red" />
             </div>
           </div>
         </div>

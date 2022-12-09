@@ -12,6 +12,7 @@ import {
   loadUserProblemsSolvedInfo,
   loadUserRecentAcSubmissions,
   loadUserProfileCalendar,
+  loadUserDiscussionSolutions,
 } from "stores/leetcodeProfile";
 import LcProfileStripData from "ui/lc-profile-ui-components/LcProfileStripData";
 import LcChart from "ui/lc-profile-ui-components/LcChart";
@@ -82,9 +83,10 @@ const TaggedProblemsCountUi = ({ taggedProblemsCounts }) => {
   return (
     <div className="lc-profile__taggedProblems">
       {taggedProblemsCounts.map((tag) => {
+        const url = `https://leetcode.com/tag/${tag.tagName.toLowerCase().split(' ').join('-')}`;
         return (
           <div className="lc-profile__tag">
-            <div className="lc-profile__tag--name">{tag.tagName}</div>
+            <div className="lc-profile__tag--name" onClick={() => window.open(url)}>{tag.tagName}</div>
             <div className="lc-profile__tag--count">
               x<span>{tag.problemsSolved}</span>
             </div>
@@ -153,6 +155,8 @@ const RightProfileUi = ({
   calendarData,
   recentSubmissions,
   badgesData,
+  userDiscussionSolutions,
+  solvedProblems,
 }) => {
   return (
     <div className="lc-profile__right">
@@ -161,11 +165,11 @@ const RightProfileUi = ({
         <LcHistogram contests={contestHistogram} />
       </div>
       <div className="lc-profile__right--more-details">
-        <LcSolvedProblems />
+        <LcSolvedProblems solvedProblems={solvedProblems} />
         <LcBadges {...{ badgesData }} />
       </div>
       <LcSubmissions {...{ calendarData }} />
-      <LcRecentSubmissions {...{ recentSubmissions }} />
+      <LcRecentSubmissions {...{ recentSubmissions, userDiscussionSolutions }} />
     </div>
   );
 };
@@ -183,6 +187,7 @@ const Leetcode = () => {
     solvedProblems,
     tagProblems,
     userInfo,
+    userDiscussionSolutions,
     userProfileCalendar,
     isLoading,
   } = useSelector((store) => store.leetcode);
@@ -198,6 +203,7 @@ const Leetcode = () => {
       dispatch(loadUserProblemsSolvedInfo(username));
       dispatch(loadUserRecentAcSubmissions(username));
       dispatch(loadUserProfileCalendar(username));
+      dispatch(loadUserDiscussionSolutions(username))
     });
   }, [dispatch, username]);
 
@@ -224,7 +230,9 @@ const Leetcode = () => {
               userProfileCalendar.matchedUser.userCalendar
             }
             recentSubmissions={recentSubmissions}
+            userDiscussionSolutions={userDiscussionSolutions}
             badgesData={badges && badges.matchedUser}
+            solvedProblems={solvedProblems}
           />
         </>
       )}

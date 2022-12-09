@@ -1,10 +1,10 @@
 const {lcQueries} = require('./constants');
 
-const lcOptions = (query_type, username, limit) => {
+const lcOptions = (query_type, username, altOptions={}) => {
     const options = {
-      username
+      username,
+      ...altOptions
     };
-    if (limit) options.limit = limit;
     
     return {
         'method': 'GET',

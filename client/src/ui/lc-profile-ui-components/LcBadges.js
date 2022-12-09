@@ -13,7 +13,7 @@ const LcBadges = ({badgesData}) => {
   if(!badgesData) return null;
   const {badges, upcomingBadges} = badgesData;
   const badgeSize = Math.min(3, badges.length);
-  console.log(badges)
+
   return (
     <div className='lc-badges lc-section'>
         <div className="lc-badges__header">

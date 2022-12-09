@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+
+import { loadUserDiscussionSolutions } from "stores/leetcodeProfile";
 import { ReactComponent as RecentSubmissionsIcons} from "assets/svg/lc/recentSubmissions.svg";
 import { ReactComponent as SolutionsIcons} from "assets/svg/lc/solutions.svg";
 import { ReactComponent as DiscussionsIcons} from "assets/svg/lc/discussions.svg";
 
-const LcRecentSubmissions = ({ recentSubmissions }) => {
+const LcRecentSubmissions = ({ recentSubmissions, userDiscussionSolutions }) => {
   const [tab, setTab] = useState(0);
-  if (!recentSubmissions) return <h1>No data available</h1>;
+  const dispatch = useDispatch();
+  const { username } = useParams();
 
   const { recentAcSubmissionList } = recentSubmissions;
-  console.log(recentAcSubmissionList);
+  const { userSolutionTopics } = userDiscussionSolutions;
 
   const getDiff = (timestamp) => {
     const currTimeStamp = new Date().getTime();
@@ -31,6 +36,13 @@ const LcRecentSubmissions = ({ recentSubmissions }) => {
     return `${days} days ago`;
   };
 
+  const changeOrder = useCallback(
+    (orderBy) => {
+      dispatch(loadUserDiscussionSolutions(username, orderBy));
+    },
+    [dispatch, username],
+  );
+
   return (
     <div className="lc-recentSubmissions lc-section">
       <div className="lc-recentSubmissions__header">
@@ -39,7 +51,7 @@ const LcRecentSubmissions = ({ recentSubmissions }) => {
         <div className={`lc-recentSubmissions__header--tab ${tab===2?'lc-recentSubmissions__header--active':''}`} onClick={()=> setTab(2)}><DiscussionsIcons /> Discussions</div>
       </div>
       <div className="lc-recentSubmissions__details">
-        {tab===0 && recentAcSubmissionList.map((submission) => {
+        {tab===0 && (recentAcSubmissionList || []).map((submission) => {
           return (
             <div className="lc-recentSubmissions__detail" onClick={
               () => {
@@ -58,12 +70,44 @@ const LcRecentSubmissions = ({ recentSubmissions }) => {
         })}
         {
           tab===1 && (
-            <h1>Solutions</h1>
+            (userSolutionTopics?.edges || []).map((solution) => {
+              return (
+                <div className="lc-recentSubmissions__detail" onClick={
+                  () => {
+                    const url = `https://leetcode.com/problems/${solution.node.questionTitle.toLowerCase().split(' ').join('-')}/submissions/${solution.node.id}/${solution.node.url}`
+                    window.open(url, '_blank');
+                  }
+                }>
+                  <div className="lc-recentSubmissions__detail--title">
+                    {solution.node.title}
+                  </div>
+                  <div className="lc-recentSubmissions__detail--daysAgo">
+                    {getDiff(solution.node.post.creationDate)}
+                  </div>
+                </div>
+              );
+            })
           )
         }
         {
           tab===2 && (
-            <h1>Discussions</h1>
+            recentAcSubmissionList.map((submission) => {
+              return (
+                <div className="lc-recentSubmissions__detail" onClick={
+                  () => {
+                    const url = `https://leetcode.com/problems/${submission.titleSlug}/submissions/${submission.id}`
+                    window.open(url, '_blank');
+                  }
+                }>
+                  <div className="lc-recentSubmissions__detail--title">
+                    {submission.title}
+                  </div>
+                  <div className="lc-recentSubmissions__detail--daysAgo">
+                    {getDiff(submission.timestamp)}
+                  </div>
+                </div>
+              );
+            })
           )
         }
       </div>

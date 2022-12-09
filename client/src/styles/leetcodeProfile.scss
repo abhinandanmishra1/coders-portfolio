@@ -151,6 +151,14 @@ $lc-green-color: rgb(44 187 93);
         border-top: 0.1rem solid $lc-color-text-1;
         padding-top: 1.5rem;
         margin-top: 1rem;
+
+        &::before {
+            content: "Languages";
+            display: block;
+            margin-bottom: 1.5rem;
+            line-height: 1.5rem;
+            font-weight: $fontWeights-2;
+        }
     }
 
     &__language {
@@ -209,6 +217,14 @@ $lc-green-color: rgb(44 187 93);
         border-top: 0.1rem solid $lc-color-text-1;
         padding-top: 1.5rem;
         margin-top: 1.5rem;
+
+        &::before {
+            content: "Skills";
+            display: block;
+            margin-bottom: 1.5rem;
+            line-height: 1.5rem;
+            font-weight: $fontWeights-2;
+        }
     }
 
     &__skill {

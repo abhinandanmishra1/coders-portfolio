@@ -40,6 +40,11 @@ function getUserRecentAcSubmissions(username = null){
     return axiosClient.get(url, {username});
 }
 
+function getUserDiscussionSolutions(username = null, orderBy = null){
+    const url = `/leetcode/userDiscussionSolutions`;
+    return axiosClient.get(url, {username, orderBy});
+}
+
 function getUserProfileCalendar(username = null){
     const url = `/leetcode/userProfileCalendar`;
     return axiosClient.get(url, {username});
@@ -54,6 +59,7 @@ const Functions = {
     getUserProblemsSolvedInfo,
     getUserBadgesInfo,
     getUserRecentAcSubmissions,
+    getUserDiscussionSolutions,
     getUserProfileCalendar,
 }
 
