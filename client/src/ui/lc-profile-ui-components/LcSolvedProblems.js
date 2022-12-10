@@ -3,19 +3,6 @@ import CircularProgressBar from "common/components/CircularProgressBar";
 import ProgressBar from "common/components/ProgressBar";
 
 const LcSolvedProblems = ({solvedProblems}) => {
-  console.log(solvedProblems)
-  const total = {
-    easy: 611,
-    medium: 1330,
-    hard: 72,
-  };
-
-  const userTotal = {
-    easy: 182,
-    medium: 325,
-    hard: 72,
-  };
-
   const getPercentage = (userTotal, total) => {
     return `${((userTotal / total) * 100).toFixed(1)}%`;
   };

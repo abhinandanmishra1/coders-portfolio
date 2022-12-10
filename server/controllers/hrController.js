@@ -104,9 +104,8 @@ const getCertificates = asyncHandler(async (req, res) => {
       }
       
       const result = JSON.parse(body);
-      console.log(body)
+
       if (result.data.length === 0) {
-        console.log("cgushsjhhjs")
         res.status(404).send({
           data: {
             success: false,

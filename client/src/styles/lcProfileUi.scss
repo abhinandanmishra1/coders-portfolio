@@ -2,6 +2,52 @@
     width: 50%;
     border-radius: 1rem;
 
+    &__details {
+        @include flex;
+        @include justify-evenly;
+        @include align-c;
+
+        padding-top: 1rem;
+
+        &--text {
+            color: $lc-color-text-1;
+            font-size: 1.2rem;
+        }
+
+        &--contest-rating {
+            font-size: 2rem;
+            line-height: 3rem;
+        }
+
+        &--level {
+            @include flex;
+            @include align-c;
+        }
+
+        &--level-name {
+            color: $color-link;
+            margin-top: 0.5rem;
+        }
+
+        &--global {
+            margin-top: 0.5rem;
+
+            span {
+                color: $lc-color-text-1;
+                font-size: 1.2rem;
+            }
+        }
+
+        &--img {
+            height: 4rem;
+            margin-right: 0.2rem;
+        }
+
+        &--count {
+            margin-top: 0.5rem;
+        }
+    }
+
     @include tablet {
         width: 100%;
     }

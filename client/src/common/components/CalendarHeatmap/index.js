@@ -2,6 +2,8 @@ import moment from "moment";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useCallback } from "react";
+
+import useWindowDimensions from "hooks/useWindowSizeHook";
 import "./index.scss";
 
 const DayNames = {
@@ -11,8 +13,14 @@ const DayNames = {
 };
 
 function Cell({ color }) {
+  const { width } = useWindowDimensions();
+  const timeLineDivWidth = Math.round(width * 0.69);
+  const cellWidth = Math.round(timeLineDivWidth/77);
+
   let style = {
     backgroundColor: color,
+    width: cellWidth,
+    height: cellWidth
   };
 
   if (color === 'transparent') {

@@ -41,7 +41,6 @@ export function loadBadges(username) {
     dispatch({ type: GET_INIT });
     try {
       const { data } = await hackerrankProfileApi.loadBadges(username);
-      console.log(data);
       const { json } = data;
       dispatch({ type: GET_BADGES_DONE, payload: json });
     } catch (error) {
