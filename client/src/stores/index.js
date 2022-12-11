@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 
 import hrProfile from "./hackerrankProfile";
 import lcProfile from "./leetcodeProfile";
+import cfProfile from "./codeforcesProfile";
 
 const middleware = [thunk];
 
 const reducers = combineReducers({
   hackerrank: hrProfile,
   leetcode: lcProfile,
+  codeforces: cfProfile,
 });
 
 const composeEnhancers = compose;

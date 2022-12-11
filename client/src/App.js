@@ -4,6 +4,7 @@ import About from "components/About";
 import UserProfile from 'components/UserProfile';
 import HackerrankProfile from 'components/UserProfile/Hackerrank';
 import LeetcodeProfile from 'components/UserProfile/Leetcode';
+import CodeforcesProfile from 'components/UserProfile/Codeforces';
 
 function App(){
     return (
@@ -14,6 +15,7 @@ function App(){
                 <Route path='' element={<UserProfile />} />
                 <Route path='hackerrank' element={<HackerrankProfile />} />
                 <Route path='leetcode' element={<LeetcodeProfile />} />
+                <Route path='codeforces' element={<CodeforcesProfile />} />
             </Route>
         </Routes>
     )
