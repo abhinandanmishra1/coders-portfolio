@@ -1,0 +1,211 @@
+$cf-color-text-1: #05668d;
+$cf-color-text-2: #dee2e6;
+$cf-color-text-2-hover: rgb(73, 80, 87, 0.8);
+$cf-color-bg-1: #415a77;
+$cf-red-color: rgb(239 71 67);
+$cf-yellow-color: rgb(255 192 30);
+$cf-green-color: green;
+$cf-specialist-color: #03a89e;
+
+@mixin cf-language-style {
+    color: $cf-color-text-2;
+    background-color: $cf-color-bg-1;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    border-radius: 9999px;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.cf-profile {
+    @include flex;
+
+    color: $black;
+    padding: 2rem;
+    max-height: 600vh;
+    min-height: 100vh;
+    height: auto;
+    background-color: #e9ecef;
+
+    &__left {
+        width: 30%;
+        padding: 2rem 1rem;
+    }
+
+    &__right {
+        width: 72%;
+    }
+
+    &__header {
+        @include flex;
+
+        width: 100%;
+        margin-bottom: 2rem;
+
+        &--image {
+            height: 9rem;
+            width: 8rem;
+            border-radius: 1rem;
+            margin-right: 2rem;
+        }
+    }
+
+    &__identity {
+        @include flex-col;
+        @include justify-between;
+
+        height: 8rem;
+        width: 80%;
+        padding-left:0.2rem;
+
+        &--details {
+            width: 100%;
+        }
+
+        &--name {
+            letter-spacing: 0.05rem;
+            word-wrap: normal;
+            color: darken($color: $cf-color-text-1, $amount: 10);
+        }
+
+        &--username {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: $cf-color-text-1;
+        }
+
+        &--ranking {
+            text-transform: capitalize;
+            width: 100%;
+            @include flex;
+
+            span:first-child {
+                color: $cf-color-text-1;
+                font-size: 1.4rem;
+            }
+
+            span:last-child {
+                display: flex;
+                align-items: center;
+                margin-left: 0.2rem;
+                width: 100%;
+                font-size: 1.2rem;
+            }
+        }
+
+        &--pupil {
+            color: $cf-green-color;
+            font-weight: $fontWeights-3;
+        }
+
+        &--specialist {
+            color: $cf-specialist-color;
+            font-weight: $fontWeights-3;
+        }
+
+        &--expert {
+            color: blue;
+            font-weight: $fontWeights-3;
+        }
+
+        &--candidate-master {
+            color: violet;
+            font-weight: $fontWeights-3;
+        }
+
+        &--master, &--international-master {
+            color: orange;
+            font-weight: $fontWeights-3;
+        }
+
+        &--grandmaster, &--international-grandmaster, &--legendary-grandmaster {
+            color: red;
+            font-weight: $fontWeights-3;
+        }
+    }
+
+    &__origin {
+        color: $cf-color-text-1;
+    }
+
+    &__organization {
+        color: #05668d;
+        font-weight: $fontWeights-2;
+        margin-top: 1rem;
+        font-size: 1.4rem;
+    }
+
+    &__contest-rating {
+        @include flex;
+
+        word-wrap: break-word;
+        font-size: 1.4rem;
+        margin-top: 1rem;
+        color: $cf-color-text-1;
+
+        &--title {
+            font-weight: $fontWeights-2;
+            margin-right: 0.5rem;
+        }
+
+        &--details {
+
+
+        }
+    }
+
+    &__skills {
+        &:before {
+            content: 'Skills';
+            display: block;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+            line-height: 1.5rem;
+            font-weight: $fontWeights-2;
+            color: darken($color: $cf-color-text-1, $amount: 10);
+        }
+    }
+    &__taggedProblems {
+        @include flex;
+        width: 100%;
+        flex-wrap: wrap;
+        border-top: 0.1rem solid $lc-color-text-1;
+        padding-top: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    &__tag {
+        @include flex;
+        @include justify-between;
+
+        padding: 1rem;
+
+        &--name {
+            @include cf-language-style;
+            margin-right: 0.5rem;
+            font-size: 1.3rem;
+            transition: all 0.5s;
+            cursor: pointer;
+
+            &:hover {
+                background-color: lighten($color: $cf-color-bg-1, $amount: 10);
+            }
+        }
+
+        &--count {
+            color: $cf-color-text-1;
+            
+            span {
+                font-size: 1.4rem;
+            }
+        }
+    }
+}
+
+.cf-section {
+    background-color: #fdfffc;
+    border-radius: 1rem;
+    margin: 1rem 0.5rem;
+}

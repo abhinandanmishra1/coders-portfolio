@@ -1,8 +1,10 @@
 import codeforcesProfileApi from 'api/lib/codeforcesProfile';
 
+import { getTagProblems, getProblemRatingsCount, getSubmissionsData } from "utils/helpers";
 const GET_INIT = 'cf/profile/GET_INIT';
 const GET_PROFILE = 'cf/GET_PROFILE';
 const GET_CONTEST_RATINGS = 'cf/GET_CONTEST_RATINGS';
+const GET_USER_STATUS = 'cf/GET_USER_STATUS';
 const GET_ERROR = 'cf/profile/GET_ERROR';
 
 export function loadProfile(username) {
@@ -31,12 +33,28 @@ export function loadContestRatings(username) {
   };
 }
 
+export function loadUserStatus(username) {
+  return async (dispatch) => {
+    dispatch({ type: GET_INIT });
+    try {
+      const { data } = await codeforcesProfileApi.loadUserStatus(username);
+      const { json } = data;
+      dispatch({ type: GET_USER_STATUS, payload: json });
+    } catch (error) {
+      dispatch({ type: GET_ERROR });
+    }
+  };
+}
+
 export default function reducer(
   state = {
     isLoading: false,
     loadError: null,
     userProfile: null,
     userContestRatings: [],
+    tagProblems: [],
+    problemRatingsCount: [],
+    submissionsData: null,
   },
   action,
 ) {
@@ -56,6 +74,15 @@ export default function reducer(
         isLoading: false,
         loadError: null,
         userContestRatings: action.payload,
+      };
+    case GET_USER_STATUS:
+      return {
+        ...state,
+        isLoading: false,
+        loadError: null,
+        tagProblems: getTagProblems(action.payload),
+        problemRatingsCount: getProblemRatingsCount(action.payload),
+        submissionsData: getSubmissionsData(action.payload),
       };
     case GET_ERROR:
         return { ...state, isLoading: false, loadError: true}

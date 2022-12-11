@@ -1,0 +1,47 @@
+.cf-submissions {
+    @include flex-col;
+    @include align-c;
+    @include justify-c;
+    
+    padding: 0.5rem;
+    height: 25vh;
+    width: 100%;
+    overflow: hidden;
+
+    &__header {
+        @include flex;
+        @include justify-between;
+
+        width: 100%;
+        margin-bottom: 1rem;
+        padding-left: 0.5rem;
+    }
+}
+
+.cf-chart {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 1rem;
+
+    &__header {
+        @include flex;
+        @include justify-between;
+
+        width: 100%;
+        padding-left: 0.5rem;
+        padding-top: 1rem;
+    }
+}
+
+.cf-histogram {
+    padding: 0.5rem;
+
+    &__header {
+        @include flex;
+        @include justify-between;
+
+        width: 100%;
+        padding-left: 0.5rem;
+        padding-top: 1rem;
+    }
+}

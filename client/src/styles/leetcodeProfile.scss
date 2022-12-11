@@ -7,7 +7,7 @@ $lc-yellow-color: rgb(255 192 30);
 $lc-green-color: rgb(44 187 93);
 
 
-@mixin language-style {
+@mixin lc-language-style {
     color: $lc-color-text-2;
     background-color: $lc-color-bg-1;
     padding-left: 0.8rem;
@@ -126,7 +126,7 @@ $lc-green-color: rgb(44 187 93);
         }
 
         &--skill {
-            @include language-style;
+            @include lc-language-style;
             color: $lc-color-text-1;
             margin: 0.5rem;
         }
@@ -167,7 +167,7 @@ $lc-green-color: rgb(44 187 93);
         margin-top: 1rem;
 
         &--name {
-            @include language-style;
+            @include lc-language-style;
         }
 
         &--solved {
@@ -192,7 +192,7 @@ $lc-green-color: rgb(44 187 93);
         padding: 1rem;
 
         &--name {
-            @include language-style;
+            @include lc-language-style;
             margin-right: 0.5rem;
             font-size: 1.3rem;
             transition: all 0.5s;

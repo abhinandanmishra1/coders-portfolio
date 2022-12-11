@@ -10,9 +10,15 @@ function loadContestRatings(username = null){
     return axiosClient.get(badgesUrl, {username});
 }
 
+function loadUserStatus(username = null){
+    const badgesUrl = `/codeforces/status`;
+    return axiosClient.get(badgesUrl, {username});
+}
+
 const Functions = {
     loadProfile,
-    loadContestRatings
+    loadContestRatings,
+    loadUserStatus
 }
 
 export default Functions;

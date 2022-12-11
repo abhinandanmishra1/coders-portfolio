@@ -1,7 +1,6 @@
 import moment from "moment";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useCallback } from "react";
 
 import useWindowDimensions from "hooks/useWindowSizeHook";
 import "./index.scss";
@@ -24,7 +23,7 @@ function Cell({ color }) {
   };
 
   if (color === 'transparent') {
-    style.borderColor ='none';
+    style.border ='none';
   }
 
   return <div className="timeline-cells-cell" style={style}></div>;
@@ -43,7 +42,7 @@ function WeekDay({ index }) {
   return <div className="timeline-weekdays-weekday">{DayNames[index]}</div>;
 }
 
-function Timeline({ range, data, colorFunc, showWeekDays = false, showMonths = false }) {
+function Timeline({ range, data, colorFunc, showWeekDays = false, showMonths = false, allowMonthGap = true }) {
   let days = Math.abs(range[0].diff(range[1], "days"));
   let cells = Array.from(new Array(days));
   let weekDays = Array.from(new Array(7));
@@ -58,7 +57,7 @@ function Timeline({ range, data, colorFunc, showWeekDays = false, showMonths = f
   const DayFormat = "DDMMYYYY";
   const [cellComponents, setCellComponents] = useState();
 
-  const generateCells = useCallback(() => {
+  useEffect(() => {
     let prevMonth = startDate.month();
 
     const resultCells = cells.map((_, index) => {
@@ -68,12 +67,12 @@ function Timeline({ range, data, colorFunc, showWeekDays = false, showMonths = f
           moment(date).format(DayFormat) ===
           moment(d.date).format(DayFormat)
       );
-      let alpha = colorMultiplier * dataPoint.value;
-      let color = colorFunc(dataPoint.value, alpha);
+      let alpha = colorMultiplier * dataPoint?.value;
+      let color = colorFunc(dataPoint?.value, alpha);
       let currentMonth = date._d.getMonth();
       let result = [];
 
-      if (currentMonth!==prevMonth) {
+      if (allowMonthGap && currentMonth!==prevMonth) {
         result = weekDays.map((_, it) => { 
           return {index, key: `${index}-${it}`, date, color: 'transparent'};
         });
@@ -94,13 +93,8 @@ function Timeline({ range, data, colorFunc, showWeekDays = false, showMonths = f
       }
     }
 
-    return cellComponents;
-  }, [cells, colorFunc, colorMultiplier, data, startDate, weekDays]);
-
-  useEffect(() => {
-    setCellComponents(generateCells());
-  }, [])
-  
+    setCellComponents(cellComponents);
+  }, [data]);
 
   return (
     <div className="timeline">
