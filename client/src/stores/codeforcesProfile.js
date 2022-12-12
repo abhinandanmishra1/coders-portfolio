@@ -1,3 +1,4 @@
+import { batch } from "react-redux";
 import codeforcesProfileApi from 'api/lib/codeforcesProfile';
 
 import { getTagProblems, getProblemRatingsCount, getSubmissionsData } from "utils/helpers";
@@ -6,6 +7,17 @@ const GET_PROFILE = 'cf/GET_PROFILE';
 const GET_CONTEST_RATINGS = 'cf/GET_CONTEST_RATINGS';
 const GET_USER_STATUS = 'cf/GET_USER_STATUS';
 const GET_ERROR = 'cf/profile/GET_ERROR';
+
+export function loadCodeforcesProfile(username){
+  console.log(username)
+  return async (dispatch) => {
+    batch(() => {
+      dispatch(loadProfile(username));
+      dispatch(loadContestRatings(username));
+      dispatch(loadUserStatus(username));
+    });
+  };
+}
 
 export function loadProfile(username) {
   return async (dispatch) => {

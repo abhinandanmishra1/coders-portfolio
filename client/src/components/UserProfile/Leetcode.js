@@ -1,18 +1,9 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { batch, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
-  loadUserProfile,
-  loadLanguagesCounts,
-  loadTagProblemCounts,
-  loadUserBadgesInfo,
-  loadUserContestRatingInfo,
-  loadUserContestRatingHistogram,
-  loadUserProblemsSolvedInfo,
-  loadUserRecentAcSubmissions,
-  loadUserProfileCalendar,
-  loadUserDiscussionSolutions,
+  loadLeetcodeProfile
 } from "stores/leetcodeProfile";
 import LcProfileStripData from "ui/lc-profile-ui-components/LcProfileStripData";
 import LcChart from "ui/lc-profile-ui-components/LcChart";
@@ -175,9 +166,6 @@ const RightProfileUi = ({
 };
 
 const Leetcode = () => {
-  const { username } = useParams();
-  const dispatch = useDispatch();
-
   const {
     badges,
     contestRatings,
@@ -192,21 +180,18 @@ const Leetcode = () => {
     isLoading,
   } = useSelector((store) => store.leetcode);
 
-  useEffect(() => {
-    batch(() => {
-      dispatch(loadUserProfile(username));
-      dispatch(loadLanguagesCounts(username));
-      dispatch(loadTagProblemCounts(username));
-      dispatch(loadUserBadgesInfo(username));
-      dispatch(loadUserContestRatingInfo(username));
-      dispatch(loadUserContestRatingHistogram(username));
-      dispatch(loadUserProblemsSolvedInfo(username));
-      dispatch(loadUserRecentAcSubmissions(username));
-      dispatch(loadUserProfileCalendar(username));
-      dispatch(loadUserDiscussionSolutions(username))
-    });
-  }, [dispatch, username]);
-
+  console.log({
+    badges,
+    contestRatings,
+    contestRatingHistogram,
+    languages,
+    recentSubmissions,
+    solvedProblems,
+    tagProblems,
+    userInfo,
+    userDiscussionSolutions,
+    userProfileCalendar,
+  });
   return (
     <div className="lc-profile">
       {isLoading ? (

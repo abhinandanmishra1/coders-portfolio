@@ -1,3 +1,4 @@
+import { batch } from "react-redux";
 import leetcodeProfileApi from "api/lib/leetcodeProfile";
 import { formatLeecodeContestHistoryData, formatCalendarData } from "utils/helpers";
 
@@ -13,6 +14,23 @@ const GET_BADGES_INFO = "lc/profile/GET_BADGES_INFO";
 const GET_RECENT_SUBMISSIONS = "lc/profile/GET_RECENT_SUBMISSIONS";
 const GET_USER_DISCUSSION_SOLUTIONS = "lc/profile/GET_USER_DISCUSSION_SOLUTIONS";
 const GET_USER_PROFILE_CALENDAR = "lc/profile/GET_USER_PROFILE_CALENDAR";
+
+export function loadLeetcodeProfile(username) {
+  return async (dispatch) => {
+    batch(() => {
+      dispatch(loadUserProfile(username));
+      dispatch(loadLanguagesCounts(username));
+      dispatch(loadTagProblemCounts(username));
+      dispatch(loadUserContestRatingInfo(username));
+      dispatch(loadUserContestRatingHistogram(username));
+      dispatch(loadUserProblemsSolvedInfo(username));
+      dispatch(loadUserBadgesInfo(username));
+      dispatch(loadUserRecentAcSubmissions(username));
+      dispatch(loadUserDiscussionSolutions(username));
+      dispatch(loadUserProfileCalendar(username));
+    });
+  };
+};
 
 export function loadUserProfile(username) {
   return async (dispatch) => {

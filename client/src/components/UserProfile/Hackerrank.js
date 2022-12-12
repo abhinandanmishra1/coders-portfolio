@@ -1,15 +1,10 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { batch, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FiGithub, FiGlobe } from "react-icons/fi";
 import { RiLinkedinLine } from "react-icons/ri";
 import { CgShapeHexagon } from "react-icons/cg";
 
-import { 
-  loadCertificates,
-  loadProfile,
-  loadBadges,
-} from "stores/hackerrankProfile";
 import Section from "common/components/SectionCard";
 import HrBadge from "ui/hr-profile-ui-components/HrBadge";
 import HrCertificate from "ui/hr-profile-ui-components/HrCertificate";
@@ -136,19 +131,9 @@ const RightProfileUi = ({ profile, certificates, badges }) => {
 };
 
 const HackerrankProfile = () => {
-  const { username } = useParams();
-  const dispatch = useDispatch();
   const hrProfile = useSelector((store) => store.hackerrank.userProfile);
   const certificates = useSelector((store) => store.hackerrank.certificates);
   const badges = useSelector(store => store.hackerrank.badges);
-
-  useEffect(() => {
-    batch(() => {
-      dispatch(loadProfile(username));
-      dispatch(loadCertificates(username));
-      dispatch(loadBadges(username));
-    })
-  }, [dispatch, username]);
 
   return (
     <>

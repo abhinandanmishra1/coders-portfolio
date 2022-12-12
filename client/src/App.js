@@ -5,9 +5,12 @@ import UserProfile from 'components/UserProfile';
 import HackerrankProfile from 'components/UserProfile/Hackerrank';
 import LeetcodeProfile from 'components/UserProfile/Leetcode';
 import CodeforcesProfile from 'components/UserProfile/Codeforces';
+import FixeNavigation from 'common/components/FixedNavigation';
 
 function App(){
     return (
+        <>
+        <FixeNavigation />
         <Routes>
             <Route path='/' element={<Home />}/>
             <Route path='/about' element={<About />}/>
@@ -18,6 +21,7 @@ function App(){
                 <Route path='codeforces' element={<CodeforcesProfile />} />
             </Route>
         </Routes>
+        </>
     )
 }
 

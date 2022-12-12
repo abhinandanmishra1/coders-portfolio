@@ -1,12 +1,6 @@
-import React, { useEffect } from "react";
-import { batch, useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
 
-import {
-  loadProfile,
-  loadContestRatings,
-  loadUserStatus,
-} from "stores/codeforcesProfile";
 import CfChart from "ui/cf-profile-ui-components/CfChart";
 import CfHistogram from "ui/cf-profile-ui-components/CfHistogram";
 import CfSubmissionsGraph from "ui/cf-profile-ui-components/CfSubmissionsGraph";
@@ -33,30 +27,17 @@ const TaggedProblemsCountUi = ({ taggedProblemsCounts }) => {
 };
 
 const Codeforces = () => {
-  const { username } = useParams();
-  const dispatch = useDispatch();
-
-  const { userProfile, userContestRatings, tagProblems, problemRatingsCount, submissionsData } =
-    useSelector((store) => store.codeforces);
-
-  console.log({
-    userProfile,
-    userContestRatings,
-    tagProblems,
-    problemRatingsCount,
-    submissionsData
-  });
-  useEffect(() => {
-    batch(() => {
-      dispatch(loadProfile(username));
-      dispatch(loadContestRatings(username));
-      dispatch(loadUserStatus(username));
-    });
-  }, [dispatch, username]);
+  const { 
+    userProfile, 
+    userContestRatings, 
+    tagProblems, 
+    problemRatingsCount, 
+    submissionsData 
+  } = useSelector((store) => store.codeforces);
 
   return (
     <>
-      {userProfile && tagProblems ? (
+      {userProfile && tagProblems && userContestRatings && problemRatingsCount && submissionsData ? (
         <div className=" cf-profile">
           <div className="cf-profile__left cf-section">
             <div className="cf-profile__header">

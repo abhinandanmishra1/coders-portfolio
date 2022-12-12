@@ -1,3 +1,4 @@
+import { batch } from 'react-redux';
 import hackerrankProfileApi from 'api/lib/hackerrankProfile';
 import { formatCertificateData,formatBadgesData } from 'utils/helpers';
 
@@ -6,6 +7,16 @@ const GET_DONE = 'hr/profile/GET_DONE';
 const GET_CERTIFICATES_DONE = 'hr/profile/GET_CERTIFICATES_DONE';
 const GET_BADGES_DONE = 'hr/profile/GET_BADGES_DONE';
 const GET_ERROR = 'hr/profile/GET_ERROR';
+
+export function loadHackerrankProfile(username) {
+  return async (dispatch) => {
+    batch(() => {
+      dispatch(loadProfile(username));
+      dispatch(loadCertificates(username));
+      dispatch(loadBadges(username));
+    });
+  };
+}
 
 export function loadProfile(username) {
   return async (dispatch) => {
