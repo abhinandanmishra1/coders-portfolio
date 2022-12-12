@@ -33,6 +33,10 @@ $lc-green-color: rgb(44 187 93);
     &__left {
         width: 25%;
         padding: 2rem 1rem;
+
+        @include tablet {
+            display: none;
+        }
     }
 
     &__right {
@@ -54,6 +58,10 @@ $lc-green-color: rgb(44 187 93);
                 @include flex-col;
             }
         }
+
+        @include tablet {
+            width: 100%;
+        }
     }
 
     &__header {
@@ -67,6 +75,11 @@ $lc-green-color: rgb(44 187 93);
             height: 8rem;
             width: 8rem;
             border-radius: 1rem;
+
+            @include desktop {
+                height: 6rem;
+                width: 6rem;
+            }
         }
     }
 
@@ -83,6 +96,10 @@ $lc-green-color: rgb(44 187 93);
         &--name {
             letter-spacing: 0.05rem;
             word-wrap: normal;
+
+            @include desktop {
+                font-size: 1rem;
+            }
         }
 
         &--username {
@@ -91,11 +108,10 @@ $lc-green-color: rgb(44 187 93);
         }
 
         &--ranking {
-
             span {
                 color: $lc-color-text-1;
             }
-        }
+        }       
     }
 
     &__aboutMe {

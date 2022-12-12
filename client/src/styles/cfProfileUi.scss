@@ -3,8 +3,8 @@
     @include align-c;
     @include justify-c;
     
-    padding: 0.5rem;
-    height: 25vh;
+    padding: 1rem;
+    height: 30vh;
     width: 100%;
     overflow: hidden;
 
@@ -15,6 +15,10 @@
         width: 100%;
         margin-bottom: 1rem;
         padding-left: 0.5rem;
+    }
+
+    @include tablet{
+        width: 100%;
     }
 }
 
@@ -31,6 +35,10 @@
         padding-left: 0.5rem;
         padding-top: 1rem;
     }
+
+    @include tablet{
+        width: 100%;
+    }
 }
 
 .cf-histogram {
@@ -43,5 +51,9 @@
         width: 100%;
         padding-left: 0.5rem;
         padding-top: 1rem;
+    }
+
+    @include tablet{
+        width: 100%;
     }
 }

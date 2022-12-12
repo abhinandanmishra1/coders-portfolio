@@ -32,10 +32,18 @@ $cf-specialist-color: #03a89e;
     &__left {
         width: 30%;
         padding: 2rem 1rem;
+
+        @include tablet {
+            display: none;
+        }
     }
 
     &__right {
         width: 72%;
+
+        @include tablet{
+            width: 100%;
+        }
     }
 
     &__header {

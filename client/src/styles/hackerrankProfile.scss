@@ -8,6 +8,10 @@
         @include flex-col;
         width: 25%;
         padding-right: 2rem;
+
+        @include tablet {
+            display: none;
+        }
     }
 
     &__basic {
@@ -130,6 +134,10 @@
 
     &__right {
         width: 60%;
+
+        @include tablet{
+            width: 90%;
+        }
     }
 
     &__section {

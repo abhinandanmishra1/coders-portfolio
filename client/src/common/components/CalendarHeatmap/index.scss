@@ -1,9 +1,10 @@
 @import "common/styles/flex";
+@import "common/styles/responsive";
 
-$cell-height : 1rem;
-$cell-width : 1rem;
-$cell-margin: 0.1rem;
-$cell-weekdays-width: 1rem;
+$cell-height : 1.5rem;
+$cell-width : 1.5rem;
+$cell-margin: 0.101rem;
+$cell-weekdays-width: 0.5rem;
 
 .timeline {
   width: 100%;
@@ -68,7 +69,7 @@ $cell-weekdays-width: 1rem;
       display: inline-flex;
       flex-direction: column;
       flex-wrap: wrap;
-      height: #{((12) * 8)/10}rem;
+      height: 12rem;
 
       &-cell {
         height: $cell-height;
