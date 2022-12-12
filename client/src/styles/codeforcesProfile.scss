@@ -103,6 +103,11 @@ $cf-specialist-color: #03a89e;
             }
         }
 
+        &--newbie {
+            color: gray;
+            font-weight: $fontWeights-3;
+        }
+
         &--pupil {
             color: $cf-green-color;
             font-weight: $fontWeights-3;
