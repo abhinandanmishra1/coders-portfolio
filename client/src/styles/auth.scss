@@ -1,0 +1,182 @@
+.auth {
+	width: 100%;
+	height: 100vh;
+	@include flex-col;
+	@include justify-c;
+	@include align-c;
+
+	.auth__main {
+		width: 60%;
+
+		@include flex-col;
+		@include align-c;
+	}
+
+	&__header {
+		&--title {
+			font-size: 3rem;
+			font-weight: 800;
+			margin-left: 1rem;
+			cursor: pointer;
+
+			&::after {
+				content: "";
+				display: inline-block;
+				background: lighten($color-primary, 3);
+				margin-left: 0.1rem;
+				height: 2rem;
+				width: 1.2rem;
+			}
+		}
+	}
+
+	&__sub-header {
+		margin: 1rem;
+		@include flex-col;
+		@include align-c;
+
+    &--title {
+      color: #39424e;
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 1.4;
+    }
+
+    &--subtitle {
+      font-size: 1.6rem;
+      margin-bottom: 3rem;
+    }
+	}
+
+	&__form {
+		width: 30%;
+    height: 60%;
+    @include flex-col;
+    
+    background-color: $white;
+    box-shadow: 0 6px 16px 0 rgb(0 0 0 / 20%);
+	}
+
+	&__inputs {
+		width: 100%;
+    height: 60%;
+
+		@include flex-col;
+		@include align-c;
+		@include justify-c;
+
+		&--icon {
+			font-size: 2rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+			color: gray;
+		}
+
+		&--input {
+			@include flex;
+			@include align-c;
+			box-shadow: inset 0 1px 4px rgb(0 0 0 / 10%), 0 0 0 transparent;
+			border: 0;
+			border-radius: 0;
+			background-color: $color-shade-lighter;
+			color: $color-text-dark;
+			margin-top: 1rem;
+			padding: 1rem;
+
+			width: 90%;
+
+			input {
+				width: 90%;
+				font-size: 1.8rem;
+				outline: none;
+        padding: 1rem;
+        margin-left: 0.5rem;
+				border: 0;
+				background: $color-shade-lighter;
+
+        &:focus {
+          outline: none;
+          background-color: #f3f7f7 !important;
+        }
+			}
+		}
+	}
+
+	&__buttons {
+		width: 100%;
+		@include flex;
+		@include justify-c;
+		@include align-c;
+
+		&--btn {
+			text-decoration: none;
+			position: relative;
+			z-index: 1;
+			background: #fff;
+			color: #0e141e;
+			font-weight: 700;
+			font-size: 18px;
+			text-align: center;
+			line-height: 60px;
+			width: 50%;
+		}
+
+    &--active {
+      box-shadow: 0px 6px 16px 0px rgb(0 0 0 / 10%);
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      color: #0e141e;
+    }
+	}
+
+  &__submit-btn {
+    padding: 1rem 0.5rem;
+    width: 30%;
+    align-self: flex-end;
+    margin-right: 2rem;
+    color: $white;
+    text-align: center;
+    font-weight: $fontWeights-2;
+    background-color: $color-primary;
+    border-color: $color-primary;
+    box-shadow: 0 4px 12px 0 rgba(27,169,76,.5);
+    cursor: pointer;
+    
+    &:hover {
+      background-color: lighten($color: $color-primary, $amount: 10);
+    }
+  }
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		display: block;
+		background: #6e6bfe;
+		border-radius: 50%;
+		box-shadow: 0 0 1000px 350px #6e6bfe;
+		z-index: -1;
+		right: 0;
+		top: 100%;
+		transform: translate(-80%, -80%);
+		opacity: 0.2;
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		display: block;
+		background: #1ba94c;
+		border-radius: 50%;
+		box-shadow: 0 0 1000px 350px #1ba94c;
+		z-index: -1;
+		left: 0;
+		top: 100%;
+		transform: translate(80%, -80%);
+		opacity: 0.2;
+	}
+}

@@ -5,20 +5,30 @@ import UserProfile from 'components/UserProfile';
 import HackerrankProfile from 'components/UserProfile/Hackerrank';
 import LeetcodeProfile from 'components/UserProfile/Leetcode';
 import CodeforcesProfile from 'components/UserProfile/Codeforces';
-import FixeNavigation from 'common/components/FixedNavigation';
+import CodechefProfile from 'components/UserProfile/Codechef';
+import GithubProfile from 'components/UserProfile/Github';
+import FixedNavigation from 'common/components/FixedNavigation';
+import Auth from 'components/Auth';
 
 function App(){
     return (
         <>
-        <FixeNavigation />
+        <FixedNavigation />
         <Routes>
             <Route path='/' element={<Home />}/>
             <Route path='/about' element={<About />}/>
+            <Route path='/auth'>
+                <Route path='signup' element={<Auth type="Signup"/>}/>
+                <Route path='login' element={<Auth type="Login"/>}/>
+            </Route>
+
             <Route path='/:username/profile'>
                 <Route path='' element={<UserProfile />} />
                 <Route path='hackerrank' element={<HackerrankProfile />} />
                 <Route path='leetcode' element={<LeetcodeProfile />} />
                 <Route path='codeforces' element={<CodeforcesProfile />} />
+                <Route path='codechef' element={<CodechefProfile />} />
+                <Route path='github' element={<GithubProfile />} />
             </Route>
         </Routes>
         </>

@@ -33,11 +33,11 @@ const Navbar = ({left, middle, right}) => {
             )
         }
         <div className="nav__right">
-            <Link to={'/login'} className="nav__login-btn"> Login </Link>
-            <Link to={'/signup'} className="nav__signup-btn"> Signup </Link>
+            <Link to={'/auth/login'} className="nav__login-btn"> Login </Link>
+            <Link to={'/auth/signup'} className="nav__signup-btn"> Signup </Link>
         </div>
     </div>
   )
 }
 
-export default Navbar
+export default Navbar;

@@ -10,7 +10,6 @@
   height: 3.5em;
   border-radius: 50%;
   box-shadow: 0 2px 5px 0 hsla(0, 0%, 0%, .26);  
-  color: hsl(0, 0%, 100%);
   text-align: center;
   line-height: 3.9;
   cursor: pointer;
@@ -147,20 +146,29 @@
 .menu-item, .floating-btn {
   &-leetcode {
     background-color: rgb(255, 161, 22);
+    color: hsl(0, 0%, 100%);
   }
+
   &-codeforces {
     background-color: #e9ecef;
     color: black !important;
   }
+
   &-hackerrank {
     background-color: #068932;
+    color: hsl(0, 0%, 100%);
   }
+
   &-codechef {
-    background-color: rgba(103, 94, 94, 0.5);
+    background-color: rgba(103, 94, 94  );
+    color: hsl(0, 0%, 100%);
   }
+
   &-github {
     background-color: #24292f;
+    color: hsl(0, 0%, 100%);
   }
+
   &-undefined {
     display: none;
   }

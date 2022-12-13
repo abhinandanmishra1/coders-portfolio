@@ -24,18 +24,21 @@
         margin: 3.2rem auto 0;
         color: #39424E;
         text-align: center;
+
+        span {
+            color: $color-primary-dark;
+        }
     }
 
     &__next {
         @include flex;
         @include justify-evenly;
 
-        width: 50%;
+        width: 40%;
         margin-top: 4rem;
     }
 
     &__btn {
-        width: 20%;
         padding: 1.5rem;
         font-size: 2rem;
     }

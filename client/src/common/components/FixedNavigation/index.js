@@ -20,7 +20,7 @@ import { defaultUser } from "utils/constants";
 const FixeNavigation = ({isShowDefault, user}) => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const pageName = pathname.split("/").pop() || 'undefined';
+  const pageName = pathname.split("/")[3] || 'undefined';
   const userData = isShowDefault || !user? defaultUser : user; 
   const store = useSelector((state) => state);
   console.log(store)
