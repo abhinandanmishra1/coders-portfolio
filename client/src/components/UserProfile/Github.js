@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 
 const Github = () => {
+  
   return (
-    <div>Github</div>
+    <div>
+    </div>
   )
 }
 
-export default Github
+export default Github;

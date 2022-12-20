@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { FiGithub, FiGlobe } from "react-icons/fi";
 import { RiLinkedinLine } from "react-icons/ri";
 import { CgShapeHexagon } from "react-icons/cg";

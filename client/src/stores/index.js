@@ -4,6 +4,8 @@ import thunk from 'redux-thunk';
 import hrProfile from "./hackerrankProfile";
 import lcProfile from "./leetcodeProfile";
 import cfProfile from "./codeforcesProfile";
+import ghProfile from "./githubProfile";
+import ccProfile from "./codechefProfile";
 
 const middleware = [thunk];
 
@@ -11,6 +13,8 @@ const reducers = combineReducers({
   hackerrank: hrProfile,
   leetcode: lcProfile,
   codeforces: cfProfile,
+  github: ghProfile,
+  codechef: ccProfile,
 });
 
 const composeEnhancers = compose;

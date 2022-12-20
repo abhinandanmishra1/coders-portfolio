@@ -14,6 +14,12 @@ import {
 import {
   loadLeetcodeProfile,
 } from "stores/leetcodeProfile";
+import {
+  loadGithubProfile,
+} from "stores/githubProfile";
+import {
+  loadCodechefProfile,
+} from "stores/codechefProfile";
 
 import { defaultUser } from "utils/constants";
 
@@ -23,7 +29,9 @@ const FixeNavigation = ({isShowDefault, user}) => {
   const pageName = pathname.split("/")[3] || 'undefined';
   const userData = isShowDefault || !user? defaultUser : user; 
   const store = useSelector((state) => state);
-  console.log(store)
+
+  console.log(store);
+  
   const {
     githubUsername,
     codeforcesUsername,
@@ -40,8 +48,17 @@ const FixeNavigation = ({isShowDefault, user}) => {
       dispatch(loadCodeforcesProfile(codeforcesUsername));
       dispatch(loadHackerrankProfile(hackerrankUsername));
       dispatch(loadLeetcodeProfile(leetcodeUsername));
+      dispatch(loadGithubProfile(githubUsername));
+      dispatch(loadCodechefProfile(codechefUsername));
     });
-  }, [dispatch, codeforcesUsername, hackerrankUsername, leetcodeUsername]);
+  }, [
+    dispatch,
+    codeforcesUsername,
+    hackerrankUsername,
+    leetcodeUsername,
+    githubUsername,
+    codechefUsername,
+  ]);
 
   const toggleMenu = () => {
     document.getElementById('circularMenu').classList.toggle('active');

@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { useSelector } from "react-redux";
 
 const Codechef = () => {
+  const { 
+    profile
+  } = useSelector((store) => store.codechef);
+
   return (
-    <div className='cc-profile'>
-      <div class="cc-profile__info">
-        Can't Display Codechef Profile currently |  [ Because of No API Access ]
-        <p><a target="_blank" href="https://developers.codechef.com/">More Info</a></p>
-      </div>
-    </div>
+    <div dangerouslySetInnerHTML={{ __html: profile }} />
   )
 }
 
-export default Codechef
+export default Codechef;

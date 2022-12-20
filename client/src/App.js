@@ -9,6 +9,7 @@ import CodechefProfile from 'components/UserProfile/Codechef';
 import GithubProfile from 'components/UserProfile/Github';
 import FixedNavigation from 'common/components/FixedNavigation';
 import Auth from 'components/Auth';
+import UnknownComponent from 'components/UnknownComponent';
 
 function App(){
     return (
@@ -30,6 +31,7 @@ function App(){
                 <Route path='codechef' element={<CodechefProfile />} />
                 <Route path='github' element={<GithubProfile />} />
             </Route>
+            <Route path='*' element={<UnknownComponent />} />
         </Routes>
         </>
     )
