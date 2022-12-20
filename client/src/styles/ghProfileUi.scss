@@ -1,0 +1,95 @@
+.gh-repo {
+  margin: 1rem;
+  border: 0.1rem solid hsl(210deg 18% 87%);
+  padding: 1rem;
+  width: 45%;
+  @include flex-col;
+  @include justify-around;
+  align-items: flex-start;
+  border-radius: 0.5rem;
+
+  &__title {
+    @include flex;
+    @include align-c;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      margin-left: 0.5rem;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+        color: $color-link;
+      }
+    }
+  }
+
+  &__description {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    color: #57606a;
+    font-size: 1.2rem;
+  }
+
+  &__detail {
+    @include flex;
+    @include align-c;
+
+    &--lang-name {
+      font-size: 1rem;
+      margin-left: 0.3rem;
+    }
+
+    &--stars {
+      @include flex;
+      @include align-c;
+
+      margin-left: 0.5rem;
+    }
+
+    &--stars-count {
+      font-size: 1rem;
+      margin-left: 0.3rem;
+    }
+
+    &--forks {
+      @include flex;
+      @include align-c;
+
+      margin-left: 0.5rem;
+    }
+
+    &--forks-count {
+      font-size: 1rem;
+      margin-left: 0.3rem;
+    }
+
+    &--lang-color {
+      position: relative;
+      top: 1px;
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border: 1px solid rgb(27 31 36 / 10%);
+      border-radius: 50%;
+    }
+  }
+}
+
+.gh-stats {
+  width: 50%;
+
+  img {
+    width: 100%;
+  }
+}
+
+.gh-streak {
+  width: 56%;
+
+  img {
+    width: 100%;
+  }
+}

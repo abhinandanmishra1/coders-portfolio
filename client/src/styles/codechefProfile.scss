@@ -26,10 +26,6 @@
   display: none;
 }
 
-.row {
-  @include flex;
-}
-
 .columns {
   padding: 4rem;
   width: 50%;
@@ -38,14 +34,31 @@
 @include tablet {
   .small-8 {
     width: 66.66667%;
+
+    @include tablet {
+      width: 100%;
+    }
   }
 
   .small-4 {
     width: 33.33333%;
+
+    @include tablet {
+      width: 90%;
+    }
   }
 }
 
 .user-profile-container {
+  .row {
+    @include flex;
+
+    @include tablet {
+      @include flex-col;
+      @include align-c;
+    }
+  }
+
   a {
     pointer-events: none
   }

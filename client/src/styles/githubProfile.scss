@@ -1,0 +1,178 @@
+.gh-profile {
+
+  &__nav {
+    @include flex;
+    @include justify-c;
+    
+    align-items: flex-end;
+    width: 100%;
+    height: 10vh;
+    padding-bottom: 1rem;
+    border-bottom: 0.1rem solid hsl(210deg 18% 87%);
+
+    &--items {
+      @include flex;
+      width: 60%;
+      justify-content: center;
+    }
+
+    &--item {
+      @include flex;
+      @include align-c;
+
+      margin-right: 1.5rem;
+      cursor: pointer;
+      padding: 0.8rem;
+      border-radius: 0.5rem;
+
+      &:hover {
+        border-bottom-color: rgb(175 184 193 / 20%);
+        color: #24292f;
+        background-color: #eaeef2;
+        outline-offset: -2px;
+        text-decoration: none;
+        transition: border-bottom-color .12s ease-out;
+      }
+    }
+
+    &--icon {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__main {
+    @include flex;
+
+    width: 100%;
+  }
+
+  &__left {
+    padding: 0rem 3rem 2rem 10rem;
+    width: 35%;
+  }
+
+  &__header {
+    @include flex-col;
+    position: relative;
+
+    &--img {
+      position: relative;
+      top: -5rem;
+      left: 1rem;
+
+      img {
+        border-radius: 50%;
+        height: 30rem;
+      }
+    }
+
+    &--details {
+      @include flex-col;
+      margin-top: -3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    &--name {
+      font-size: 2.4rem;
+      line-height: 1.25;
+    }
+
+    &--username {
+      font-size: 2rem;
+      line-height: 1.25;
+      color: #57606a;
+      font-weight: 300;
+    }
+  }
+
+  &__bio {
+    margin-top: 1rem;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 800;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__connections {
+    @include flex;
+    margin-top: 1rem;
+    color: #57606a;
+
+    &--icon {
+      margin-right: 0.5rem;
+    }
+
+    &--followers {
+      margin-right: 0.5rem;
+
+      &:after {
+        content: '.';
+        margin: 0 0 0 0.5rem;
+      }
+
+      span {
+        color: $active-tab-color;
+        font-weight: 600;
+      }
+    }
+
+    &--following {
+      margin-right: 1rem;
+
+      span {
+        color: $active-tab-color;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__info {
+    @include flex;
+    margin-top: 1rem;
+    color: rgb(36, 41, 47);
+
+    &--icon {
+      margin-right: 1rem;
+    }
+
+    &--detail {
+
+      a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+          color: $color-link;
+        }
+      }
+    }
+  }
+
+  &__right {
+    width: 60%;
+    padding: 2rem;
+    border-left: 0.1rem solid hsl(210deg 18% 87%);
+  }
+
+  &__overview {
+
+  }
+
+  &__stats {
+    @include flex;
+    width: 100%;
+  }
+
+  &__repos {
+    width: 100%;
+    @include flex;
+    flex-wrap: wrap;
+  }
+}

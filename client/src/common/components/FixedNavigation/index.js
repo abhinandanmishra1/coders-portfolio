@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import { batch, useDispatch, useSelector } from "react-redux";
+import { batch, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { SiCodeforces, SiHackerrank, SiLeetcode, SiCodechef, SiGithub } from "react-icons/si";
 import { FaBars } from "react-icons/fa";
@@ -28,9 +28,6 @@ const FixeNavigation = ({isShowDefault, user}) => {
   const { pathname } = useLocation();
   const pageName = pathname.split("/")[3] || 'undefined';
   const userData = isShowDefault || !user? defaultUser : user; 
-  const store = useSelector((state) => state);
-
-  console.log(store);
   
   const {
     githubUsername,
