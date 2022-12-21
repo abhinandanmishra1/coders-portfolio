@@ -130,10 +130,12 @@ const RightProfileUi = ({ profile, certificates, badges }) => {
 };
 
 const HackerrankProfile = () => {
+  const hr = useSelector((store) => store.hackerrank);
   const hrProfile = useSelector((store) => store.hackerrank.userProfile);
   const certificates = useSelector((store) => store.hackerrank.certificates);
   const badges = useSelector(store => store.hackerrank.badges);
 
+  console.log(hr);
   return (
     <>
       {hrProfile ? (

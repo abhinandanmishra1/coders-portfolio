@@ -7,5 +7,7 @@ const router = express.Router()
 router.get('/profile', hrController.getHrProfile)
 router.get('/badges', hrController.getHrBadges)
 router.get('/certificates', hrController.getCertificates)
+router.get('/work', hrController.getWorkExperiences)
 
 module.exports = router
+                                                                                                                                                                                                                                                                                                                                         

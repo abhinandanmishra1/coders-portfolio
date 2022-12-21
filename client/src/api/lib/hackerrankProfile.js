@@ -15,10 +15,16 @@ function loadCertificates(username = null){
     return axiosClient.get(certificateUrl, {username});
 }
 
+function loadExperiences(username = null){
+    const certificateUrl = `/hackerrank/work`;
+    return axiosClient.get(certificateUrl, {username});
+}
+
 const Functions = {
     loadProfile,
     loadBadges,
     loadCertificates,
+    loadExperiences,
 }
 
 export default Functions;

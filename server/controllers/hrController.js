@@ -123,8 +123,50 @@ const getCertificates = asyncHandler(async (req, res) => {
   );
 });
 
+const getWorkExperiences = asyncHandler(async (req, res) => {
+  const { username } = req.query;
+
+  request(
+    {
+      url: `https://www.hackerrank.com/community/v1/hackers/${username}/hacker_companies`,
+      headers: {
+        "User-Agent": "postman-request",
+      },
+    },
+    function (error, response, body) {
+      const statusCode = (response && response.statusCode) || 500;
+      if (error) {
+        res.status(statusCode).send({
+          success: false,
+          error,
+        });
+        return;
+      }
+      
+      const result = JSON.parse(body);
+
+      if (result.errors || result.data.length === 0){
+        res.status(404).send({
+          data: {
+            success: false,
+            error: "No experiences are available",
+          },
+        });
+        return;
+      }
+
+      const json = result.data;
+      res.status(statusCode).send({
+        success: true,
+        json,
+      });
+    }
+  );
+});
+
 module.exports = {
   getHrProfile,
   getHrBadges,
   getCertificates,
+  getWorkExperiences,
 };
