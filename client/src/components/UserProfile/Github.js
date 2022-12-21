@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { ReactComponent as GhConnectionsIcon } from "assets/svg/gh/connections.svg";
@@ -10,29 +10,30 @@ import { ReactComponent as GhOverviewIcon } from "assets/svg/gh/overview.svg";
 import { ReactComponent as GhReposIcon } from "assets/svg/gh/repos.svg";
 import { ReactComponent as GhProjectsIcon } from "assets/svg/gh/projects.svg";
 import { ReactComponent as GhPackagesIcon } from "assets/svg/gh/packages.svg";
-import { ReactComponent as GhCompanyIcon} from "assets/svg/gh/company.svg";
-import { ReactComponent as GhBlogIcon} from "assets/svg/gh/blog.svg";
-import { ReactComponent as GhTwitterIcon} from "assets/svg/gh/twitter.svg";
-import GhStats from "ui/gh-profile-ui-components/GhStats";
-import GhRepo from "ui/gh-profile-ui-components/GhRepo";
-import GhStreakStats from "ui/gh-profile-ui-components/GhStreakStats";
+import { ReactComponent as GhCompanyIcon } from "assets/svg/gh/company.svg";
+import { ReactComponent as GhBlogIcon } from "assets/svg/gh/blog.svg";
+import { ReactComponent as GhTwitterIcon } from "assets/svg/gh/twitter.svg";
+import GhOverview from "ui/gh-profile-ui-components/GhOverview";
+import GhRepositories from "ui/gh-profile-ui-components/GhRepositories";
+import GhOpenSource from "ui/gh-profile-ui-components/GhOpenSource";
+import GhPackagaes from "ui/gh-profile-ui-components/GhPackagaes";
 
 const ProfileInfo = ({ type, detail }) => {
 	if (!type || !detail) return null;
 
-  const Icon = {
-    company: <GhCompanyIcon className="gh-profile__info--icon"/>,
-    blog: <GhBlogIcon className="gh-profile__info--icon"/>,
-    twitter: <GhTwitterIcon className="gh-profile__info--icon"/>,
-    location: <GhLocationIcon className="gh-profile__info--icon"/>,
-  }
+	const Icon = {
+		company: <GhCompanyIcon className="gh-profile__info--icon" />,
+		blog: <GhBlogIcon className="gh-profile__info--icon" />,
+		twitter: <GhTwitterIcon className="gh-profile__info--icon" />,
+		location: <GhLocationIcon className="gh-profile__info--icon" />,
+	};
 
-  const Detail = {
-    company: <>{detail}</>,
-    blog: <a href={detail}>{detail}</a>,
-    twitter: <a href={`https://twitter.com/${detail}`}>{detail}</a>,
-    location: <>{detail}</>,
-  }
+	const Detail = {
+		company: <>{detail}</>,
+		blog: <a href={detail}>{detail}</a>,
+		twitter: <a href={`https://twitter.com/${detail}`}>{detail}</a>,
+		location: <>{detail}</>,
+	};
 
 	return (
 		<div className="gh-profile__info">
@@ -42,45 +43,13 @@ const ProfileInfo = ({ type, detail }) => {
 	);
 };
 
-const Overview = ({ userProfile }) => {
-  if (!userProfile) return null;
-
-  return <div class="gh-profile__overview">
-    <div class="gh-profile__stats">
-      <GhStats username={userProfile.login}/>
-      <GhStreakStats username={userProfile.login} />
-    </div>
-  </div>
-}
-
-const Repositories = ({ username, repos }) => {
-  if (!username || !repos) return null;
-
-  return (
-    <div className="gh-profile__repos">
-      {repos.map((repo) => (
-        <GhRepo
-          key={repo.id}
-          username={username}
-          repo={repo.name}
-          repoUrl={repo.html_url}
-          language={repo.language}
-          description={repo.description}
-          stars={repo.stargazers_count}
-          forks={repo.forks_count}
-        />
-      ))}
-    </div>
-  );
-}
-
 const Github = () => {
 	const { userProfile, followers, following, orgs, repos } = useSelector(
 		(store) => store.github
 	);
 
-  const [activeTab, setActiveTab] = useState(0);
-  
+	const [activeTab, setActiveTab] = useState(0);
+
 	console.log({
 		userProfile,
 		followers,
@@ -91,23 +60,46 @@ const Github = () => {
 
 	if (!userProfile || !followers || !following || !orgs || !repos)
 		return <div>Loading...</div>;
-
+	
 	return (
 		<div className="gh-profile">
 			<div className="gh-profile__nav">
 				<div className="gh-profile__nav--items">
-					<div className="gh-profile__nav--item" onClick={()=> setActiveTab(0)}>
-						<GhOverviewIcon className="gh-profile__nav--icon"/> Overview
+					<div
+						className={`gh-profile__nav--item ${
+							activeTab === 0 ? "gh-profile__nav--active" : ""
+						}`}
+						onClick={() => setActiveTab(0)}
+					>
+						<GhOverviewIcon className="gh-profile__nav--icon" /> Overview
 					</div>
-					<div className="gh-profile__nav--item" onClick={()=> setActiveTab(1)}>
-						{" "}
-						<GhReposIcon className="gh-profile__nav--icon" /> Repositories
-					</div>
-					<div className="gh-profile__nav--item" onClick={()=> setActiveTab(2)}>
+
+					<div
+						className={`gh-profile__nav--item ${
+							activeTab === 1 ? "gh-profile__nav--active" : ""
+						}`}
+						onClick={() => setActiveTab(1)}
+					>
 						{" "}
 						<GhProjectsIcon className="gh-profile__nav--icon" /> Projects
 					</div>
-					<div className="gh-profile__nav--item" onClick={()=> setActiveTab(3)}>
+
+					<div
+						className={`gh-profile__nav--item ${
+							activeTab === 2 ? "gh-profile__nav--active" : ""
+						}`}
+						onClick={() => setActiveTab(2)}
+					>
+						{" "}
+						<GhReposIcon className="gh-profile__nav--icon" /> Open Source Contributions
+					</div>
+
+					<div
+						className={`gh-profile__nav--item ${
+							activeTab === 3 ? "gh-profile__nav--active" : ""
+						}`}
+						onClick={() => setActiveTab(3)}
+					>
 						{" "}
 						<GhPackagesIcon className="gh-profile__nav--icon" /> Packages
 					</div>
@@ -131,7 +123,7 @@ const Github = () => {
 							if (str[0] === "@") {
 								return (
 									<>
-										<a href={`https://github.com/${str.slice(1)}`}>{str}</a>{" "}
+										<a target="_blank" rel="noreferrer" href={`https://github.com/${str.slice(1)}`}>{str}</a>{" "}
 									</>
 								);
 							}
@@ -153,13 +145,17 @@ const Github = () => {
 					<ProfileInfo type="twitter" detail={userProfile.twitter_username} />
 				</div>
 				<div className="gh-profile__right">
-          {
-            activeTab === 0 && <Overview userProfile={userProfile}/>
-          }
-          {
-            activeTab === 1 && <Repositories username={userProfile.login} repos={repos}/>
-          }
-        </div>
+					{activeTab === 0 && <GhOverview username={userProfile.login} repos={repos} />}
+					{activeTab === 1 && (
+						<GhRepositories username={userProfile.login} repos={repos} />
+					)}
+					{activeTab === 2 && (
+						<GhOpenSource />
+					)}
+					{activeTab === 3 && (
+						<GhPackagaes />
+					)}
+				</div>
 			</div>
 		</div>
 	);

@@ -32,7 +32,7 @@ const LeetCodeChart = ({
   currentYear,
   userContestDetails,
 }) => {
-  const badgeName = userContestDetails.badge?.name || null;
+  const badgeName = userContestDetails?.badge?.name || null;
   const {
     attendedContestsCount,
     rating,
@@ -161,6 +161,7 @@ const LcChart = ({ contests }) => {
 
   const currentYear = new Date().getFullYear();
   const userContestDetails = contests.currentContestRating;
+  if (!userContestDetails) return null;
 
   return (
     <div className="lc-chart lc-section">

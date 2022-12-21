@@ -35,6 +35,11 @@
       }
     }
 
+    &--active {
+      border-bottom: 0.2rem solid $active-tab-color;
+      color: $active-tab-color;
+    }
+
     &--icon {
       margin-right: 0.5rem;
     }
@@ -159,10 +164,24 @@
     width: 60%;
     padding: 2rem;
     border-left: 0.1rem solid hsl(210deg 18% 87%);
+    min-height: 90vh;
   }
 
   &__overview {
 
+  }
+
+  &__contributions {
+    padding-top: 1rem;
+
+    &:before {
+      content: 'Contributions';
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #57606a;
+      display: block;
+      margin-bottom: 2rem;
+    }
   }
 
   &__stats {
@@ -174,5 +193,35 @@
     width: 100%;
     @include flex;
     flex-wrap: wrap;
+  }
+
+  &__live-projects {
+    margin-top: 2rem;  
+    &--list {
+      display: flex;
+      border-radius: 6px;
+      color: #333;
+      padding: 1rem;
+      overflow-x: auto;
+      position: relative;
+      
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    h2,h1 {
+      content: 'Live Projects';
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #57606a;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    h2:hover {
+      text-decoration: underline;
+      color: $cf-color-text-1;
+    }
   }
 }

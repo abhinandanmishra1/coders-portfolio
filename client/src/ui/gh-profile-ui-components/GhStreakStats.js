@@ -6,4 +6,4 @@ const GhStreakStats = ({username}) => {
   )
 }
 
-export default GhStreakStats
+export default React.memo(GhStreakStats);

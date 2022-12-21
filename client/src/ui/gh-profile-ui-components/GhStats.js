@@ -14,4 +14,4 @@ const GhStats = ({ username }) => {
 	);
 };
 
-export default GhStats;
+export default React.memo(GhStats);

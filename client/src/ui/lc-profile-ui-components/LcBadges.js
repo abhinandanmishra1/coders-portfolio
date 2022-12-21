@@ -27,13 +27,18 @@ const LcBadges = ({badgesData}) => {
         </div>
         <div className="lc-badges__display">
           {
+             badges && badges.length>0 &&
             badges.slice(0,badgeSize).map((badge, index) => <LcBadge key={index} {...{badgeSize,index,badge}} />)
           }
         </div>
-        <div className="lc-badges__footer">
-            <p>Most Recent Badge</p>
-            <p>{badges[0].displayName}</p>
-        </div>
+        {
+          badges && badges.length>0 && (
+            <div className="lc-badges__footer">
+              <p>Most Recent Badge</p>
+              <p>{badges[0]?.displayName}</p>
+            </div>
+          )
+        }
     </div>
   )
 }
