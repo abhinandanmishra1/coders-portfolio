@@ -9,7 +9,6 @@ const GET_USER_STATUS = 'cf/GET_USER_STATUS';
 const GET_ERROR = 'cf/profile/GET_ERROR';
 
 export function loadCodeforcesProfile(username){
-  console.log(username)
   return async (dispatch) => {
     batch(() => {
       dispatch(loadProfile(username));

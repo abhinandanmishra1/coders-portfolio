@@ -5,7 +5,6 @@ import HighchartsReact from "highcharts-react-official";
 // https://api.highcharts.com/highcharts/
 
 const CodeforcesHistogram = ({ data, categories}) => {
-    console.log({data})
   const options = {
     chart: {
       renderTo: "container",
@@ -97,7 +96,6 @@ const CodeforcesHistogram = ({ data, categories}) => {
 const CfHistogram = ({ problemRatingsCount }) => {
   if (!problemRatingsCount || problemRatingsCount.length===0) return null;
 
-  console.log({problemRatingsCount})
   const problemSolved = problemRatingsCount.filter(problem => problem.rating && problem.problemsCount);
   const data = problemSolved.map((problem) => {
     const column = {y: problem.problemsCount, color: 'blue'};

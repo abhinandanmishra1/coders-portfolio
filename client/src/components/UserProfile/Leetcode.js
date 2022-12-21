@@ -180,18 +180,6 @@ const Leetcode = () => {
     isLoading,
   } = useSelector((store) => store.leetcode);
 
-  console.log({
-    badges,
-    contestRatings,
-    contestRatingHistogram,
-    languages,
-    recentSubmissions,
-    solvedProblems,
-    tagProblems,
-    userInfo,
-    userDiscussionSolutions,
-    userProfileCalendar,
-  });
   return (
     <div className="lc-profile">
       {isLoading ? (

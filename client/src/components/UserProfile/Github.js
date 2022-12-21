@@ -50,14 +50,6 @@ const Github = () => {
 
 	const [activeTab, setActiveTab] = useState(0);
 
-	console.log({
-		userProfile,
-		followers,
-		following,
-		orgs,
-		repos,
-	});
-
 	if (!userProfile || !followers || !following || !orgs || !repos)
 		return <div>Loading...</div>;
 	
