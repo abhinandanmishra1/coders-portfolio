@@ -128,3 +128,9 @@ export const getSubmissionsData = (problems) => {
 
     return result;
 }
+
+export function getMonthName(monthNumber) {
+    const MonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  
+    return MonthNames[monthNumber -1];
+}

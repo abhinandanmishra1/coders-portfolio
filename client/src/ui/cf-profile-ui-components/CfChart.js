@@ -164,4 +164,4 @@ const CfChart = ({ contests }) => {
   );
 };
 
-export default CfChart;
+export default React.memo(CfChart);

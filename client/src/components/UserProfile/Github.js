@@ -30,8 +30,8 @@ const ProfileInfo = ({ type, detail }) => {
 
 	const Detail = {
 		company: <>{detail}</>,
-		blog: <a href={detail}>{detail}</a>,
-		twitter: <a href={`https://twitter.com/${detail}`}>{detail}</a>,
+		blog: <a target="_blank" rel="noreferrer" href={detail}>{detail}</a>,
+		twitter: <a target="_blank" rel="noreferrer" href={`https://twitter.com/${detail}`}>{detail}</a>,
 		location: <>{detail}</>,
 	};
 

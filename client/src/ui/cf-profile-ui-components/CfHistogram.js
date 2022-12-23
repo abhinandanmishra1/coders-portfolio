@@ -119,4 +119,4 @@ const CfHistogram = ({ problemRatingsCount }) => {
   );
 };
 
-export default CfHistogram;
+export default React.memo(CfHistogram);

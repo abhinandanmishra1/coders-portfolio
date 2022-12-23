@@ -76,4 +76,4 @@ const CfSubmissionsGraph = ({submissionsData}) => {
   );
 }
 
-export default CfSubmissionsGraph;
+export default React.memo(CfSubmissionsGraph);

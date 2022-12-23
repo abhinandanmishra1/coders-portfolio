@@ -20,11 +20,17 @@ function loadExperiences(username = null){
     return axiosClient.get(certificateUrl, {username});
 }
 
+function loadSchools(username = null){
+    const certificateUrl = `/hackerrank/school`;
+    return axiosClient.get(certificateUrl, {username});
+}
+
 const Functions = {
     loadProfile,
     loadBadges,
     loadCertificates,
     loadExperiences,
+    loadSchools,
 }
 
 export default Functions;

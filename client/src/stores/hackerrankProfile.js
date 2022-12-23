@@ -7,6 +7,7 @@ const GET_DONE = 'hr/profile/GET_DONE';
 const GET_CERTIFICATES_DONE = 'hr/profile/GET_CERTIFICATES_DONE';
 const GET_BADGES_DONE = 'hr/profile/GET_BADGES_DONE';
 const GET_EXPERIENCES_DONE = 'hr/profile/GET_EXPERIENCES_DONE';
+const GET_SCHOOLS_DONE = 'hr/profile/GET_SCHOOLS_DONE';
 const GET_ERROR = 'hr/profile/GET_ERROR';
 
 export function loadHackerrankProfile(username) {
@@ -16,6 +17,7 @@ export function loadHackerrankProfile(username) {
       dispatch(loadCertificates(username));
       dispatch(loadBadges(username));
       dispatch(loadExperiences(username));
+      dispatch(loadSchools(username));
     });
   };
 }
@@ -77,6 +79,20 @@ export function loadExperiences(username) {
   };
 }
 
+export function loadSchools(username) {
+  return async (dispatch) => {
+    dispatch({ type: GET_INIT });
+    try {
+      const { data } = await hackerrankProfileApi.loadSchools(username);
+      const { json } = data;
+      dispatch({ type: GET_SCHOOLS_DONE, payload: json });
+    } catch (error) {
+    //   cogoToast.error('Something Went Wrong! Please reload the page');
+      dispatch({ type: GET_ERROR });
+    }
+  };
+}
+
 export default function reducer(
   state = {
     isLoading: false,
@@ -85,6 +101,7 @@ export default function reducer(
     certificates: [],
     badges: [],
     experiences: [],
+    schools: []
   },
   action,
 ) {
@@ -118,6 +135,13 @@ export default function reducer(
         isLoading: false,
         loadError: null,
         experiences: action.payload
+      };
+    case GET_SCHOOLS_DONE:
+      return {
+        ...state,
+        isLoading: false,
+        loadError: null,
+        schools: action.payload
       };
     case GET_ERROR:
       return { ...state, isLoading: false, loadError: true };
