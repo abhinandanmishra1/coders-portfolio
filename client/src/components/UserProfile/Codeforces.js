@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import CfChart from "ui/cf-profile-ui-components/CfChart";
 import CfHistogram from "ui/cf-profile-ui-components/CfHistogram";
 import CfSubmissionsGraph from "ui/cf-profile-ui-components/CfSubmissionsGraph";
+import FixedNavigation from 'common/components/FixedNavigation';
 
 const TaggedProblemsCountUi = ({ taggedProblemsCounts }) => {
   return (
@@ -37,6 +38,7 @@ const Codeforces = () => {
 
   return (
     <>
+      <FixedNavigation />
       {userProfile && tagProblems && userContestRatings && problemRatingsCount && submissionsData ? (
         <div className=" cf-profile">
           <div className="cf-profile__left cf-section">

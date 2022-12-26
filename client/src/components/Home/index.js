@@ -15,6 +15,10 @@ const Home = () => {
         navigate("/abhinandanmishra1/profile/codeforces");
     }
 
+    const ViewProfile = () => {
+        navigate("/viewProfile");
+    }
+
     return (
         <>
             <Navbar />
@@ -30,6 +34,7 @@ const Home = () => {
                 <div className="home__next">
                     <Button type="type1" title="Abhinandan's Portfolio" onClick={defaultProfile} customClass="home__btn" />
                     <Button type="type1" title="Create Portfolio" onClick={signUp} customClass="home__btn" />
+                    <Button type="type1" title="See User's Portfolio" onClick={ViewProfile} customClass="home__btn" />
                 </div>
             </div>
         </>

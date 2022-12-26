@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import FixedNavigation from 'common/components/FixedNavigation';
 
 import { ReactComponent as GhConnectionsIcon } from "assets/svg/gh/connections.svg";
 import { ReactComponent as GhForkIcon } from "assets/svg/gh/fork.svg";
@@ -54,6 +55,8 @@ const Github = () => {
 		return <div>Loading...</div>;
 	
 	return (
+		<>
+    <FixedNavigation />
 		<div className="gh-profile">
 			<div className="gh-profile__nav">
 				<div className="gh-profile__nav--items">
@@ -150,6 +153,7 @@ const Github = () => {
 				</div>
 			</div>
 		</div>
+	</>
 	);
 };
 

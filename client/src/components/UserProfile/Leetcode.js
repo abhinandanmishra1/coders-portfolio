@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import FixedNavigation from 'common/components/FixedNavigation';
 
 import {
   loadLeetcodeProfile
@@ -181,6 +182,8 @@ const Leetcode = () => {
   } = useSelector((store) => store.leetcode);
 
   return (
+    <>
+    <FixedNavigation />
     <div className="lc-profile">
       {isLoading ? (
         <h1>Loading...</h1>
@@ -210,6 +213,7 @@ const Leetcode = () => {
         </>
       )}
     </div>
+    </>
   );
 };
 

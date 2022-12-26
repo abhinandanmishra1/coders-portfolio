@@ -19,5 +19,5 @@ export const defaultUser = {
     hackerrankUsername: "abhi_mishra_1",
     leetcodeUsername: "abhinandan_mishra_1",
     codechefUsername: "abhimishra1",
-    portfolioUsername: "abhinandanmishra1",
+    username: "abhinandanmishra1",
 };

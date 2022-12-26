@@ -1,13 +1,18 @@
 import React from 'react';
 import { useSelector } from "react-redux";
+import FixedNavigation from 'common/components/FixedNavigation';
 
 const Codechef = () => {
   const { 
-    profile
+    profile,
+    isLoading
   } = useSelector((store) => store.codechef);
-
+  
   return (
-    <div dangerouslySetInnerHTML={{ __html: profile }} />
+    <>
+      <FixedNavigation />
+      <div dangerouslySetInnerHTML={{ __html: profile }} />
+    </>
   )
 }
 

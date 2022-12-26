@@ -9,6 +9,7 @@ import Section from "common/components/SectionCard";
 import HrBadge from "ui/hr-profile-ui-components/HrBadge";
 import HrCertificate from "ui/hr-profile-ui-components/HrCertificate";
 import HrSectionHeader from "ui/hr-profile-ui-components/HrSectionHeader";
+import FixedNavigation from "common/components/FixedNavigation";
 
 const LeftProfileUi = ({ profile }) => {
 	if (!profile) return null;
@@ -115,7 +116,7 @@ const RightProfileUi = ({
 			</Section>
 			<Section extraClass="">
 				<HrSectionHeader title="Work Experience" />
-				{experiences && (
+				{experiences &&
 					experiences.map((experience) => {
 						const {
 							name,
@@ -127,29 +128,30 @@ const RightProfileUi = ({
 							end_year,
 						} = experience.attributes;
 						return (
-              <div className="hr-profile__experience">
-							<div className="hr-profile__school">
-								<CgShapeHexagon className="hr-profile__school--icon" />
-								<h2 className="hr-profile__school--name">{job_title}</h2>
-								<p className="hr-profile__school--timeline">
-									{name} |{" "}
-									<span>
-										{getMonthName(start_month)} {start_year} -{" "}
-										{end_month && end_year ? (
-											<>
-												{getMonthName(end_month)} {end_year}
-											</>
-										) : (
-											"Present"
-										)}
-									</span>
+							<div className="hr-profile__experience">
+								<div className="hr-profile__school">
+									<CgShapeHexagon className="hr-profile__school--icon" />
+									<h2 className="hr-profile__school--name">{job_title}</h2>
+									<p className="hr-profile__school--timeline">
+										{name} |{" "}
+										<span>
+											{getMonthName(start_month)} {start_year} -{" "}
+											{end_month && end_year ? (
+												<>
+													{getMonthName(end_month)} {end_year}
+												</>
+											) : (
+												"Present"
+											)}
+										</span>
+									</p>
+								</div>
+								<p className="hr-profile__experience--description">
+									{description}
 								</p>
 							</div>
-              <p className="hr-profile__experience--description">{description}</p>
-              </div>
 						);
-					})
-				)}
+					})}
 
 				{!experiences && (
 					<div className="hr-profile__text">
@@ -201,27 +203,25 @@ const RightProfileUi = ({
 };
 
 const HackerrankProfile = () => {
-	const { 
-    badges,
-    certificates,
-    schools,
-    userProfile,
-    experiences 
-  } = useSelector((store) => store.hackerrank);
+	const { badges, certificates, schools, userProfile, experiences } =
+		useSelector((store) => store.hackerrank);
 
 	return (
 		<>
 			{userProfile ? (
-				<div className="hr-profile">
-					<LeftProfileUi profile={userProfile} />
-					<RightProfileUi
-						profile={userProfile}
-						certificates={certificates}
-						badges={badges}
-						schools={schools}
-						experiences={experiences}
-					/>
-				</div>
+				<>
+					<FixedNavigation />
+					<div className="hr-profile">
+						<LeftProfileUi profile={userProfile} />
+						<RightProfileUi
+							profile={userProfile}
+							certificates={certificates}
+							badges={badges}
+							schools={schools}
+							experiences={experiences}
+						/>
+					</div>
+				</>
 			) : (
 				<h1>Loading...</h1>
 			)}

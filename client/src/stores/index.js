@@ -6,6 +6,7 @@ import lcProfile from "./leetcodeProfile";
 import cfProfile from "./codeforcesProfile";
 import ghProfile from "./githubProfile";
 import ccProfile from "./codechefProfile";
+import userProfile from "./userProfile";
 
 const middleware = [thunk];
 
@@ -15,6 +16,7 @@ const reducers = combineReducers({
   codeforces: cfProfile,
   github: ghProfile,
   codechef: ccProfile,
+  user: userProfile,
 });
 
 const composeEnhancers = compose;
