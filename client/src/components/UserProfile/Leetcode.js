@@ -13,6 +13,7 @@ import LcSolvedProblems from "ui/lc-profile-ui-components/LcSolvedProblems";
 import LcBadges from "ui/lc-profile-ui-components/LcBadges";
 import LcSubmissions from "ui/lc-profile-ui-components/LcSubmissions";
 import LcRecentSubmissions from "ui/lc-profile-ui-components/LcRecentSubmissions";
+import { loadUser } from "stores/userProfile";
 
 const LcStrips = ({ user }) => {
   return (
@@ -180,6 +181,19 @@ const Leetcode = () => {
     userProfileCalendar,
     isLoading,
   } = useSelector((store) => store.leetcode);
+
+  const dispatch = useDispatch();
+	const { profile } = useSelector((store) => store.user);
+
+  const { username } = useParams();
+
+  useEffect(() => {
+    if (!profile.username) {
+      dispatch(loadUser({username}))
+    }else if(!userInfo && profile.leetcodeUsername){
+      dispatch(loadLeetcodeProfile(profile.leetcodeUsername));
+    }
+  }, [dispatch, profile, userInfo, username]);
 
   return (
     <>

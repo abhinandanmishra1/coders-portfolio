@@ -11,6 +11,7 @@ import GithubProfile from 'components/UserProfile/Github';
 import ViewProfile from 'components/ViewProfile';
 import Auth from 'components/Auth';
 import UnknownComponent from 'components/UnknownComponent';
+import Profile from 'components/Auth/Profile';
 
 function App(){
     return (
@@ -18,6 +19,7 @@ function App(){
         <Routes>
             <Route path='/' element={<Home />}/>
             <Route path='/about' element={<About />}/>
+            <Route path='/dashboard' element={<Profile />}/>
             <Route path='/auth'>
                 <Route path='signup' element={<Auth type="Signup"/>}/>
                 <Route path='login' element={<Auth type="Login"/>}/>
@@ -33,6 +35,7 @@ function App(){
             </Route>
 
             <Route path='viewProfile' element={<ViewProfile />} />
+
             <Route path='*' element={<UnknownComponent />} />
         </Routes>
         </>

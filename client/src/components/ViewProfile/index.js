@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from  "react-redux";
-import { loadUser } from 'stores/userProfile';
+import { loadUser, intializeUserStore } from 'stores/userProfile';
 import { useEffect } from 'react';
 
 const ViewProfile = () => {
@@ -12,6 +12,7 @@ const ViewProfile = () => {
 
   const showProfile = useCallback(
     (username) => {
+      dispatch(intializeUserStore());
       dispatch(loadUser(username));
     },
     [dispatch],
@@ -27,7 +28,6 @@ const ViewProfile = () => {
     <div>
       <input type="text" onChange={(e)=> {
         setUsername(e.target.value);
-        console.log(e.target.value);
       }} />
       <button onClick={() => {
         showProfile(username);

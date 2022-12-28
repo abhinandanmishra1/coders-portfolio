@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FiGithub, FiGlobe } from "react-icons/fi";
 import { RiLinkedinLine } from "react-icons/ri";
 import { CgShapeHexagon } from "react-icons/cg";
@@ -10,6 +10,9 @@ import HrBadge from "ui/hr-profile-ui-components/HrBadge";
 import HrCertificate from "ui/hr-profile-ui-components/HrCertificate";
 import HrSectionHeader from "ui/hr-profile-ui-components/HrSectionHeader";
 import FixedNavigation from "common/components/FixedNavigation";
+import { useParams } from "react-router-dom";
+import { loadUser } from "stores/userProfile";
+import { loadHackerrankProfile } from "stores/hackerrankProfile";
 
 const LeftProfileUi = ({ profile }) => {
 	if (!profile) return null;
@@ -205,6 +208,19 @@ const RightProfileUi = ({
 const HackerrankProfile = () => {
 	const { badges, certificates, schools, userProfile, experiences } =
 		useSelector((store) => store.hackerrank);
+
+	const dispatch = useDispatch();
+	const { profile } = useSelector((store) => store.user);
+
+  const { username } = useParams();
+
+  useEffect(() => {
+    if (!profile.username) {
+      dispatch(loadUser({username}))
+    }else if(!userProfile && profile.hackerrankUsername){
+      dispatch(loadHackerrankProfile(profile.hackerrankUsername));
+    }
+  }, [dispatch, profile, userProfile, username]);
 
 	return (
 		<>

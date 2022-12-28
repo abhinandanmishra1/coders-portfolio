@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import FixedNavigation from 'common/components/FixedNavigation';
 
 import { ReactComponent as GhConnectionsIcon } from "assets/svg/gh/connections.svg";
@@ -18,6 +18,9 @@ import GhOverview from "ui/gh-profile-ui-components/GhOverview";
 import GhRepositories from "ui/gh-profile-ui-components/GhRepositories";
 import GhOpenSource from "ui/gh-profile-ui-components/GhOpenSource";
 import GhPackagaes from "ui/gh-profile-ui-components/GhPackagaes";
+import { useParams } from "react-router-dom";
+import { loadUser } from "stores/userProfile";
+import { loadGithubProfile } from "stores/githubProfile";
 
 const ProfileInfo = ({ type, detail }) => {
 	if (!type || !detail) return null;
@@ -45,9 +48,23 @@ const ProfileInfo = ({ type, detail }) => {
 };
 
 const Github = () => {
+ const dispatch = useDispatch();
+
 	const { userProfile, followers, following, orgs, repos } = useSelector(
 		(store) => store.github
 	);
+	
+	const { profile } = useSelector((store) => store.user);
+
+  const { username } = useParams();
+
+  useEffect(() => {
+    if (!profile.username) {
+      dispatch(loadUser({username}))
+    }else if(!userProfile && profile.githubUsername){
+      dispatch(loadGithubProfile(profile.githubUsername));
+    }
+  }, [dispatch, profile, userProfile, username]);
 
 	const [activeTab, setActiveTab] = useState(0);
 

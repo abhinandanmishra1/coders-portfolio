@@ -1,10 +1,13 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import CfChart from "ui/cf-profile-ui-components/CfChart";
 import CfHistogram from "ui/cf-profile-ui-components/CfHistogram";
 import CfSubmissionsGraph from "ui/cf-profile-ui-components/CfSubmissionsGraph";
 import FixedNavigation from 'common/components/FixedNavigation';
+import { loadCodeforcesProfile } from "stores/codeforcesProfile";
+import { loadUser } from "stores/userProfile";
+import { useParams } from "react-router-dom";
 
 const TaggedProblemsCountUi = ({ taggedProblemsCounts }) => {
   return (
@@ -28,6 +31,8 @@ const TaggedProblemsCountUi = ({ taggedProblemsCounts }) => {
 };
 
 const Codeforces = () => {
+  const dispatch = useDispatch();
+
   const { 
     userProfile, 
     userContestRatings, 
@@ -35,6 +40,18 @@ const Codeforces = () => {
     problemRatingsCount, 
     submissionsData 
   } = useSelector((store) => store.codeforces);
+
+  const { profile } = useSelector((store) => store.user);
+
+  const { username } = useParams();
+
+  useEffect(() => {
+    if (!profile.username) {
+      dispatch(loadUser({username}))
+    }else if(!userProfile && profile.codeforcesUsername){
+      dispatch(loadCodeforcesProfile(profile.codeforcesUsername));
+    }
+  }, [dispatch, profile, userProfile, username]);
 
   return (
     <>

@@ -19,7 +19,7 @@ import { loadCodechefProfile } from "stores/codechefProfile";
 
 import { defaultUser } from "utils/constants";
 
-const FixeNavigation = () => {
+const FixedNavigation = () => {
 	const dispatch = useDispatch();
 	const { pathname } = useLocation();
 	const pageName = pathname.split("/")[3] || "undefined";
@@ -34,7 +34,7 @@ const FixeNavigation = () => {
 		hackerrankUsername,
 		leetcodeUsername,
 		codechefUsername,
-	} = profile || (username ==="abhinandanmishra1" && defaultUser) || {};
+	} = profile || (username === "abhinandanmishra1" && defaultUser) || {};
 
 	const baseUrl = `/${username}/profile`;
 
@@ -125,4 +125,4 @@ const FixeNavigation = () => {
 	);
 };
 
-export default FixeNavigation;
+export default FixedNavigation;
