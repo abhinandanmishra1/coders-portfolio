@@ -5,6 +5,7 @@ import { loadUser, intializeUserStore } from 'stores/userProfile';
 import { useEffect } from 'react';
 
 const ViewProfile = () => {
+  const [message, setMessage] = useState('');
   const [username, setUsername] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -13,16 +14,16 @@ const ViewProfile = () => {
   const showProfile = useCallback(
     (username) => {
       dispatch(intializeUserStore());
-      dispatch(loadUser(username));
+      dispatch(loadUser({username}));
+      if (profile && profile.username) {
+        setMessage('');
+        navigate(`/${profile.username}/profile/codeforces`);
+      } else {
+        setMessage('Please load profile first');
+      }
     },
-    [dispatch],
+    [dispatch, profile, navigate],
   );
-
-  useEffect(()=> {
-    if (profile) {
-      navigate(`/${username}/profile/codeforces`);
-    }
-  }, [navigate, username, profile]);
 
   return (
     <div>
@@ -32,6 +33,7 @@ const ViewProfile = () => {
       <button onClick={() => {
         showProfile(username);
       }}>showProfile</button>
+      <p>{message}</p>
     </div>
   )
 }

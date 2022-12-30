@@ -12,6 +12,7 @@ import ViewProfile from 'components/ViewProfile';
 import Auth from 'components/Auth';
 import UnknownComponent from 'components/UnknownComponent';
 import Profile from 'components/Auth/Profile';
+import Portfolio from 'components/Portfolio';
 
 function App(){
     return (
@@ -24,6 +25,8 @@ function App(){
                 <Route path='signup' element={<Auth type="Signup"/>}/>
                 <Route path='login' element={<Auth type="Login"/>}/>
             </Route>
+
+            <Route path='/:username/portfolio' element={<Portfolio />} />
 
             <Route path='/:username/profile'>
                 <Route path='' element={<UserProfile />} />

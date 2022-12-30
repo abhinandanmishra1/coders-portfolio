@@ -42,6 +42,14 @@ export default function reducer(
     isLoading: false,
     loadError: null,
     profile: {},
+    email: '',
+		phone: '',
+		address: '',
+		linkedinUrl: '',
+		instagramUrl: '',
+		twitterUrl: '',
+    experiences: [],
+    projects: [],
   },
   action,
 ) {
@@ -60,7 +68,7 @@ export default function reducer(
         ...state,
         isLoading: false,
         loadError: null,
-        profile: null,
+        profile: {},
       };
     case GET_ERROR:
         return { ...state, isLoading: false, loadError: true}

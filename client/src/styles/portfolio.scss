@@ -1,0 +1,865 @@
+@import url("https://fonts.cdnfonts.com/css/typo-round");
+
+.container {
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	position: relative;
+}
+
+.portfolio {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	height: 84vh;
+	left: 4rem;
+	margin: 4rem;
+	max-width: 1268px;
+	max-height: 700px;
+
+	&__container {
+		position: relative;
+		top: 2rem;
+		left: 2rem;
+		right: 1rem;
+		width: 100%;
+		height: 100%;
+	}
+
+	&__header {
+		margin-right: 2rem;
+		position: relative;
+		left: -1rem;
+		top: 1.5rem;
+		position: absolute;
+		left: -3rem;
+		bottom: 1.5rem;
+		width: 10rem;
+		height: 100%;
+		z-index: 100;
+		text-align: center;
+		opacity: 1;
+		visibility: visible;
+		border-radius: 0.4rem;
+	}
+
+	&__top-menu {
+		width: 100%;
+		height: 92%;
+		padding: 1rem;
+		background-color: #031a3f;
+		opacity: 0.8;
+		border-radius: 0.5rem;
+
+		ul {
+			list-style: none;
+
+			li {
+				display: block;
+				padding: 0.5rem 0;
+			}
+		}
+
+		&--icon {
+			margin: 0 auto;
+			position: relative;
+			top: 0;
+			left: 0;
+			display: block;
+			width: 40px;
+			height: 30px;
+			font-size: 20px;
+			color: #f5f5f5;
+			line-height: 30px;
+		}
+
+		&--link {
+			position: relative;
+			left: 0;
+			top: 0;
+			width: 100%;
+			line-height: 1.3rem;
+			display: block;
+			font-size: 1rem;
+			font-weight: 500;
+			text-transform: uppercase;
+			transition: 0.3s;
+			text-decoration: none;
+			color: #fff;
+		}
+
+		a {
+			text-decoration: none;
+		}
+	}
+
+	&__card-started {
+		position: relative;
+		width: 480px;
+		left: 4rem;
+		height: min(90vh, 750px);
+		z-index: 11;
+		border-radius: 0.5rem;
+		box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	}
+
+	&__profile {
+		padding: 50px;
+		position: relative;
+		left: 0%;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background: #fff;
+		text-align: center;
+		z-index: 10;
+		border-radius: 4px;
+
+		&--slide {
+			position: absolute;
+			overflow: hidden;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 50%;
+			background-color: #626262;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover;
+			border-radius: 4px 4px 0 0;
+			background-image: url("../assets/images/abhimanyu_bno.jpg");
+		}
+
+		&--title {
+			font-size: 2.2rem;
+			color: #323232;
+			line-height: 32px;
+			margin-top: 14rem;
+			font-weight: 400;
+			font-family: "Bad Script", cursive;
+		}
+
+		&--subtitle {
+			margin-bottom: 1rem;
+			color: #de3163;
+			font-weight: bold;
+		}
+
+		&--social {
+			width: 100%;
+
+			a {
+				color: #626262;
+				opacity: 1;
+				outline: 0;
+				margin-left: 0.5rem;
+			}
+		}
+
+		&--links {
+			margin-top: 1rem;
+			margin-bottom: 5rem;
+			display: flex;
+			flex-direction: row;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 70px;
+			z-index: 10;
+
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 1px;
+				background: -moz-radial-gradient(
+					left,
+					ellipse cover,
+					rgba(197, 202, 213, 0.7) 0,
+					rgba(255, 255, 255, 0) 70%
+				);
+				background: -webkit-radial-gradient(
+					left,
+					ellipse cover,
+					rgba(197, 202, 213, 0.7) 0,
+					rgba(255, 255, 255, 0) 70%
+				);
+				background: radial-gradient(
+					ellipse at left,
+					rgba(197, 202, 213, 0.7) 0,
+					rgba(255, 255, 255, 0) 70%
+				);
+			}
+		}
+
+		&--link {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			float: none;
+			width: 50%;
+			font-size: 14px;
+			color: #323232;
+			position: relative;
+			height: 70px;
+			line-height: 70px;
+			text-transform: uppercase;
+		}
+
+		&--text {
+			margin-right: 0.3rem;
+		}
+	}
+
+	&__title {
+		font-size: 2.2rem;
+		margin-top: 1rem;
+		line-height: 32px;
+		font-weight: 400;
+		font-family: "Bad Script", cursive;
+	}
+
+	&__subtitle {
+		color: #de3163;
+		font-weight: bold;
+	}
+
+	&__card-inner {
+		padding-left: 5rem;
+		position: absolute;
+		overflow: hidden;
+		left: 50rem;
+		right: 3rem;
+		top: 1.5rem;
+		bottom: 3rem;
+		border-radius: 0 0.5rem 0.5rem 0;
+		transition: visibility 1s linear, opacity 0s linear;
+		color: #f3f3f3;
+		border-right: 2px solid #f4f4f4;
+
+		&--fadeInLeft {
+			animation-name: fadeInLeft;
+			animation-duration: 1s;
+			-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+		}
+
+		@keyframes fadeInLeft {
+			from {
+				opacity: 0;
+				-webkit-transform: translatex(-100px);
+				-moz-transform: translatex(-100px);
+				-o-transform: translatex(-100px);
+				transform: translatex(-100px);
+			}
+			to {
+				opacity: 1;
+				-webkit-transform: translatex(0);
+				-moz-transform: translatex(0);
+				-o-transform: translatex(0);
+				transform: translatex(0);
+			}
+		}
+
+		&--fadeOutLeft {
+			animation-name: fadeOutLeft;
+			animation-duration: 1s;
+			-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+		}
+
+		@keyframes fadeOutLeft {
+			from {
+				opacity: 0;
+				transform: translatex(0);
+			}
+			to {
+				opacity: 1;
+				transform: translatex(-100px);
+			}
+		}
+	}
+
+	&__about {
+		display: flex;
+		flex-direction: column;
+
+		&--title {
+			font-size: 2.2rem;
+			margin-top: 1rem;
+			line-height: 32px;
+			font-weight: 400;
+			font-family: "Bad Script", cursive;
+		}
+
+		&--greetings {
+			font-size: 2rem;
+			font-weight: bold;
+		}
+
+		&--name {
+			color: #ffb71b;
+			font-size: 3rem;
+			background: rgba(6, 71, 131, 0.4);
+			backdrop-filter: blur(10px);
+		}
+
+		&--description {
+			font-size: 1.8rem;
+			margin-top: 1rem;
+		}
+
+		&--hire {
+			width: 10rem;
+			text-align: center;
+			margin-top: 1rem;
+			cursor: pointer;
+			padding: 1rem;
+			border: 0.1rem solid #ffb71b;
+			border-radius: 1rem;
+			font-weight: 700;
+
+			&:hover {
+				background-color: #ffb71b;
+				color: #fff;
+			}
+		}
+	}
+
+	&__contact {
+		@include flex;
+		position: relative;
+		padding: 2rem;
+		width: 100%;
+
+		&:before {
+			content: "Contact";
+			display: block;
+			position: absolute;
+			top: -0.5rem;
+			margin-bottom: 3rem;
+			font-size: 2.2rem;
+			line-height: 32px;
+			font-weight: 400;
+			font-family: "Bad Script", cursive;
+		}
+
+		&--send {
+			width: 60%;
+			margin-top: 1rem;
+		}
+
+		&--message {
+			margin-top: 1rem;
+			@include flex-col;
+		}
+
+		&--name {
+			margin-top: 1rem;
+		}
+
+		&--email {
+			margin-top: 1rem;
+		}
+
+		&--label {
+			margin-bottom: 1rem;
+		}
+
+		&--input,
+		&--textarea {
+			padding: 1rem;
+			padding-left: 0;
+			outline: none;
+			width: 100%;
+			background-color: transparent;
+			border: none;
+			caret-color: #f3f3f3;
+			resize: none;
+			overflow: hidden;
+			color: #f3f3f3;
+			border-bottom: 0.1rem solid #c0d6d9;
+		}
+
+		&--textarea {
+			height: 10rem;
+		}
+
+		input::placeholder,
+		textarea::placeholder {
+			color: #f3f3f3;
+			padding: 1rem;
+			display: block;
+			padding-left: 0;
+			padding-top: 0;
+			animation-name: blink;
+			animation-duration: 800ms;
+			animation-iteration-count: infinite;
+		}
+
+		@keyframes blink {
+			from {
+				opacity: 1;
+			}
+			to {
+				opacity: 0;
+			}
+		}
+
+		input:focus::placeholder,
+		textarea:focus::placeholder {
+			color: transparent;
+		}
+
+		&--submit {
+			margin-top: 1rem;
+			padding: 1rem;
+			width: 6rem;
+			border: none;
+			outline: none;
+			background-color: transparent;
+			color: #f3f3f3;
+			font-weight: 700;
+			border-radius: 0.5rem;
+			cursor: pointer;
+			transition: all 0.3s ease-in-out;
+			border: 0.1rem solid #f3f3f3;
+
+			&:hover {
+				background-color: #f3f3f3;
+				color: #031a3f;
+			}
+		}
+
+		&--side {
+			width: 40%;
+			margin-top: 1rem;
+			padding: 0.5rem;
+			@include flex-col;
+		}
+
+		&--field {
+			margin: 0.5rem;
+
+			&-title {
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+			}
+
+			&-value {
+				background: rgba(6, 71, 131, 0.5);
+				padding: 0.5rem;
+				color: #f3f3f3;
+				border-radius: 0.5rem;
+			}
+		}
+
+		&--social {
+			margin-top: 1rem;
+			@include flex;
+
+			&-link {
+				margin: 0.5rem;
+				color: #f3f3f3;
+				font-size: 1.8rem;
+				transition: all 0.3s ease-in-out;
+
+				&:hover {
+					color: #c0d6d9;
+				}
+			}
+		}
+	}
+
+	&__profiles {
+		@include flex;
+		position: relative;
+		padding: 2rem;
+		width: 100%;
+		flex-wrap: wrap;
+		overflow-y: scroll;
+		overflow-x: none;
+		scrollbar-width: thin; 
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		&:before {
+			content: "CP/Dev Profiles";
+			display: block;
+			position: fixed;
+			top: -0.5rem;
+			margin-bottom: 3rem;
+			font-size: 2.2rem;
+			line-height: 32px;
+			font-weight: 400;
+			font-family: "Bad Script", cursive;
+		}
+
+		&:after {
+			content: "";
+			display: block;
+			position: absolute;
+			width: 500px;
+			height: 500px;
+			background: linear-gradient(
+				180deg,
+				rgba(47, 184, 255, 0.42) 31.77%,
+				#5c9df1 100%
+			);
+			mix-blend-mode: color-dodge;
+			-webkit-animation: move 25s infinite alternate;
+			animation: move 25s infinite alternate;
+			transition: 1s cubic-bezier(0.07, 0.8, 0.16, 1);
+
+			@-webkit-keyframes move {
+				from {
+					transform: translate(-100px, -50px) rotate(-90deg);
+					border-radius: 24% 76% 35% 65% / 27% 36% 64% 73%;
+				}
+
+				to {
+					transform: translate(500px, 100px) rotate(-10deg);
+					border-radius: 76% 24% 33% 67% / 68% 55% 45% 32%;
+				}
+			}
+
+			@keyframes move {
+				from {
+					transform: translate(-100px, -50px) rotate(-90deg);
+					border-radius: 24% 76% 35% 65% / 27% 36% 64% 73%;
+				}
+
+				to {
+					transform: translate(500px, 100px) rotate(-10deg);
+					border-radius: 76% 24% 33% 67% / 68% 55% 45% 32%;
+				}
+			}
+		}
+
+		&--card {
+			@include flex;
+			@include justify-c;
+			@include align-c;
+
+			font-family: "Typo Round", sans-serif;
+			width: 25rem;
+			height: 15rem;
+			padding: 2rem;
+			margin: 1rem;
+			font-size: 2rem;
+			background: rgba(255, 255, 255, 0.15);
+			box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+			backdrop-filter: blur(18px);
+			-webkit-backdrop-filter: blur(18px);
+			border: 1px solid rgba(255, 255, 255, 0.18);
+			border-radius: 1rem;
+			padding: 1.5rem;
+			z-index: 10;
+			color: whitesmoke;
+		}
+	}
+
+	&__projects {
+		@include flex;
+		position: relative;
+		padding: 2rem;
+		margin-top: 1rem;
+		width: 100%;
+		flex-wrap: wrap;
+		overflow: visible;
+
+		&:before {
+			content: "Projects";
+			position: fixed;
+			top: -0.5rem;
+			margin-bottom: 3rem;
+			font-size: 2.2rem;
+			line-height: 32px;
+			font-weight: 400;
+			font-family: "Bad Script", cursive;
+		}
+
+		&--card {
+			--border-width: 3px;
+
+			position: relative;
+			width: 300px;
+			height: 200px;
+			padding: 1rem;
+			margin: 1rem;
+			font-family: Lato, sans-serif;
+			color: white;
+			background: #222;
+			border-radius: var(--border-width);
+		
+			&:after {
+				position: absolute;
+				content: "";
+				top: calc(-1 * var(--border-width));
+				left: calc(-1 * var(--border-width));
+				z-index: -1;
+				width: calc(100% + var(--border-width) * 2);
+				height: calc(100% + var(--border-width) * 2);
+				background: linear-gradient(
+					60deg,
+					hsl(224, 85%, 66%),
+					hsl(269, 85%, 66%),
+					hsl(314, 85%, 66%),
+					hsl(359, 85%, 66%),
+					hsl(44, 85%, 66%),
+					hsl(89, 85%, 66%),
+					hsl(134, 85%, 66%),
+					hsl(179, 85%, 66%)
+				);
+				background-size: 300% 300%;
+				background-position: 0 50%;
+				border-radius: calc(2 * var(--border-width));
+				animation: moveGradient 4s alternate infinite;
+			}
+		}
+
+		@keyframes moveGradient {
+			50% {
+				background-position: 100% 50%;
+			}
+		}
+
+		&--name {
+			font-weight: 600;
+			margin-bottom: 1rem;
+			font-size: 2rem;
+			text-transform: uppercase;
+		}
+
+		&--description {
+			font-size: 1.2rem;
+			line-height: 1.5;
+			margin-bottom: 1rem;
+			color: rgba(255, 255, 255, 0.8);
+		}
+
+		&--skills {
+			width: 60%;
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		&--skill {
+			font-size: 1.2rem;
+			margin-right: 1rem;
+			margin-bottom: 1rem;
+			padding: 0.5rem 1rem;
+			background: rgba(255, 255, 255, 0.15);
+			border-radius: 1rem;
+			max-width: 10rem;
+		}
+
+		&--link {
+			@include flex;
+			justify-content: end;
+
+			width: 80%;
+			margin: 0 auto;
+
+			a {
+				font-size: 2rem;
+				text-decoration: none;
+				color: white;
+				transition: 0.3s;
+				margin-left: 1rem;
+
+				&:hover {
+					color: #f1f1f1;
+				}
+			}
+		}
+	}
+}
+
+.background {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+}
+
+.circle-container {
+	$particleNum: 200;
+	$particleColor: hsl(180, 100%, 80%);
+
+	position: absolute;
+	transform: translateY(-10vh);
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+
+	.circle {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		mix-blend-mode: screen;
+		background-image: radial-gradient(
+			hsl(180, 100%, 80%),
+			hsl(180, 100%, 80%) 10%,
+			hsla(180, 100%, 80%, 0) 56%
+		);
+
+		animation: fadein-frames 200ms infinite, scale-frames 2s infinite;
+
+		@keyframes fade-frames {
+			0% {
+				opacity: 1;
+			}
+
+			50% {
+				opacity: 0.7;
+			}
+
+			100% {
+				opacity: 1;
+			}
+		}
+
+		@keyframes scale-frames {
+			0% {
+				transform: scale3d(0.4, 0.4, 1);
+			}
+
+			50% {
+				transform: scale3d(2.2, 2.2, 1);
+			}
+
+			100% {
+				transform: scale3d(0.4, 0.4, 1);
+			}
+		}
+	}
+
+	$particleBaseSize: 8;
+
+	@for $i from 1 through $particleNum {
+		&:nth-child(#{$i}) {
+			$circleSize: random($particleBaseSize);
+			width: $circleSize + px;
+			height: $circleSize + px;
+
+			$startPositionY: random(10) + 100;
+			$framesName: "move-frames-" + $i;
+			$moveDuration: 28000 + random(9000) + ms;
+
+			animation-name: #{$framesName};
+			animation-duration: $moveDuration;
+			animation-delay: random(37000) + ms;
+
+			@keyframes #{$framesName} {
+				from {
+					transform: translate3d(random(100) + vw, $startPositionY + vh, 0);
+				}
+
+				to {
+					transform: translate3d(
+						random(100) + vw,
+						-$startPositionY - random(30) + vh,
+						0
+					);
+				}
+			}
+
+			.circle {
+				animation-delay: random(4000) + ms;
+			}
+		}
+	}
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 90deg;
+  inherits: true;
+}
+
+@property --gradX {
+  syntax: '<percentage>';
+  initial-value: 50%;
+  inherits: true;
+}
+
+@property --gradY {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: true;
+}
+
+:root {
+	--d: 2500ms;
+	--angle: 90deg;
+	--gradX: 100%;
+	--gradY: 50%;
+	--border-size: 3px;
+  --border-angle: 0turn;
+	--c1: rgba(168, 239, 255, 1);
+	--c2: rgba(168, 239, 255, 0.1);
+	--grayishBlue: hsl(229, 6%, 66%);
+}
+
+.wrapper {
+	min-width: min(40rem, 100%);
+}
+
+.box {
+	border: 0.35rem solid;
+	border-radius: 0.5rem;
+	background-image: conic-gradient(from var(--border-angle), #213, #112 50%, #213), conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+  background-size: calc(100% - (var(--border-size) * 2)) calc(100% - (var(--border-size) * 2)), cover;
+	border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
+	animation: borderRotate var(--d) linear infinite forwards;
+	position: relative;
+	transition-delay: 2s;
+
+	&:hover {
+		animation-play-state: paused;
+		cursor: pointer;
+		border: 0.35rem solid;
+		background: linear-gradient(to right, var(--c1), var(--c2));
+		padding: 3px;
+	}
+}
+
+@keyframes borderRotate {
+	100% {
+		--angle: 420deg;
+	}
+}
+
+@keyframes borderRadial {
+	20% {
+		--gradX: 100%;
+		--gradY: 50%;
+	}
+	40% {
+		--gradX: 100%;
+		--gradY: 100%;
+	}
+	60% {
+		--gradX: 50%;
+		--gradY: 100%;
+	}
+	80% {
+		--gradX: 0%;
+		--gradY: 50%;
+	}
+	100% {
+		--gradX: 50%;
+		--gradY: 0%;
+	}
+}

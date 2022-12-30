@@ -1,4 +1,5 @@
 import FixedNavigation from 'common/components/FixedNavigation';
+import Portfolio from 'components/Portfolio';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -20,14 +21,10 @@ const UserProfile = () => {
 
   return (
     <>
-    <FixedNavigation />
-    <div className='user'>
-      <Link to={`hackerrank`}>Hackerrank</Link>
-      <Link to={`leetcode`}>Leetcode</Link>
-      <Link to={`codeforces`}>Codeforces</Link>
-      <Link to={`codechef`}>Codechef</Link>
-      <Link to={`github`}>Github</Link>
-    </div>
+      <FixedNavigation />
+      <div className='user'>
+        <Portfolio />
+      </div>
     </>
   )
 }
