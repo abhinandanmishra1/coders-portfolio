@@ -4,14 +4,17 @@ import { useSelector } from "react-redux";
 
 const Contact = ({ fadeInClass }) => {
 	const {
+		profile
+	} = useSelector(store => store.user);
+
+	const {
 		email,
 		phone,
 		address,
 		linkedinUrl,
 		instagramUrl,
 		twitterUrl
-	} = useSelector(store => store.user);
-
+	} = profile || {};
 
 	return (
 		<div

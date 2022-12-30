@@ -1,30 +1,11 @@
 import React from "react";
 import { FaGithub, FaGlobe } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Projects = ({ fadeInClass }) => {
-	const projects = [
-		{
-			name: "Task Tracker",
-			description: "It is a task tracking web app created in angular",
-			skills: ["Angular", "Node", "MongoDB"],
-			githubLink: "dummyLink",
-			websiteLink: "dummyLink",
-		},
-		{
-			name: "Leetcode IDE Clone",
-			description: "It is a task tracking web app created in angular",
-			skills: ["React", "Tailwind", "MongoDB"],
-			githubLink: "dummyLink",
-			websiteLink: "dummyLink",
-		},
-		{
-			name: "Portfolio Maker",
-			description: "It is a webapp which helps you create your portfolio",
-			skills: ["React", "Scss", "MongoDB", "Node"],
-			githubLink: "dummyLink",
-			websiteLink: "dummyLink",
-		},
-	];
+	
+	const { projects} = useSelector(store => store.user);
+
 	return (
 		<div
 			className={`portfolio__card-inner portfolio__card-inner--${fadeInClass}`}
@@ -39,7 +20,7 @@ const Projects = ({ fadeInClass }) => {
 								{project.description}
 							</div>
 							<div class="portfolio__projects--skills">
-								{project.skills.map((skill) => {
+								{project.skills.split(',').map((skill) => {
 									return <div class="portfolio__projects--skill">{skill}</div>;
 								})}
 							</div>

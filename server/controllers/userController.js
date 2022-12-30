@@ -16,6 +16,8 @@ const createUser = asyncHandler(async (req, res) => {
 		githubUsername,
 		password,
 		email,
+		phone,
+		address,
 		linkedinUrl,
     githubUrl,
     twitterUrl,
@@ -69,6 +71,8 @@ const createUser = asyncHandler(async (req, res) => {
 	userDetails.username = username;
 	userDetails.email = email;
 
+	if (phone) userDetails.phone = phone;
+	if (address) userDetails.address = address;
 	userDetails.codeforcesUsername = codeforcesUsername || '';
 	userDetails.leetcodeUsername = leetcodeUsername || '';
 	userDetails.hackerrankUsername = hackerrankUsername || '';
@@ -171,7 +175,21 @@ const updateUser = asyncHandler(async (req, res) => {
 		codechefUsername,
 		githubUsername,
 		username,
-		email
+		email,
+		phone,
+		address,
+		linkedinUrl,
+    githubUrl,
+    twitterUrl,
+    instagramUrl,
+    fullName,
+    designation,
+    resumeUrl,
+    about,
+    country,
+		experiences,
+		education,
+		projects
 	} = req.body;
 
 	const user = await User.findOne({ username });
@@ -183,18 +201,20 @@ const updateUser = asyncHandler(async (req, res) => {
 		user.hackerrankUsername = hackerrankUsername || user.hackerrankUsername;
 		user.leetcodeUsername = leetcodeUsername || user.leetcodeUsername;
 		user.email = email || user.email;
-		if (linkedinUrl) userDetails.linkedinUrl = linkedinUrl;
-		if (githubUrl) userDetails.githubUrl = githubUrl;
-		if (twitterUrl) userDetails.twitterUrl = twitterUrl;
-		if (instagramUrl) userDetails.instagramUrl = instagramUrl;
-		if (fullName) userDetails.fullName = fullName;
-		if (designation) userDetails.designation = designation;
-		if (resumeUrl) userDetails.resumeUrl = resumeUrl;
-		if (about) userDetails.about = about;
-		if (country) userDetails.country = country;
-		if (experiences) userDetails.experiences = experiences;
-		if (education) userDetails.education = education;
-		if (projects) userDetails.projects = projects;
+		if (phone) user.phone = phone;
+		if (address) user.address = address;
+		if (linkedinUrl) user.linkedinUrl = linkedinUrl;
+		if (githubUrl) user.githubUrl = githubUrl;
+		if (twitterUrl) user.twitterUrl = twitterUrl;
+		if (instagramUrl) user.instagramUrl = instagramUrl;
+		if (fullName) user.fullName = fullName;
+		if (designation) user.designation = designation;
+		if (resumeUrl) user.resumeUrl = resumeUrl;
+		if (about) user.about = about;
+		if (country) user.country = country;
+		if (experiences) user.experiences = experiences;
+		if (education) user.education = education;
+		if (projects) user.projects = projects;
 
 
 		const updatedUser = await user.save();

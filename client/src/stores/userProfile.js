@@ -1,4 +1,5 @@
 import userProfileApi from 'api/lib/userProfile';
+import { getProfileData } from 'utils/helpers';
 
 const GET_INIT = 'user/profile/GET_INIT';
 const GET_USER = 'user/GET_USER';
@@ -25,6 +26,7 @@ export function updateUser(updatedUser) {
       const { data }= await userProfileApi.updateUser(updatedUser);
       const { json } = data;
       dispatch({ type: GET_USER, payload: json });
+      alert("Update Sucessfull")
     } catch (error) {
       dispatch({ type: GET_ERROR });
     }
@@ -56,7 +58,10 @@ export default function reducer(
         ...state,
         isLoading: false,
         loadError: null,
-        profile: action.payload,
+        profile: getProfileData(action.payload),
+        experiences: action.payload.experiences,
+        projects: action.payload.projects,
+        education: action.payload.education,
       };
     case USER_STORE_INIT:
       return {

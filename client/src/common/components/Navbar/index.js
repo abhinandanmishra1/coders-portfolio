@@ -1,26 +1,14 @@
 import React from 'react'
 import NavItem from './NavItem';
-import Button from 'common/components/Button';
 import { Link } from 'react-router-dom';
 
 const Navbar = ({left, middle, right}) => {
-  const button1 = right? right[0] : {
-    title: 'Login',
-    onlick: () => {},
-    type: "type2",
-  };
-
-  const button2 = right? right[1] : {
-    title: 'Signup',
-    onlick: () => {},
-    type: "type1",
-  };
 
   return (
     <div className='nav'>
         <div className="nav__left">
             <div className="nav__left--title">
-                {left || 'HackerPortfolio'}
+                {left || 'CoderPortfolio'}
             </div>
         </div>
         {

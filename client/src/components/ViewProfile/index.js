@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from  "react-redux";
 import { loadUser, intializeUserStore } from 'stores/userProfile';
-import { useEffect } from 'react';
 
 const ViewProfile = () => {
   const [message, setMessage] = useState('');
@@ -17,7 +16,7 @@ const ViewProfile = () => {
       dispatch(loadUser({username}));
       if (profile && profile.username) {
         setMessage('');
-        navigate(`/${profile.username}/profile/codeforces`);
+        navigate(`/${profile.username}/profile`);
       } else {
         setMessage('Please load profile first');
       }
@@ -26,7 +25,7 @@ const ViewProfile = () => {
   );
 
   return (
-    <div>
+    <div className='view-user-profile'>
       <input type="text" onChange={(e)=> {
         setUsername(e.target.value);
       }} />

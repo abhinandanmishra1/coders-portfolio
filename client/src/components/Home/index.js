@@ -12,7 +12,7 @@ const Home = () => {
     }
 
     const defaultProfile = () => {
-        navigate("/abhinandanmishra1/profile/codeforces");
+        navigate("/abhinandanmishra1/profile");
     }
 
     const ViewProfile = () => {

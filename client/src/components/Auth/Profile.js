@@ -1,133 +1,146 @@
-import Bracket from "common/components/JsonInput/Bracket";
-import JsonInput from "common/components/JsonInput/JsonInput";
-import React, { useState, useEffect } from "react";
-import { useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Button from "common/components/Button";
+
+import { FaPlusCircle } from "react-icons/fa";
 import { loadUser, updateUser } from "stores/userProfile";
+import Bracket from "common/components/JsonInput/Bracket";
+import Button from "common/components/Button";
 import EducationInput from "./EducationInput";
 import ExperienceInput from "./ExperienceInput";
+import ProfileInput from "./ProfileInput";
 import ProjectInput from "./ProjectInput";
-import { FaPlusCircle } from "react-icons/fa";
+import { formatDate } from "utils/helpers";
 
 const Profile = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
 	const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
 	const [counts, setCounts] = useState({
 		experienceCount: 1,
 		educationCount: 1,
 		projectCount: 1,
 	});
 
-	const {
-		profile: user,
-		experiences,
-		education,
-		projects,
-	} = useSelector((store) => store.user);
+	const { profile, experiences, education, projects } = useSelector(
+		(store) => store.user
+	);
 
-	const {
-		leetcodeUsername,
-		codeforcesUsername,
-		githubUsername,
-		codechefUsername,
-		hackerrankUsername,
-		username,
-		email,
-		linkedinUrl,
-		githubUrl,
-		instagramUrl,
-		twitterUrl,
-		resumeUrl,
-		fullName,
-		designation,
-		about,
-		country,
-	} = user || {};
+	const [updatedExperiences, setUpdatedExperiences] = useState(experiences);
+	const [updatedEducation, setUpdatedEducation] = useState(education);
+	const [updatedProjects, setUpdatedProjects] = useState(projects);
+	const [formData, setFormData] = useState(profile || {});
 
-	const [formData, setFormData] = useState({
-		leetcodeUsername,
-		codeforcesUsername,
-		githubUsername,
-		codechefUsername,
-		hackerrankUsername,
-		username,
-		email,
-		linkedinUrl,
-		githubUrl,
-		instagramUrl,
-		twitterUrl,
-		resumeUrl,
-		fullName,
-		designation,
-		about,
-		country,
-	});
+	const { username } = profile || {};
 
 	useEffect(() => {
 		if (isLoggedIn) {
-			if (Object.keys(user).length === 0) {
+			if (Object.keys(profile).length === 0) {
 				const token = localStorage.getItem("token");
 				dispatch(loadUser({ token }));
-			} else {
-				setFormData({
-					leetcodeUsername,
-					codeforcesUsername,
-					githubUsername,
-					codechefUsername,
-					hackerrankUsername,
-					username,
-					email,
-					linkedinUrl,
-					githubUrl,
-					instagramUrl,
-					twitterUrl,
-					resumeUrl,
-					fullName,
-					designation,
-					about,
-					country,
-				});
+			}else {
+				setFormData(profile);
+				setUpdatedExperiences(experiences);
+				setUpdatedEducation(education);
+				setUpdatedProjects(projects);
 			}
 		} else {
 			navigate("/auth/login");
 		}
-	}, [
-		isLoggedIn,
-		navigate,
-		dispatch,
-		user,
-		leetcodeUsername,
-		codeforcesUsername,
-		githubUsername,
-		codechefUsername,
-		hackerrankUsername,
-		username,
-		email,
-		linkedinUrl,
-		githubUrl,
-		instagramUrl,
-		twitterUrl,
-		resumeUrl,
-		fullName,
-		designation,
-		about,
-		country,
-	]);
+	}, [isLoggedIn, navigate, dispatch, profile, experiences, education, projects]);
 
-	const handleChange = (e) => {
-		setFormData({
-			...formData,
-			[e.target.name]: e.target.value,
-		});
-	};
+	const handleChange = useCallback(
+		(e) => {
+			setFormData({
+				...formData,
+				[e.target.name]: e.target.value,
+			});
+		},
+		[formData]
+	);
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		dispatch(updateUser(formData));
-	};
+	const handleExperiencesChange = useCallback(
+		async (e, index) => {
+			const list = [...updatedExperiences];
+			if (index >= list.length) {
+				const experienceTemplate = {
+					company: "",
+					position: "",
+					startDate: "",
+					endDate: "",
+					designation: "",
+					id: crypto.randomUUID(),
+				};
+
+				list.push(experienceTemplate);
+			}
+			const { name, value } = e.target;
+			list[index][name] = e.target.type === "date" ? formatDate(value) : value;
+			setUpdatedExperiences(list);
+		},
+		[updatedExperiences]
+	);
+
+	const handleEducationChange = useCallback(
+		async (e, index) => {
+			const list = [...updatedEducation];
+			if (index >= list.length) {
+				const educationTemplate = {
+					school: "",
+					degree: "",
+					grade: "",
+					startDate: "",
+					endDate: "",
+					id: crypto.randomUUID(),
+				};
+
+				list.push(educationTemplate);
+			}
+			const { name, value } = e.target;
+			list[index][name] = e.target.type === "date" ? formatDate(value) : value;
+			setUpdatedEducation(list);
+		},
+		[updatedEducation]
+	);
+
+	const handleProjectsChange = useCallback(
+		async (e, index) => {
+			const list = [...updatedProjects];
+			if (index >= list.length) {
+				const projectTemplate = {
+					id: String,
+					name: String,
+					description: String,
+					githubLink: String,
+					websiteLink: String,
+					skills: String,
+				};
+
+				list.push(projectTemplate);
+			}
+			const { name, value } = e.target;
+			list[index][name] = value;
+			setUpdatedProjects(list);
+		},
+		[updatedProjects]
+	);
+
+	const handleSubmit = useCallback(
+		(e) => {
+			e.preventDefault();
+			dispatch(
+				updateUser({
+					...formData,
+					experiences: updatedExperiences,
+					education: updatedEducation,
+					projects: updatedProjects,
+				})
+			);
+		},
+		[dispatch, formData, updatedEducation, updatedExperiences, updatedProjects]
+	);
 
 	const logout = useCallback(() => {
 		localStorage.setItem("loggedIn", false);
@@ -163,96 +176,7 @@ const Profile = () => {
 					openBracket={"{"}
 					closeBracket={"}"}
 				>
-					<JsonInput
-						onChange={handleChange}
-						type="text"
-						fieldName="fullName"
-						defaultValue={formData.fullName}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="text"
-						fieldName="about"
-						defaultValue={formData.about}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="text"
-						fieldName="designation"
-						defaultValue={formData.designation}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="text"
-						fieldName="country"
-						defaultValue={formData.country}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="email"
-						fieldName="email"
-						defaultValue={formData.email}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="text"
-						fieldName="leetcodeUsername"
-						defaultValue={formData.leetcodeUsername}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="text"
-						fieldName="codeforcesUsername"
-						defaultValue={formData.codeforcesUsername}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="text"
-						fieldName="githubUsername"
-						defaultValue={formData.githubUsername}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="text"
-						fieldName="codechefUsername"
-						defaultValue={formData.codechefUsername}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="text"
-						fieldName="hackerrankUsername"
-						defaultValue={formData.hackerrankUsername}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="url"
-						fieldName="githubUrl"
-						defaultValue={formData.githubUrl}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="url"
-						fieldName="linkedinUrl"
-						defaultValue={formData.linkedinUrl}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="url"
-						fieldName="instagramUrl"
-						defaultValue={formData.instagramUrl}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="url"
-						fieldName="twitterUrl"
-						defaultValue={formData.twitterUrl}
-					/>
-					<JsonInput
-						onChange={handleChange}
-						type="url"
-						fieldName="resumeUrl"
-						defaultValue={formData.resumeUrl}
-					/>
+					<ProfileInput formData={formData} handleChange={handleChange} />
 
 					<Bracket
 						objectName="education"
@@ -261,18 +185,30 @@ const Profile = () => {
 						closeBracket={"]"}
 						isEndComma={true}
 					>
-						{education.map((edu) => {
-							return <EducationInput education={edu} />;
+						{education.map((edu, index) => {
+							return (
+								<EducationInput
+									education={edu}
+									handleEducationChange={(e) => handleEducationChange(e, index)}
+								/>
+							);
 						})}
-						<EducationInput />
-						{[...Array(counts.educationCount).keys()].map(() => {
-							return <EducationInput />;
+						{[...Array(counts.educationCount).keys()].map((_, ind) => {
+							const index = ind + education.length;
+							return (
+								<EducationInput
+									handleEducationChange={(e) => handleEducationChange(e, index)}
+								/>
+							);
 						})}
 						<FaPlusCircle
 							className="json__add-more"
 							onClick={() =>
 								setCounts((counts) => {
-									return { ...counts, educationCount: counts.educationCount + 1 };
+									return {
+										...counts,
+										educationCount: counts.educationCount + 1,
+									};
 								})
 							}
 						/>
@@ -284,18 +220,34 @@ const Profile = () => {
 						closeBracket={"]"}
 						isEndComma={true}
 					>
-						{experiences.map((experience) => {
-							return <ExperienceInput {...{ experience }} />;
+						{experiences.map((experience, index) => {
+							return (
+								<ExperienceInput
+									{...{ experience, index }}
+									handleExperiencesChange={(e) =>
+										handleExperiencesChange(e, index)
+									}
+								/>
+							);
 						})}
-						<ExperienceInput />
-						{[...Array(counts.experienceCount).keys()].map(() => {
-							return <ExperienceInput />;
+						{[...Array(counts.experienceCount).keys()].map((_, ind) => {
+							const index = ind + experiences.length;
+							return (
+								<ExperienceInput
+									handleExperiencesChange={(e) =>
+										handleExperiencesChange(e, index)
+									}
+								/>
+							);
 						})}
 						<FaPlusCircle
 							className="json__add-more"
 							onClick={() =>
 								setCounts((counts) => {
-									return { ...counts, experienceCount: counts.experienceCount + 1 };
+									return {
+										...counts,
+										experienceCount: counts.experienceCount + 1,
+									};
 								})
 							}
 						/>
@@ -307,11 +259,21 @@ const Profile = () => {
 						closeBracket={"]"}
 						isEndComma={true}
 					>
-						{projects.map((project) => {
-							return <ProjectInput {...{ project }} />;
+						{projects.map((project, index) => {
+							return (
+								<ProjectInput
+									{...{ project }}
+									handleProjectsChange={(e) => handleProjectsChange(e, index)}
+								/>
+							);
 						})}
-						{[...Array(counts.projectCount).keys()].map(() => {
-							return <ProjectInput />;
+						{[...Array(counts.projectCount).keys()].map((_, ind) => {
+							const index = ind + projects.length;
+							return (
+								<ProjectInput
+									handleProjectsChange={(e) => handleProjectsChange(e, index)}
+								/>
+							);
 						})}
 						<FaPlusCircle
 							className="json__add-more"

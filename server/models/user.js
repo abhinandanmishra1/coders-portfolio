@@ -29,14 +29,18 @@ const userSchema = new mongoose.Schema({
     resumeUrl: String,
     about: String,
     country: String,
+    phone: String,
+    address: String,
     experiences: [{
+        id: String,
         startDate: Date,
         endDate: Date,
         company: String,
         designation: String,
-        learnings: [String]
+        learnings: String
     }],
     education: [{
+        id: String,
         school: String,
         degree: String,
         grade: String,
@@ -44,11 +48,12 @@ const userSchema = new mongoose.Schema({
         endDate: Date,
     }],
     projects: [{
+        id: String,
         name: String,
         description: String,
         githubLink: String,
         websiteLink: String,
-        skills: [String]
+        skills: String
     }]
 });
 
