@@ -1,0 +1,52 @@
+{
+  "username": "abhinandanmishra1",
+  "email": "abhinandanmishra360@gmail.com",
+  "githubUsername": "abhinandanmishra1",
+  "codeforcesUsername": "abhinandan_mishra_1",
+  "hackerrankUsername": "abhi_mishra_1",
+  "leetcodeUsername": "abhinandan_mishra_1",
+  "codechefUsername": "abhimishra1",
+  "linkedinUrl": "https://www.linkedin.com/in/abhinandanmishra1",
+  "githubUrl": "https://github.com/abhinandanmishra1",
+  "twitterUrl": "https://twitter.com/abhinandan_0001",
+  "instagramUrl": "https://www.instagram.com/abhinandan_mishra_1/",
+  "fullName": "Abhinandan Mishra",
+  "designation": "Software Developer",
+  "resumeUrl": "https://drive.google.com/file/d/1KY2r4ij1kZl61QXyY6Q2wwKP2xQ3pjD7/view",
+  "about": "Abhimanyu Bano ",
+  "country": "India",
+  "experiences": [
+      {
+          "id": "5e737f5d-0e17-42af-996f-ccdcd0126b13",
+          "startDate": "2002-01-31T00:00:00.000Z",
+          "endDate": "2022-12-30T00:00:00.000Z",
+          "company": "Scaler Academy",
+          "designation": "SDE Intern",
+          "_id": "63af1a601b72f7fa02525bab"
+      }
+  ],
+  "education": [
+      {
+          "id": "fae03d82-05e0-4a61-80ce-a7906a46efee",
+          "school": "Madan Mohan Malaviya University of Technology",
+          "degree": "B.Tech",
+          "grade": "8.23 / 10.0",
+          "startDate": "2019-08-01T00:00:00.000Z",
+          "endDate": "2023-08-02T00:00:00.000Z",
+          "_id": "63af1a601b72f7fa02525bac"
+      }
+  ],
+  "projects": [
+      {
+          "name": "Portfolio Maker",
+          "description": "It is a website which helps in creating portfolio",
+          "githubLink": "https://github.com/abhinandanmishra1/portfolio",
+          "websiteLink": "https://github.com/abhinandanmishra1/portfolio",
+          "skills": "React, SCSS, JavaScript",
+          "_id": "63af1a601b72f7fa02525bad"
+      }
+  ],
+  "__v": 7,
+  "address": "Jallapur, Giraiya Bazar, Ambedkar Nagar",
+  "phone": "+91 7007241631"
+}
