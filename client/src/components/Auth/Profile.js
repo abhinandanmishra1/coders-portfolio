@@ -1,15 +1,32 @@
+import Bracket from "common/components/JsonInput/Bracket";
+import JsonInput from "common/components/JsonInput/JsonInput";
 import React, { useState, useEffect } from "react";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import Button from "common/components/Button";
 import { loadUser, updateUser } from "stores/userProfile";
+import EducationInput from "./EducationInput";
+import ExperienceInput from "./ExperienceInput";
+import ProjectInput from "./ProjectInput";
+import { FaPlusCircle } from "react-icons/fa";
 
 const Profile = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-	const { profile: user } = useSelector((store) => store.user);
+	const [counts, setCounts] = useState({
+		experienceCount: 1,
+		educationCount: 1,
+		projectCount: 1,
+	});
+
+	const {
+		profile: user,
+		experiences,
+		education,
+		projects,
+	} = useSelector((store) => store.user);
 
 	const {
 		leetcodeUsername,
@@ -18,7 +35,16 @@ const Profile = () => {
 		codechefUsername,
 		hackerrankUsername,
 		username,
-		email: userEmail,
+		email,
+		linkedinUrl,
+		githubUrl,
+		instagramUrl,
+		twitterUrl,
+		resumeUrl,
+		fullName,
+		designation,
+		about,
+		country,
 	} = user || {};
 
 	const [formData, setFormData] = useState({
@@ -28,12 +54,21 @@ const Profile = () => {
 		codechefUsername,
 		hackerrankUsername,
 		username,
-		userEmail,
+		email,
+		linkedinUrl,
+		githubUrl,
+		instagramUrl,
+		twitterUrl,
+		resumeUrl,
+		fullName,
+		designation,
+		about,
+		country,
 	});
 
 	useEffect(() => {
 		if (isLoggedIn) {
-			if (!user) {
+			if (Object.keys(user).length === 0) {
 				const token = localStorage.getItem("token");
 				dispatch(loadUser({ token }));
 			} else {
@@ -44,7 +79,16 @@ const Profile = () => {
 					codechefUsername,
 					hackerrankUsername,
 					username,
-					userEmail,
+					email,
+					linkedinUrl,
+					githubUrl,
+					instagramUrl,
+					twitterUrl,
+					resumeUrl,
+					fullName,
+					designation,
+					about,
+					country,
 				});
 			}
 		} else {
@@ -61,7 +105,16 @@ const Profile = () => {
 		codechefUsername,
 		hackerrankUsername,
 		username,
-		userEmail,
+		email,
+		linkedinUrl,
+		githubUrl,
+		instagramUrl,
+		twitterUrl,
+		resumeUrl,
+		fullName,
+		designation,
+		about,
+		country,
 	]);
 
 	const handleChange = (e) => {
@@ -73,26 +126,7 @@ const Profile = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// Save the updated form data to the server
-    const {
-			leetcodeUsername,
-			codeforcesUsername,
-			githubUsername,
-			codechefUsername,
-			hackerrankUsername,
-			username,
-			userEmail: email,
-		} = formData;
-		
-		dispatch(updateUser({
-			leetcodeUsername,
-			codeforcesUsername,
-			githubUsername,
-			codechefUsername,
-			hackerrankUsername,
-			username,
-			email,
-		}));
+		dispatch(updateUser(formData));
 	};
 
 	const logout = useCallback(() => {
@@ -106,79 +140,195 @@ const Profile = () => {
 	}, [navigate, username]);
 
 	return (
-		<div>
+		<div className="admin">
 			<h1>
-				Profile {formData.username} 
-				<div>
-				<Button onClick={logout}>Logout</Button>
-				<Button onClick={viewPortfolio}>View Portfolio</Button>
+				Profile @{formData.username}
+				<div className="admin__buttons">
+					<Button
+						title="Logout"
+						onClick={logout}
+						customClass="admin__btn"
+					></Button>
+					<Button
+						title="View Portfolio"
+						onClick={viewPortfolio}
+						customClass="admin__btn"
+					></Button>
 				</div>
 			</h1>
-			<Form onSubmit={handleSubmit}>
-				<FormGroup>
-					<Label for="userEmail">Email</Label>
-					<Input
-						type="text"
-						name="userEmail"
-						id="userEmail"
-						value={formData.userEmail}
+			<div class="admin__form">
+				<Bracket
+					objectName="User"
+					objectSeparator="="
+					openBracket={"{"}
+					closeBracket={"}"}
+				>
+					<JsonInput
 						onChange={handleChange}
-					/>
-				</FormGroup>
-				<FormGroup>
-					<Label for="leetcodeUsername">LeetCode username</Label>
-					<Input
 						type="text"
-						name="leetcodeUsername"
-						id="leetcodeUsername"
-						value={formData.leetcodeUsername}
-						onChange={handleChange}
+						fieldName="fullName"
+						defaultValue={formData.fullName}
 					/>
-				</FormGroup>
-				<FormGroup>
-					<Label for="codeforcesUsername">Codeforces username</Label>
-					<Input
+					<JsonInput
+						onChange={handleChange}
 						type="text"
-						name="codeforcesUsername"
-						id="codeforcesUsername"
-						value={formData.codeforcesUsername}
-						onChange={handleChange}
+						fieldName="about"
+						defaultValue={formData.about}
 					/>
-				</FormGroup>
-				<FormGroup>
-					<Label for="githubUsername">GitHub username</Label>
-					<Input
+					<JsonInput
+						onChange={handleChange}
 						type="text"
-						name="githubUsername"
-						id="githubUsername"
-						value={formData.githubUsername}
-						onChange={handleChange}
+						fieldName="designation"
+						defaultValue={formData.designation}
 					/>
-				</FormGroup>
-				<FormGroup>
-					<Label for="codechefUsername">Codechef username</Label>
-					<Input
+					<JsonInput
+						onChange={handleChange}
 						type="text"
-						name="codechefUsername"
-						id="codechefUsername"
-						value={formData.codechefUsername}
-						onChange={handleChange}
+						fieldName="country"
+						defaultValue={formData.country}
 					/>
-				</FormGroup>
-				<FormGroup>
-					<Label for="codechefUsername">Codechef username</Label>
-					<Input
+					<JsonInput
+						onChange={handleChange}
+						type="email"
+						fieldName="email"
+						defaultValue={formData.email}
+					/>
+					<JsonInput
+						onChange={handleChange}
 						type="text"
-						name="codechefUsername"
-						id="codechefUsername"
-						value={formData.codechefUsername}
-						onChange={handleChange}
+						fieldName="leetcodeUsername"
+						defaultValue={formData.leetcodeUsername}
 					/>
-				</FormGroup>
-				<Button type="submit" color="primary">
-					Save Changes
-				</Button>
-			</Form>
+					<JsonInput
+						onChange={handleChange}
+						type="text"
+						fieldName="codeforcesUsername"
+						defaultValue={formData.codeforcesUsername}
+					/>
+					<JsonInput
+						onChange={handleChange}
+						type="text"
+						fieldName="githubUsername"
+						defaultValue={formData.githubUsername}
+					/>
+					<JsonInput
+						onChange={handleChange}
+						type="text"
+						fieldName="codechefUsername"
+						defaultValue={formData.codechefUsername}
+					/>
+					<JsonInput
+						onChange={handleChange}
+						type="text"
+						fieldName="hackerrankUsername"
+						defaultValue={formData.hackerrankUsername}
+					/>
+					<JsonInput
+						onChange={handleChange}
+						type="url"
+						fieldName="githubUrl"
+						defaultValue={formData.githubUrl}
+					/>
+					<JsonInput
+						onChange={handleChange}
+						type="url"
+						fieldName="linkedinUrl"
+						defaultValue={formData.linkedinUrl}
+					/>
+					<JsonInput
+						onChange={handleChange}
+						type="url"
+						fieldName="instagramUrl"
+						defaultValue={formData.instagramUrl}
+					/>
+					<JsonInput
+						onChange={handleChange}
+						type="url"
+						fieldName="twitterUrl"
+						defaultValue={formData.twitterUrl}
+					/>
+					<JsonInput
+						onChange={handleChange}
+						type="url"
+						fieldName="resumeUrl"
+						defaultValue={formData.resumeUrl}
+					/>
+
+					<Bracket
+						objectName="education"
+						objectSeparator=":"
+						openBracket={"["}
+						closeBracket={"]"}
+						isEndComma={true}
+					>
+						{education.map((edu) => {
+							return <EducationInput education={edu} />;
+						})}
+						<EducationInput />
+						{[...Array(counts.educationCount).keys()].map(() => {
+							return <EducationInput />;
+						})}
+						<FaPlusCircle
+							className="json__add-more"
+							onClick={() =>
+								setCounts((counts) => {
+									return { ...counts, educationCount: counts.educationCount + 1 };
+								})
+							}
+						/>
+					</Bracket>
+					<Bracket
+						objectName="experiences"
+						objectSeparator=":"
+						openBracket={"["}
+						closeBracket={"]"}
+						isEndComma={true}
+					>
+						{experiences.map((experience) => {
+							return <ExperienceInput {...{ experience }} />;
+						})}
+						<ExperienceInput />
+						{[...Array(counts.experienceCount).keys()].map(() => {
+							return <ExperienceInput />;
+						})}
+						<FaPlusCircle
+							className="json__add-more"
+							onClick={() =>
+								setCounts((counts) => {
+									return { ...counts, experienceCount: counts.experienceCount + 1 };
+								})
+							}
+						/>
+					</Bracket>
+					<Bracket
+						objectName="projects"
+						objectSeparator=":"
+						openBracket={"["}
+						closeBracket={"]"}
+						isEndComma={true}
+					>
+						{projects.map((project) => {
+							return <ProjectInput {...{ project }} />;
+						})}
+						{[...Array(counts.projectCount).keys()].map(() => {
+							return <ProjectInput />;
+						})}
+						<FaPlusCircle
+							className="json__add-more"
+							onClick={() =>
+								setCounts((counts) => {
+									return { ...counts, projectCount: counts.projectCount + 1 };
+								})
+							}
+						/>
+					</Bracket>
+				</Bracket>
+				<Button
+					title="Save Changes"
+					onClick={handleSubmit}
+					customClass="admin__btn"
+				></Button>
+			</div>
 		</div>
 	);
 };

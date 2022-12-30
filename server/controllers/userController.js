@@ -16,6 +16,18 @@ const createUser = asyncHandler(async (req, res) => {
 		githubUsername,
 		password,
 		email,
+		linkedinUrl,
+    githubUrl,
+    twitterUrl,
+    instagramUrl,
+    fullName,
+    designation,
+    resumeUrl,
+    about,
+    country,
+		experiences,
+		education,
+		projects
 	} = req.body;
 
 	if (!username) {
@@ -57,13 +69,24 @@ const createUser = asyncHandler(async (req, res) => {
 	userDetails.username = username;
 	userDetails.email = email;
 
-	if (codeforcesUsername) userDetails.codeforcesUsername = codeforcesUsername;
-	if (leetcodeUsername) userDetails.leetcodeUsername = leetcodeUsername;
-	if (hackerrankUsername) userDetails.hackerrankUsername = hackerrankUsername;
-	if (codechefUsername) userDetails.codechefUsername = codechefUsername;
-	if (githubUsername) userDetails.githubUsername = githubUsername;
+	userDetails.codeforcesUsername = codeforcesUsername || '';
+	userDetails.leetcodeUsername = leetcodeUsername || '';
+	userDetails.hackerrankUsername = hackerrankUsername || '';
+	userDetails.codechefUsername = codechefUsername || '';
+	userDetails.githubUsername = githubUsername || '';
+	userDetails.linkedinUrl = linkedinUrl || '';
+	userDetails.githubUrl = githubUrl || '';
+	userDetails.twitterUrl = twitterUrl || '';
+	userDetails.instagramUrl = instagramUrl || '';
+	userDetails.fullName = fullName || '';
+	userDetails.designation = designation || '';
+	userDetails.resumeUrl = resumeUrl || '';
+	userDetails.about = about || '';
+	userDetails.country = country || '';
+	userDetails.experiences = experiences || [];
+	userDetails.education = education || [];
+	userDetails.projects = projects || [];
 
-	// const user = await User.create(userDetails);
 	bcrypt.hash(password, saltRounds, async (err, hash) => {
 		if (err) {
 			res.send(err);
@@ -160,6 +183,19 @@ const updateUser = asyncHandler(async (req, res) => {
 		user.hackerrankUsername = hackerrankUsername || user.hackerrankUsername;
 		user.leetcodeUsername = leetcodeUsername || user.leetcodeUsername;
 		user.email = email || user.email;
+		if (linkedinUrl) userDetails.linkedinUrl = linkedinUrl;
+		if (githubUrl) userDetails.githubUrl = githubUrl;
+		if (twitterUrl) userDetails.twitterUrl = twitterUrl;
+		if (instagramUrl) userDetails.instagramUrl = instagramUrl;
+		if (fullName) userDetails.fullName = fullName;
+		if (designation) userDetails.designation = designation;
+		if (resumeUrl) userDetails.resumeUrl = resumeUrl;
+		if (about) userDetails.about = about;
+		if (country) userDetails.country = country;
+		if (experiences) userDetails.experiences = experiences;
+		if (education) userDetails.education = education;
+		if (projects) userDetails.projects = projects;
+
 
 		const updatedUser = await user.save();
 

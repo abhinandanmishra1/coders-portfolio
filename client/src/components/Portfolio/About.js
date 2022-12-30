@@ -1,6 +1,6 @@
 import React from "react";
 
-const About = ({fadeInClass}) => {
+const About = ({fadeInClass, linkedinUrl, fullName, country, about}) => {
 	return (
 		<div
 			className={`portfolio__card-inner portfolio__card-inner--${fadeInClass}`}
@@ -11,13 +11,16 @@ const About = ({fadeInClass}) => {
 						<span className="portfolio__about--first-word">About</span>
 					</div>
 					<div className="portfolio__about--greetings">
-						Hi, I'm <span className="portfolio__about--name">Abhinandan Mishra</span> <br/> from <span class="portfolio__about--country">India</span>
+						Hi, I'm <span className="portfolio__about--name">{fullName || 'User Name'}</span> <br/> from <span class="portfolio__about--country">{country || 'Country'}</span>
 					</div>
 					<div className="portfolio__about--description">
-						I'm a full stack web developer with a passion for building beautiful and functional websites.
-						I have experience in building websites using React, Node, Express, MongoDB, and MySQL.
+						{
+							about || 'Please add a valuable description about yourself to attract recruiters'
+						}
 					</div>
-					<div class="portfolio__about--hire">
+					<div class="portfolio__about--hire" onClick={() => {
+						window.open(linkedinUrl || '', "_blank");
+					}}>
 						Hire me
 					</div>
 				</div>

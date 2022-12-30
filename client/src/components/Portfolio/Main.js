@@ -11,19 +11,24 @@ import { useSelector } from "react-redux";
 
 const Main = () => {
 	const [activeCard, setActiveCard] = useState(1);
+
 	const { 
     profile
   } = useSelector((store) => store.user);
 
   const {
-    username,
-    leetcodeUsername,
-    codeforcesUsername,
-    githubUsername,
-    codechefUsername,
-    hackerrankUsername,
+    resumeUrl,
+		linkedinUrl,
+		twitterUrl,
+		githubUrl,
+		instagramUrl,
+		email,
+		fullName,
+		designation,
+		about,
+		country
   } = profile || {};
-	
+
 	return (
 		<div class="portfolio">
       
@@ -65,35 +70,35 @@ const Main = () => {
 							className="portfolio__profile--slide"
 						></div>
 
-						<p className="portfolio__profile--title">Abhinandan Mishra</p>
-						<div className="portfolio__profile--subtitle">Software Developer</div>
+						<p className="portfolio__profile--title">{fullName || 'Provide Name'}</p>
+						<div className="portfolio__profile--subtitle">{designation || 'Designation Here'}</div>
 
 						<div className="portfolio__profile--social">
 							<a
 								target="_blank"
 								rel="noreferrer"
-								href="dummyLink"
+								href={linkedinUrl || ''}
 							>
 								<FaLinkedin />
 							</a>
 							<a
 								target="_blank"
 								rel="noreferrer"
-								href="dummyLink"
+								href={twitterUrl || ''}
 							>
 								<FaTwitter />
 							</a>
 							<a
 								target="_blank"
 								rel="noreferrer"
-								href="dummyLink"
+								href={githubUrl || ''}
 							>
 								<FaGithub />
 							</a>
 							<a
 								target="_blank"
 								rel="noreferrer"
-								href="dummyLink"
+								href={instagramUrl || ''}
 							>
 								<FaInstagram />
 							</a>
@@ -101,15 +106,19 @@ const Main = () => {
 
 						<div className="portfolio__profile--links">
 							<a
-								href="dummyLink"
+								href={resumeUrl || ''}
 								className="portfolio__profile--link"
+								target="_blank"
+								rel="noreferrer"
 							>
 								<span className="portfolio__profile--text">Download CV</span>
 								<FaDownload />
 							</a>
 							<a
-								href="mailto:abhi@gmail.com"
+								href={`mailto:${email || ''}`}
 								className="portfolio__profile--link"
+								target="_blank"
+								rel="noreferrer"
 							>
 								<span className="portfolio__profile--text">Contact Me</span>
 								<FaArrowRight />
@@ -118,7 +127,7 @@ const Main = () => {
 					</div>
 				</div>
 
-				{activeCard === 1 && <About fadeInClass={activeCard === 1? 'fadeInLeft' : 'fadeOutLeft'} />}
+				{activeCard === 1 && <About {...{linkedinUrl, fullName, about, country}} fadeInClass={activeCard === 1? 'fadeInLeft' : 'fadeOutLeft'} />}
 				{activeCard === 3 && <Projects fadeInClass={activeCard === 3? 'fadeInLeft' : 'fadeOutLeft'} />}
 				{activeCard === 4 && <Blog fadeInClass={activeCard === 4? 'fadeInLeft' : 'fadeOutLeft'} />}
 				{activeCard === 5 && <Contact fadeInClass={activeCard === 5? 'fadeInLeft' : 'fadeOutLeft'} />}

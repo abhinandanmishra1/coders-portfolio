@@ -1,6 +1,6 @@
 import React from 'react';
 
-const index = ({type, title, onClick, customClass}) => {
+const index = ({type="type1", title, onClick, customClass}) => {
   return (
     <div 
     className={`btn btn__${type} ${customClass || ''}`} 

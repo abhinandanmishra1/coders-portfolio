@@ -1,0 +1,89 @@
+.admin {
+  color: white;
+  background: lighten($color: #010101, $amount: 20);
+
+  @include flex-col;
+  @include justify-c;
+  @include align-c;
+
+  &__buttons {
+    @include flex;
+    @include justify-c;
+    margin: 1rem 0.5rem;
+  }
+
+  &__btn {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+  }
+
+  &__form {
+    @include flex-col;
+    @include justify-c;
+    @include align-c;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    &> .json {
+      background: #010101;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+
+    &> .admin__btn {
+      margin-top: 1rem;
+    }
+  }
+}
+.json {
+  @include flex-col;
+  @include justify-c;
+  margin: 0.5rem 1rem;
+  width: 80%;
+  padding: 1rem;
+
+  &__bracket {
+    margin-left: 1rem;
+  }
+
+  &__input {
+    margin-left: 1rem;
+    position: relative;
+  }
+
+  &__key {
+    color: red;
+  }
+
+  &__value {
+    outline: none;
+    border: 0;
+    padding: 1rem;
+    border-bottom: 0.1rem solid green;
+    width: 30%;
+    color: lighten($color: green, $amount: 10);
+    background: #010101;
+  }
+
+  &__second {
+    position: relative;
+  }
+
+  &__comma {
+    position: absolute;
+    font-size: 1.5rem;
+    bottom: -0.1rem;
+  }
+
+  &__add-more {
+    color: green;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+      font-size: 1.8rem;
+    }
+  }
+}
