@@ -160,16 +160,16 @@ const Profile = () => {
 					<Button
 						title="Logout"
 						onClick={logout}
-						customClass="admin__btn"
+						customclassName="admin__btn"
 					></Button>
 					<Button
 						title="View Portfolio"
 						onClick={viewPortfolio}
-						customClass="admin__btn"
+						customclassName="admin__btn"
 					></Button>
 				</div>
 			</h1>
-			<div class="admin__form">
+			<div className="admin__form">
 				<Bracket
 					objectName="User"
 					objectSeparator="="
@@ -288,7 +288,7 @@ const Profile = () => {
 				<Button
 					title="Save Changes"
 					onClick={handleSubmit}
-					customClass="admin__btn"
+					customclassName="admin__btn"
 				></Button>
 			</div>
 		</div>

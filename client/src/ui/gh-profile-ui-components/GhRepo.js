@@ -45,7 +45,7 @@ const GhRepo = ({
 				{stars > 0 && (
 					<div className="gh-repo__detail--stars">
 						<GhStarIcon style={{ fill: languageColors[language] }} /> 
-            <div class="gh-repo__detail--stars-count">
+            <div className="gh-repo__detail--stars-count">
             {stars}
             </div>
 					</div>
@@ -53,7 +53,7 @@ const GhRepo = ({
 				{forks > 0 && (
 					<div className="gh-repo__detail--forks">
 						<GhForkIcon style={{ fill: languageColors[language] }} /> 
-            <div class="gh-repo__detail--forks-count">
+            <div className="gh-repo__detail--forks-count">
             {forks}
             </div>
 					</div>

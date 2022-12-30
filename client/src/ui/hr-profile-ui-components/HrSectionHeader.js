@@ -3,14 +3,14 @@ import React from "react";
 const HrSectionHeader = ({ title }) => {
   if (!title) return null;
   return (
-    <header class="hr-section-card__header">
+    <header className="hr-section-card__header">
       <div
-        class={`hr-section-card__header--${title
+        className={`hr-section-card__header--${title
           .split(" ")
           .join("-")
           .toLowerCase()}`}
       ></div>
-      <h2 class="hr-section-card__heading">{title}</h2>
+      <h2 className="hr-section-card__heading">{title}</h2>
     </header>
   );
 };

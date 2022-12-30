@@ -15,19 +15,19 @@ const Blog = ({ fadeInClass }) => {
 			id="about-card"
 		>
 			<div className="portfolio__profiles">
-        <div class="portfolio__profiles--card box" onClick={navigateTo}>
+        <div className="portfolio__profiles--card box" onClick={navigateTo}>
           Leetcode
         </div>
-        <div class="portfolio__profiles--card box" onClick={navigateTo}>
+        <div className="portfolio__profiles--card box" onClick={navigateTo}>
           Github
         </div>
-        <div class="portfolio__profiles--card box" onClick={navigateTo}>
+        <div className="portfolio__profiles--card box" onClick={navigateTo}>
           Codechef
         </div>
-        <div class="portfolio__profiles--card box" onClick={navigateTo}>
+        <div className="portfolio__profiles--card box" onClick={navigateTo}>
           Codeforces
         </div>
-        <div class="portfolio__profiles--card box" onClick={navigateTo}>
+        <div className="portfolio__profiles--card box" onClick={navigateTo}>
           Hackerrank
         </div>
 			</div>

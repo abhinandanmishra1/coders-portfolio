@@ -4,15 +4,15 @@ const Bracket = ({objectName, objectSeparator, children, openBracket, closeBrack
   const color = isEndComma? 'red' : 'yellow';
   return (
     <div className='json'>
-      <div class="json__first">
+      <div className="json__first">
         <span className='json__key' style={{
           color
         }}>{objectName} {objectSeparator} </span> <span className='json__open-bracket'>{openBracket}</span>
       </div>
-      <div class="json__childrens">
+      <div className="json__childrens">
         {children}
       </div>
-      <div class="json__second">
+      <div className="json__second">
         <span className='json__close-bracket'>{closeBracket}</span>
         { isEndComma && <span className="json__comma">,</span>}
       </div>

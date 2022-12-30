@@ -11,7 +11,7 @@ const GhProject = ({ repo, projectNumber }) => {
 	return (
 		<div className="gh-project" onClick={() => openInNewTab(projectUrl)}>
 			<div className="gh-project__card">
-				<div class="gh-project__card-img">{projectNumber}</div>
+				<div className="gh-project__card-img">{projectNumber}</div>
 				<div className="gh-project__card-content">
 					<h2
 						onClick={(event) => {

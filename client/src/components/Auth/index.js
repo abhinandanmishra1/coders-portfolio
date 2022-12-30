@@ -71,27 +71,27 @@ const Auth = ({type}) => {
 
   return (
     <div className='auth'>
-      <div class="auth__main">
-        <div class="auth__header">
-          <div class="auth__header--title">HackerPortfolio</div>
+      <div className="auth__main">
+        <div className="auth__header">
+          <div className="auth__header--title">HackerPortfolio</div>
         </div>
-        <div class="auth__sub-header">
-          <div class="auth__sub-header--title">For Developers</div>
-          <div class="auth__sub-header--subtitle">Practice coding, prepare for interviews, and get hired.</div>
+        <div className="auth__sub-header">
+          <div className="auth__sub-header--title">For Developers</div>
+          <div className="auth__sub-header--subtitle">Practice coding, prepare for interviews, and get hired.</div>
         </div>
       </div>
 
-      <div class="auth__form">
-        <div class="auth__buttons">
+      <div className="auth__form">
+        <div className="auth__buttons">
           <Link to={'/auth/signup'} className={`auth__buttons--btn ${type==='Login'? 'auth__buttons--active': ''}`}>Signup</Link>
           <Link to={'/auth/login'} className={`auth__buttons--btn ${type==='Signup'? 'auth__buttons--active': ''}`}>Login </Link>
         </div>
-        <div class="auth__inputs">
+        <div className="auth__inputs">
           <Input setState={setUsername} type='username' placeholder={type==='Login'? 'Your username or Email' : 'Username'} />
           {type==='Signup' && <Input setState={setEmail} type='email' placeholder='Email' />}
           <Input setState={setPassword} type='password' placeholder='Password' />
         </div>
-        <div onClick={type === "Login" ? login : signup} class="auth__submit-btn">
+        <div onClick={type === "Login" ? login : signup} className="auth__submit-btn">
           {type}
         </div>
       </div>

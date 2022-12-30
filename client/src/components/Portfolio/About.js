@@ -11,14 +11,14 @@ const About = ({fadeInClass, linkedinUrl, fullName, country, about}) => {
 						<span className="portfolio__about--first-word">About</span>
 					</div>
 					<div className="portfolio__about--greetings">
-						Hi, I'm <span className="portfolio__about--name">{fullName || 'User Name'}</span> <br/> from <span class="portfolio__about--country">{country || 'Country'}</span>
+						Hi, I'm <span className="portfolio__about--name">{fullName || 'User Name'}</span> <br/> from <span className="portfolio__about--country">{country || 'Country'}</span>
 					</div>
 					<div className="portfolio__about--description">
 						{
 							about || 'Please add a valuable description about yourself to attract recruiters'
 						}
 					</div>
-					<div class="portfolio__about--hire" onClick={() => {
+					<div className="portfolio__about--hire" onClick={() => {
 						window.open(linkedinUrl || '', "_blank");
 					}}>
 						Hire me

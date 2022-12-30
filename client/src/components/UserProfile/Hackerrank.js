@@ -91,7 +91,7 @@ const RightProfileUi = ({
 	if (!profile) return null;
 	return (
 		<div className="hr-profile__right">
-			<Section extraClass="hr-profile__section">
+			<Section extraclassName="hr-profile__section">
 				<HrSectionHeader title="Badges" />
 				<div className="hr-profile__badges">
 					{badges &&
@@ -104,7 +104,7 @@ const RightProfileUi = ({
 						))}
 				</div>
 			</Section>
-			<Section extraClass="hr-profile__section">
+			<Section extraclassName="hr-profile__section">
 				<HrSectionHeader title="Certificates" />
 				{certificates && (
 					<>
@@ -117,7 +117,7 @@ const RightProfileUi = ({
 				)}
 				{!certificates && <>{profile.model.username} has no certificates.</>}
 			</Section>
-			<Section extraClass="">
+			<Section extraclassName="">
 				<HrSectionHeader title="Work Experience" />
 				{experiences &&
 					experiences.map((experience) => {
@@ -162,7 +162,7 @@ const RightProfileUi = ({
 					</div>
 				)}
 			</Section>
-			<Section extraClass="">
+			<Section extraclassName="">
 				<HrSectionHeader title="Education" />
 				{schools &&
 					schools.map((school) => {

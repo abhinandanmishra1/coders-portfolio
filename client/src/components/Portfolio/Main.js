@@ -30,7 +30,7 @@ const Main = () => {
   } = profile || {};
 
 	return (
-		<div class="portfolio">
+		<div className="portfolio">
       
 			<div className="portfolio__container">
 				<header className="portfolio__header">
@@ -127,10 +127,10 @@ const Main = () => {
 					</div>
 				</div>
 
-				{activeCard === 1 && <About {...{linkedinUrl, fullName, about, country}} fadeInClass={activeCard === 1? 'fadeInLeft' : 'fadeOutLeft'} />}
-				{activeCard === 3 && <Projects fadeInClass={activeCard === 3? 'fadeInLeft' : 'fadeOutLeft'} />}
-				{activeCard === 4 && <Blog fadeInClass={activeCard === 4? 'fadeInLeft' : 'fadeOutLeft'} />}
-				{activeCard === 5 && <Contact fadeInClass={activeCard === 5? 'fadeInLeft' : 'fadeOutLeft'} />}
+				{activeCard === 1 && <About {...{linkedinUrl, fullName, about, country}} fadeInclassName={activeCard === 1? 'fadeInLeft' : 'fadeOutLeft'} />}
+				{activeCard === 3 && <Projects fadeInclassName={activeCard === 3? 'fadeInLeft' : 'fadeOutLeft'} />}
+				{activeCard === 4 && <Blog fadeInclassName={activeCard === 4? 'fadeInLeft' : 'fadeOutLeft'} />}
+				{activeCard === 5 && <Contact fadeInclassName={activeCard === 5? 'fadeInLeft' : 'fadeOutLeft'} />}
 			</div>
 		</div>
 	);
