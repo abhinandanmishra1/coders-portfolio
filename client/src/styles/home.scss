@@ -19,6 +19,12 @@
                 font-size: 5rem;
             }
         }
+
+        @include mobile {
+            h1 {
+                font-size: 2rem;
+            }
+        }
     }
 
     &__intro-subtitle {
