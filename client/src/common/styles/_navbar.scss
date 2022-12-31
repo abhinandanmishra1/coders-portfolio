@@ -2,9 +2,7 @@
     @include flex;
     @include justify-between;
 
-    width: 100%;
     padding-top: 1rem;
-    margin: 1rem;
     max-height: 10vh;
     position: sticky;
     top: 0;
@@ -25,6 +23,10 @@
                 height: 2rem;
                 width: 1.2rem;
             }
+
+            @include tablet {
+                font-size: 1.5rem;
+            }
         }
     }
 
@@ -36,9 +38,6 @@
         @include flex;
         @include justify-between;
         @include align-c;
-
-        margin-right: 4rem;
-        width: 10%;
     }
 
     &__login-btn {

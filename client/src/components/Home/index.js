@@ -32,9 +32,9 @@ const Home = () => {
                     Do you want to see <span>Abhinandan's</span> Portfolio or create your portfolio?
                 </div>
                 <div className="home__next">
-                    <Button type="type1" title="Abhinandan's Portfolio" onClick={defaultProfile} customclassName="home__btn" />
-                    <Button type="type1" title="Create Portfolio" onClick={signUp} customclassName="home__btn" />
-                    <Button type="type1" title="See User's Portfolio" onClick={ViewProfile} customclassName="home__btn" />
+                    <Button type="type1" title="Abhinandan's Portfolio" onClick={defaultProfile} customClass="home__btn" />
+                    <Button type="type1" title="Create Portfolio" onClick={signUp} customClass="home__btn" />
+                    <Button type="type1" title="See User's Portfolio" onClick={ViewProfile} customClass="home__btn" />
                 </div>
             </div>
         </>
