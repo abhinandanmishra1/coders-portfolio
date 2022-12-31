@@ -11,14 +11,13 @@
 	position: relative;
 	width: 100%;
 	overflow: hidden;
-	height: 200vh;
+	height: 700px;
 	left: 4rem;
 	margin: 4rem;
 	max-width: 1268px;
-	max-height: 700px;
 
 	@include tablet {
-		max-height: 200vh;
+		height: 200vh;
 		width: 100%;
 		left: 0;
 		overflow: scroll;
@@ -302,6 +301,7 @@
 
 		@include mobile {
 			width: 80%;
+			height: 100%;
 		}
 
 		&--fadeInLeft {
