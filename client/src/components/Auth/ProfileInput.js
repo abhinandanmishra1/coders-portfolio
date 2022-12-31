@@ -4,7 +4,7 @@ import React from 'react'
 const ProfileInput = ({formData, handleChange}) => {
   return (
     <div>
-      <JsonInput
+      		<JsonInput
 						onChange={handleChange}
 						type="text"
 						fieldName="fullName"
