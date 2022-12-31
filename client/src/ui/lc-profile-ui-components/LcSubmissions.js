@@ -1,26 +1,68 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import moment from 'moment';
 import Timeline from 'common/components/CalendarHeatmap';
 import { getDateKey } from 'utils/helpers';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadUserProfileCalendar } from 'stores/leetcodeProfile';
 
-const LcSubmissions = ({calendarData}) => {
-  if (!calendarData) {
-    return <h1>No data available</h1>
-  }
-
-  const {submissionCalendar} = calendarData;
-  let startDate = moment().add(-365, 'days');
-  let dateRange = [startDate, moment()];
+const LcSubmissions = () => {
+  const { userProfileCalendar } = useSelector(store => store.leetcode);
   
-  let data = Array.from(new Array(365)).map((_, index) => {
-    const date = moment(startDate).add(index, 'day');
-    const value = submissionCalendar[getDateKey(date.toDate())] || 0;
+  const {submissionCalendar, activeYears} = (userProfileCalendar &&
+  userProfileCalendar?.matchedUser &&
+  userProfileCalendar?.matchedUser.userCalendar ) || {};
 
-    return {
-      date,
-      value
-    };
-  });
+  const dispatch = useDispatch();
+  let startDate = moment().add(-365, 'days');
+  const defaultDateRange = [startDate, moment()];
+  const [dateRange, setDateRange] = useState(defaultDateRange);
+  const [ data, setData] = useState([]);
+  const { profile } = useSelector(store => store.user);
+  const { leetcodeUsername } = profile;
+
+
+  const changeSubmissionGraphTimeline = useCallback(
+    (e) => {
+      
+      const { value } = e.target;
+      const year = parseInt(value);
+      dispatch(loadUserProfileCalendar(leetcodeUsername, year));
+
+      const startDate = moment(new Date(year, 0, 1));
+      const endDate = moment(new Date(year, 11, 31));
+
+      setDateRange([startDate, endDate]);
+    },
+    [dispatch, leetcodeUsername],
+  );
+  
+
+  useEffect(() => {
+    if (submissionCalendar) {
+      let startDate = dateRange[0];
+      let endDate = dateRange[1];
+  
+      const data = [];
+  
+      var now = startDate.clone();
+  
+      while (now.isSameOrBefore(endDate)) {
+        const value = submissionCalendar[getDateKey(now.toDate())] || 0;
+        
+        data.push({
+          date: moment(now),
+          value,
+        });
+        now.add(1, 'day');
+      }
+  
+      setData(data);
+    }
+  }, [dateRange, submissionCalendar, dispatch]);
+
+  if (!submissionCalendar) {
+    return <h1>No data available</h1>
+  };
 
   const getColor = (value) => {
     if (value > 1) return '#6BCF8E';
@@ -31,7 +73,24 @@ const LcSubmissions = ({calendarData}) => {
   }
 
   return (
-    <div className='lc-submissions lc-section'>
+    <div className='lc-submissions lc-section'> 
+        <div className="cf-submissions__header">
+          <div className="cf-submissions__header--title">
+          Submssions Graph
+          </div>
+          <div className="cf-submissions__header--year">
+            <select name="year" id="" onChange={changeSubmissionGraphTimeline}>
+              {
+                activeYears.reverse().map((year, index) => {
+                  return (
+                    <option key={index} value={year}> {year} </option>
+                  )
+                }
+                ).reverse()
+              }
+            </select>
+          </div>
+        </div>
         <Timeline range={dateRange} data={data} colorFunc={(value) => getColor(value)} />
     </div>
   )

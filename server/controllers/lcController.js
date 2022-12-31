@@ -370,8 +370,8 @@ const getUserDiscussionSolutions = asyncHandler(async (req, res) => {
 });
 
 const getUserProfileCalendar = asyncHandler(async (req, res) => {
-	const { username } = req.query;
-	var options = lcOptions("userProfileCalendar", username);
+	const { username, year } = req.query;
+	var options = lcOptions("userProfileCalendar", username, { year });
 	request(options, function (error, response, body) {
 		const statusCode = (response && response.statusCode) || 500;
 		if (error) {

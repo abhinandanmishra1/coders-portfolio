@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { loadUserDiscussionSolutions } from "stores/leetcodeProfile";
@@ -7,13 +7,18 @@ import { ReactComponent as RecentSubmissionsIcons} from "assets/svg/lc/recentSub
 import { ReactComponent as SolutionsIcons} from "assets/svg/lc/solutions.svg";
 import { ReactComponent as DiscussionsIcons} from "assets/svg/lc/discussions.svg";
 
-const LcRecentSubmissions = ({ recentSubmissions, userDiscussionSolutions }) => {
+const LcRecentSubmissions = () => {
   const [tab, setTab] = useState(0);
   const dispatch = useDispatch();
   const { username } = useParams();
 
-  const { recentAcSubmissionList } = recentSubmissions;
-  const { userSolutionTopics } = userDiscussionSolutions;
+  const {
+    recentSubmissions,
+    userDiscussionSolutions
+  } = useSelector((store) => store.leetcode);
+
+  const { recentAcSubmissionList } = recentSubmissions || {};
+  const { userSolutionTopics } = userDiscussionSolutions || {};
 
   const getDiff = (timestamp) => {
     const currTimeStamp = new Date().getTime();
@@ -53,7 +58,7 @@ const LcRecentSubmissions = ({ recentSubmissions, userDiscussionSolutions }) => 
       <div className="lc-recentSubmissions__details">
         {tab===0 && (recentAcSubmissionList || []).map((submission) => {
           return (
-            <div className="lc-recentSubmissions__detail" onClick={
+            <div key={crypto.randomUUID()} className="lc-recentSubmissions__detail" onClick={
               () => {
                 const url = `https://leetcode.com/problems/${submission.titleSlug}/submissions/${submission.id}`
                 window.open(url, '_blank');
@@ -72,7 +77,7 @@ const LcRecentSubmissions = ({ recentSubmissions, userDiscussionSolutions }) => 
           tab===1 && (
             (userSolutionTopics?.edges || []).map((solution) => {
               return (
-                <div className="lc-recentSubmissions__detail" onClick={
+                <div key={crypto.randomUUID()} className="lc-recentSubmissions__detail" onClick={
                   () => {
                     const url = `https://leetcode.com/problems/${solution.node.questionTitle.toLowerCase().split(' ').join('-')}/submissions/${solution.node.id}/${solution.node.url}`
                     window.open(url, '_blank');
@@ -93,7 +98,7 @@ const LcRecentSubmissions = ({ recentSubmissions, userDiscussionSolutions }) => 
           tab===2 && (
             recentAcSubmissionList.map((submission) => {
               return (
-                <div className="lc-recentSubmissions__detail" onClick={
+                <div key={crypto.randomUUID()} className="lc-recentSubmissions__detail" onClick={
                   () => {
                     const url = `https://leetcode.com/problems/${submission.titleSlug}/submissions/${submission.id}`
                     window.open(url, '_blank');

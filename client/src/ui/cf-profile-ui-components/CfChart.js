@@ -35,6 +35,9 @@ const LeetCodeChart = ({
     legend: {
       enabled: false,
     },
+    accessibility: {
+      enabled: false,
+    },
     series: [
       {
         name: "",

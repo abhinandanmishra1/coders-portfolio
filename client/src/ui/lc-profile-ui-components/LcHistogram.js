@@ -104,8 +104,9 @@ const LeetCodeHistogram = ({ data, ratingsRanges, topPercentages, rating, topPer
   return <HighchartsReact highcharts={Highcharts} options={options} />;
 };
 
-const LcHistogram = ({ contests }) => {
-  const { contestRatings } = useSelector( store => store.leetcode);
+const LcHistogram = () => {
+  const { contestRatings, contestRatingHistogram } = useSelector( store => store.leetcode);
+  const { contestRatingHistogram: contests} = contestRatingHistogram || {};
   const { rating, topPercentage } = contestRatings?.currentContestRating || {};
   
   if (!contests || !topPercentage || !rating) return null;

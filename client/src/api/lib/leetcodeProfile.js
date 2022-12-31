@@ -45,9 +45,13 @@ function getUserDiscussionSolutions(username = null, orderBy = null){
     return axiosClient.get(url, {username, orderBy});
 }
 
-function getUserProfileCalendar(username = null){
+function getUserProfileCalendar(username = null, year = null){
     const url = `/leetcode/userProfileCalendar`;
-    return axiosClient.get(url, {username});
+    const params = {
+        username,
+        year : year || new Date().getFullYear(),
+    }
+    return axiosClient.get(url, params);
 }
 
 const Functions = {

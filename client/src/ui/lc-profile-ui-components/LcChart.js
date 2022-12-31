@@ -4,6 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 import { getRatings } from "utils/helpers";
 import knightBadge from "assets/images/knight.png";
 import guardianBadge from "assets/images/guardian.png";
+import { useSelector } from "react-redux";
 
 // https://api.highcharts.com/highcharts/
 
@@ -53,6 +54,9 @@ const LeetCodeChart = ({
       height: "200vh",
       marginLeft: 10,
       renderTo: "container",
+    },
+    accessibility: {
+      enabled: false,
     },
     credits: {
       enabled: false,
@@ -150,7 +154,9 @@ const LeetCodeChart = ({
   );
 };
 
-const LcChart = ({ contests }) => {
+const LcChart = () => {
+  const { contestRatings: contests} = useSelector(store => store.leetcode);
+
   if (!contests || !contests.contestHistory) return null;
 
   const data = getRatings(contests.contestHistory);

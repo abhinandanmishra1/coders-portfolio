@@ -10,7 +10,7 @@ const LcProfileStripData = ({type, desc, skills, isLink, isSocial}) => {
             skills && (
                 <div className="lc-profile__strip--skills">
                     {
-                        skills.slice(0,5).map((sk) => <div className="lc-profile__strip--skill">{sk}</div>)
+                        skills.slice(0,5).map((sk, index) => <div key={index} className="lc-profile__strip--skill">{sk}</div>)
                     }
                 </div>
             )

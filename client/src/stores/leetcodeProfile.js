@@ -149,11 +149,11 @@ export function loadUserDiscussionSolutions(username, orderBy="newest_to_oldest"
   };
 }
 
-export function loadUserProfileCalendar(username) {
+export function loadUserProfileCalendar(username, year = null) {
   return async (dispatch) => {
     dispatch({ type: GET_INIT });
     try {
-      const { data } = await leetcodeProfileApi.getUserProfileCalendar(username);
+      const { data } = await leetcodeProfileApi.getUserProfileCalendar(username, year);
 
       const { json } = data;
       dispatch({ type: GET_USER_PROFILE_CALENDAR, payload: json });

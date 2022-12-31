@@ -179,7 +179,7 @@
 }
 
 .lc-submissions {
-    @include flex;
+    @include flex-col;
     @include align-c;
     @include justify-c;
     

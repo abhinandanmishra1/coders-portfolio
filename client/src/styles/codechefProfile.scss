@@ -68,7 +68,7 @@
   }
 
   .sidebar {
-    padding: 8rem;
+    padding: 6rem;
     margin: 4rem 2rem 2rem 1rem;
     border-radius: 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -242,6 +242,7 @@
   margin: 0 0 0.4375rem 0;
 
   li {
+    @include flex;
     overflow: hidden;
     margin-bottom: 5px;
     padding: 3px 0 8px;

@@ -55,9 +55,9 @@ const LcStrips = ({ user }) => {
 const LanguagesUsedUi = ({ languages }) => {
   return (
     <div className="lc-profile__languages">
-      {languages.languageProblemCount.map((language) => {
+      {languages.languageProblemCount.map((language, index) => {
         return (
-          <div className="lc-profile__language">
+          <div key={index} className="lc-profile__language">
             <div className="lc-profile__language--name">
               {language.languageName}
             </div>
@@ -75,10 +75,10 @@ const LanguagesUsedUi = ({ languages }) => {
 const TaggedProblemsCountUi = ({ taggedProblemsCounts }) => {
   return (
     <div className="lc-profile__taggedProblems">
-      {taggedProblemsCounts.map((tag) => {
+      {taggedProblemsCounts.map((tag, index) => {
         const url = `https://leetcode.com/tag/${tag.tagName.toLowerCase().split(' ').join('-')}`;
         return (
-          <div className="lc-profile__tag">
+          <div key={index} className="lc-profile__tag">
             <div className="lc-profile__tag--name" onClick={() => window.open(url)}>{tag.tagName}</div>
             <div className="lc-profile__tag--count">
               x<span>{tag.problemsSolved}</span>
@@ -97,7 +97,7 @@ const SkillsUi = ({ skills }) => {
     <div className="lc-profile__skills">
       {Object.entries(skills).map((entry) => {
         return (
-          <div className="lc-profile__skill">
+          <div key={crypto.randomUUID()} className="lc-profile__skill">
             <div
               className={`lc-profile__skill--title lc-profile__skill--${entry[0]}`}
             >
@@ -143,26 +143,21 @@ const LeftProfileUi = ({ user, languages, skills }) => {
 };
 
 const RightProfileUi = ({
-  contests,
-  contestHistogram,
-  calendarData,
-  recentSubmissions,
   badgesData,
-  userDiscussionSolutions,
   solvedProblems,
 }) => {
   return (
     <div className="lc-profile__right">
       <div className="lc-profile__right--diagrams">
-        <LcChart {...{ contests }} />
-        <LcHistogram contests={contestHistogram} />
+        <LcChart />
+        <LcHistogram />
       </div>
       <div className="lc-profile__right--more-details">
         <LcSolvedProblems solvedProblems={solvedProblems} />
         <LcBadges {...{ badgesData }} />
       </div>
-      <LcSubmissions {...{ calendarData }} />
-      <LcRecentSubmissions {...{ recentSubmissions, userDiscussionSolutions }} />
+      <LcSubmissions />
+      <LcRecentSubmissions />
     </div>
   );
 };
@@ -170,15 +165,10 @@ const RightProfileUi = ({
 const Leetcode = () => {
   const {
     badges,
-    contestRatings,
-    contestRatingHistogram,
     languages,
-    recentSubmissions,
     solvedProblems,
     tagProblems,
     userInfo,
-    userDiscussionSolutions,
-    userProfileCalendar,
     isLoading,
   } = useSelector((store) => store.leetcode);
 
@@ -209,18 +199,6 @@ const Leetcode = () => {
             skills={tagProblems && tagProblems.matchedUser}
           />
           <RightProfileUi
-            contests={contestRatings}
-            contestHistogram={
-              contestRatingHistogram &&
-              contestRatingHistogram.contestRatingHistogram
-            }
-            calendarData={
-              userProfileCalendar &&
-              userProfileCalendar.matchedUser &&
-              userProfileCalendar.matchedUser.userCalendar
-            }
-            recentSubmissions={recentSubmissions}
-            userDiscussionSolutions={userDiscussionSolutions}
             badgesData={badges && badges.matchedUser}
             solvedProblems={solvedProblems}
           />

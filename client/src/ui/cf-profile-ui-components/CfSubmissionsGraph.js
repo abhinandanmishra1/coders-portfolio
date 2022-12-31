@@ -9,6 +9,7 @@ const CfSubmissionsGraph = ({submissionsData}) => {
 
   const [dateRange, setDateRange] = useState(defaultDateRange);
   const [ data, setData] = useState([]);
+  
   const changeSubmissionGraphTimeline = useCallback(
     (e) => {
       const { value } = e.target;
