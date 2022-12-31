@@ -160,12 +160,12 @@ const Profile = () => {
 					<Button
 						title="Logout"
 						onClick={logout}
-						customclassName="admin__btn"
+						customClass="admin__btn"
 					></Button>
 					<Button
 						title="View Portfolio"
 						onClick={viewPortfolio}
-						customclassName="admin__btn"
+						customClass="admin__btn"
 					></Button>
 				</div>
 			</h1>
