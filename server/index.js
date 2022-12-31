@@ -11,13 +11,15 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 dotenv.config();
-
+const server = require('http').Server(app);
 app.use(errorHandler);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-const db = require('./db')
+const db = require('./db');
+const { routesData } = require('./routesJson');
+
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 app.use((req, res, next) => {
@@ -28,6 +30,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/', (req, res) => {
+  res.send(routesData);
+});
+
 app.use('/hackerrank', hrRoutes);
 app.use('/leetcode', lcRoutes);
 app.use('/codeforces', cfRoutes);
@@ -36,4 +42,4 @@ app.use('/codechef', ccRoutes);
 app.use('/user', userRoutes);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`listening on ${PORT}`));
+server.listen(PORT, () => console.log(`listening on ${PORT}`));
