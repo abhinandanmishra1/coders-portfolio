@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:5000";
+const baseURL = "https://portfolio-backend-gq18.onrender.com";
 
 function get(url, params) {
     return axios({

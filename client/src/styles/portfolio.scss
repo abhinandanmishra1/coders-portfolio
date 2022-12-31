@@ -485,7 +485,7 @@
 		flex-wrap: wrap;
 		overflow-y: scroll;
 		overflow-x: none;
-		scrollbar-width: thin; 
+		scrollbar-width: thin;
 
 		&::-webkit-scrollbar {
 			display: none;
@@ -495,7 +495,7 @@
 			content: "CP/Dev Profiles";
 			display: block;
 			position: fixed;
-			top: -0.5rem;
+			top: 5rem;
 			margin-bottom: 3rem;
 			font-size: 2.2rem;
 			line-height: 32px;
@@ -579,7 +579,7 @@
 		&:before {
 			content: "Projects";
 			position: fixed;
-			top: -0.5rem;
+			top: 5rem;
 			margin-bottom: 3rem;
 			font-size: 2.2rem;
 			line-height: 32px;
@@ -598,38 +598,7 @@
 			font-family: Lato, sans-serif;
 			color: white;
 			background: #222;
-			border-radius: var(--border-width);
-		
-			&:after {
-				position: absolute;
-				content: "";
-				top: calc(-1 * var(--border-width));
-				left: calc(-1 * var(--border-width));
-				z-index: -1;
-				width: calc(100% + var(--border-width) * 2);
-				height: calc(100% + var(--border-width) * 2);
-				background: linear-gradient(
-					60deg,
-					hsl(224, 85%, 66%),
-					hsl(269, 85%, 66%),
-					hsl(314, 85%, 66%),
-					hsl(359, 85%, 66%),
-					hsl(44, 85%, 66%),
-					hsl(89, 85%, 66%),
-					hsl(134, 85%, 66%),
-					hsl(179, 85%, 66%)
-				);
-				background-size: 300% 300%;
-				background-position: 0 50%;
-				border-radius: calc(2 * var(--border-width));
-				animation: moveGradient 4s alternate infinite;
-			}
-		}
-
-		@keyframes moveGradient {
-			50% {
-				background-position: 100% 50%;
-			}
+			border-radius: 1rem;
 		}
 
 		&--name {
@@ -783,21 +752,21 @@
 }
 
 @property --angle {
-  syntax: '<angle>';
-  initial-value: 90deg;
-  inherits: true;
+	syntax: "<angle>";
+	initial-value: 90deg;
+	inherits: true;
 }
 
 @property --gradX {
-  syntax: '<percentage>';
-  initial-value: 50%;
-  inherits: true;
+	syntax: "<percentage>";
+	initial-value: 50%;
+	inherits: true;
 }
 
 @property --gradY {
-  syntax: '<percentage>';
-  initial-value: 0%;
-  inherits: true;
+	syntax: "<percentage>";
+	initial-value: 0%;
+	inherits: true;
 }
 
 :root {
@@ -805,8 +774,10 @@
 	--angle: 90deg;
 	--gradX: 100%;
 	--gradY: 50%;
+	--angle2: 45deg;
+	--opacity: 0.5;
 	--border-size: 3px;
-  --border-angle: 0turn;
+	--border-angle: 0turn;
 	--c1: rgba(168, 239, 255, 1);
 	--c2: rgba(168, 239, 255, 0.1);
 	--grayishBlue: hsl(229, 6%, 66%);
@@ -819,9 +790,24 @@
 .box {
 	border: 0.35rem solid;
 	border-radius: 0.5rem;
-	background-image: conic-gradient(from var(--border-angle), #213, #112 50%, #213), conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
-  background-size: calc(100% - (var(--border-size) * 2)) calc(100% - (var(--border-size) * 2)), cover;
-	border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
+	background-image: conic-gradient(
+			from var(--border-angle),
+			#213,
+			#112 50%,
+			#213
+		),
+		conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+	background-size: calc(100% - (var(--border-size) * 2))
+			calc(100% - (var(--border-size) * 2)),
+		cover;
+	border-image: conic-gradient(
+			from var(--angle),
+			var(--c2),
+			var(--c1) 0.1turn,
+			var(--c1) 0.15turn,
+			var(--c2) 0.25turn
+		)
+		30;
 	animation: borderRotate var(--d) linear infinite forwards;
 	position: relative;
 	transition-delay: 2s;
@@ -861,5 +847,41 @@
 	100% {
 		--gradX: 50%;
 		--gradY: 0%;
+	}
+}
+
+.rainbow {
+	font-size: 1.5em;
+
+	--border-size: 0.3rem;
+	border: var(--border-size) solid transparent;
+
+	/* Paint an image in the border */
+	border-image: conic-gradient(
+			from var(--angle2),
+			#d53e33 0deg 90deg,
+			#fbb300 90deg 180deg,
+			#377af5 180deg 270deg,
+			#399953 270deg 360deg
+		)
+		1 stretch;
+}
+
+@supports (background: paint(houdini)) {
+
+	@property --angle2 {
+		syntax: "<angle>";
+		initial-value: 0deg;
+		inherits: false;
+	}
+
+	@keyframes rotate {
+		to {
+			--angle2: 360deg;
+		}
+	}
+
+	.rainbow {
+		animation: rotate 4s linear infinite;
 	}
 }

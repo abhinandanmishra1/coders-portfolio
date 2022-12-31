@@ -1,18 +1,3 @@
-const hrProfileApiUrl =
-  "https://www.hackerrank.com/rest/contests/master/hackers";
-const hrBadgesApiUrl =
-  "https://www.hackerrank.com/rest/hackers/abhi_mishra_1/badges";
-const hrScoresApiUrl =
-  "https://www.hackerrank.com/rest/hackers/abhi_mishra_1/scores_elo";
-const hrEducationInfoApiUrl =
-  "https://www.hackerrank.com/community/v1/hackers/abhi_mishra_1/hacker_schools";
-const hrCertificateApiUrl =
-  "https://www.hackerrank.com/community/v1/test_results/hacker_certificate?username=abhi_mishra_1";
-const hrRatingHistoryApiUrl =
-  "https://www.hackerrank.com/rest/hackers/abhi_mishra_1/rating_histories_elo";
-const hrContestHistoryApiUrl =
-  "https://www.hackerrank.com/rest/hackers/abhi_mishra_1/contest_participation?offset=0&limit=5";
-
 const lcQueries = {
   userInfo: `query userInfo($username: String!) {
     matchedUser(username: $username) {

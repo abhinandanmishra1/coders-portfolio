@@ -14,7 +14,7 @@ const Projects = ({ fadeInClass }) => {
 			<div className="portfolio__projects">
 				{projects.map((project, index) => {
 					return (
-						<div className="portfolio__projects--card">
+						<div className="portfolio__projects--card rainbow">
 							<div className="portfolio__projects--name">{project.name}</div>
 							<div className="portfolio__projects--description">
 								{project.description}
