@@ -10,6 +10,14 @@
 
 		@include flex-col;
 		@include align-c;
+
+		@include tablet {
+			width: 70%;
+		}
+
+		@include mobile {
+			width: 80%;
+		}
 	}
 
 	&__header {
@@ -55,6 +63,14 @@
     
     background-color: $white;
     box-shadow: 0 6px 16px 0 rgb(0 0 0 / 20%);
+
+		@include tablet {
+			width: 60%;
+		}
+
+		@include mobile {
+			width: 80%;
+		}
 	}
 
 	&__inputs {
