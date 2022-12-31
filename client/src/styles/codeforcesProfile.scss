@@ -29,12 +29,16 @@ $cf-specialist-color: #03a89e;
     height: auto;
     background-color: #e9ecef;
 
+    @include tablet {
+        @include flex-col;
+    }
+
     &__left {
         width: 30%;
         padding: 2rem 1rem;
 
         @include tablet {
-            display: none;
+            width: 100%;
         }
     }
 

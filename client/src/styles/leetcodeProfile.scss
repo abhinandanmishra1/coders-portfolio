@@ -30,12 +30,16 @@ $lc-green-color: rgb(44 187 93);
     min-height: 100vh;
     height: auto;
 
+    @include tablet {
+        @include flex-col;
+    }
+
     &__left {
         width: 25%;
         padding: 2rem 1rem;
 
         @include tablet {
-            display: none;
+            width: 100%;
         }
     }
 
@@ -68,7 +72,7 @@ $lc-green-color: rgb(44 187 93);
         @include flex;
         @include justify-between;
 
-        width: 90%;
+        width: 100%;
         margin-bottom: 2rem;
 
         &--image {

@@ -41,8 +41,7 @@ const ProfileInfo = ({ type, detail }) => {
 
 	return (
 		<div className="gh-profile__info">
-			{Icon[type]}
-			<div className="gh-profile__info--detail">{Detail[type]}</div>
+			<div className="gh-profile__info--detail">{Icon[type]} {Detail[type]}</div>
 		</div>
 	);
 };
