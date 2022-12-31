@@ -1,4 +1,4 @@
-export const routesData = {
+const routesData = {
   title: 'Routes',
   routes: [
     {
@@ -158,3 +158,5 @@ export const routesData = {
     }
   ]
 }
+
+module.exports = { routesData };

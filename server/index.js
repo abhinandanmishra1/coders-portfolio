@@ -18,8 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 const db = require('./db');
-const { routesData } = require('./routesJson');
 
+const { routesData } = require('./routesJson');
+console.log(routesData)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 app.use((req, res, next) => {
