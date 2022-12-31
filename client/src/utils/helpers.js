@@ -75,7 +75,7 @@ export const formatCalendarData = (calendarData) => {
 			calendarData.matchedUser.userCalendar.submissionCalendar
 		);
 
-	return calendarData;
+	return calendarData.matchedUser.userCalendar;
 };
 
 export const getTagProblems = (problems) => {

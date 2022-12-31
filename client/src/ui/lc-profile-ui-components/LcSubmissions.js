@@ -8,10 +8,8 @@ import { loadUserProfileCalendar } from 'stores/leetcodeProfile';
 const LcSubmissions = () => {
   const { userProfileCalendar } = useSelector(store => store.leetcode);
   
-  const {submissionCalendar, activeYears} = (userProfileCalendar &&
-  userProfileCalendar?.matchedUser &&
-  userProfileCalendar?.matchedUser.userCalendar ) || {};
-
+  const {submissionCalendar, activeYears} = userProfileCalendar || {};
+  
   const dispatch = useDispatch();
   let startDate = moment().add(-365, 'days');
   const defaultDateRange = [startDate, moment()];
@@ -23,7 +21,6 @@ const LcSubmissions = () => {
 
   const changeSubmissionGraphTimeline = useCallback(
     (e) => {
-      
       const { value } = e.target;
       const year = parseInt(value);
       dispatch(loadUserProfileCalendar(leetcodeUsername, year));
@@ -36,7 +33,6 @@ const LcSubmissions = () => {
     [dispatch, leetcodeUsername],
   );
   
-
   useEffect(() => {
     if (submissionCalendar) {
       let startDate = dateRange[0];
