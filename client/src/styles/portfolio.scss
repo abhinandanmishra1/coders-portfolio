@@ -11,11 +11,17 @@
 	position: relative;
 	width: 100%;
 	overflow: hidden;
-	height: 84vh;
+	height: 200vh;
 	left: 4rem;
 	margin: 4rem;
 	max-width: 1268px;
 	max-height: 700px;
+
+	@include tablet {
+		max-height: 200vh;
+		width: 100%;
+		left: 0;
+	}
 
 	&__container {
 		position: relative;
@@ -41,6 +47,11 @@
 		opacity: 1;
 		visibility: visible;
 		border-radius: 0.4rem;
+
+		@include tablet {
+			width: 100%;
+			top: -3rem;
+		}
 	}
 
 	&__top-menu {
@@ -51,12 +62,27 @@
 		opacity: 0.8;
 		border-radius: 0.5rem;
 
+		@include tablet {
+			width: 90%;
+			height: 6rem;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+		}
+
 		ul {
 			list-style: none;
 
 			li {
 				display: block;
 				padding: 0.5rem 0;
+			}
+
+			@include tablet {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
 			}
 		}
 
@@ -86,6 +112,10 @@
 			transition: 0.3s;
 			text-decoration: none;
 			color: #fff;
+
+			@include tablet {
+				display: none;
+			}
 		}
 
 		a {
@@ -95,12 +125,24 @@
 
 	&__card-started {
 		position: relative;
-		width: 480px;
+		width: 38%;
 		left: 4rem;
 		height: min(90vh, 750px);
 		z-index: 11;
 		border-radius: 0.5rem;
 		box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+		@include tablet {
+			height: 500px;
+			width: 70%;
+			top: 2rem;
+			left: -6rem;
+			margin: auto;
+		}
+
+		@include mobile {
+			width: 80%;
+		}
 	}
 
 	&__profile {
@@ -171,6 +213,10 @@
 			height: 70px;
 			z-index: 10;
 
+			@include tablet {
+				margin-bottom: 0;
+			}
+
 			&:before {
 				content: "";
 				position: absolute;
@@ -234,14 +280,28 @@
 		padding-left: 5rem;
 		position: absolute;
 		overflow: hidden;
-		left: 50rem;
-		right: 3rem;
+		width: 55%;
+		left: 38%;
+		right: 1%;
 		top: 1.5rem;
 		bottom: 3rem;
 		border-radius: 0 0.5rem 0.5rem 0;
 		transition: visibility 1s linear, opacity 0s linear;
 		color: #f3f3f3;
 		border-right: 2px solid #f4f4f4;
+
+		@include tablet {
+			top: 550px;
+			left: 0;
+			bottom: 0;
+			height: 70vh;
+			width: 90%;
+			padding-left: 0;
+		}
+
+		@include mobile {
+			width: 80%;
+		}
 
 		&--fadeInLeft {
 			animation-name: fadeInLeft;
@@ -486,6 +546,11 @@
 		overflow-y: scroll;
 		overflow-x: none;
 		scrollbar-width: thin;
+		
+		@include mobile {
+			@include flex-col;
+			@include align-c;
+		}
 
 		&::-webkit-scrollbar {
 			display: none;
@@ -564,6 +629,11 @@
 			padding: 1.5rem;
 			z-index: 10;
 			color: whitesmoke;
+
+			@include tablet {
+				width: 20rem;
+				height: 12rem;
+			}
 		}
 	}
 
@@ -575,6 +645,13 @@
 		width: 100%;
 		flex-wrap: wrap;
 		overflow: visible;
+
+		@include tablet {
+			padding: 0;
+			padding-top: 2rem;
+			@include flex-col;
+			@include align-c;
+		}
 
 		&:before {
 			content: "Projects";
@@ -599,6 +676,14 @@
 			color: white;
 			background: #222;
 			border-radius: 1rem;
+
+			@include tablet {
+				width: 60%;
+			}
+
+			@include mobile {
+				width: 70%;
+			}
 		}
 
 		&--name {
@@ -606,6 +691,10 @@
 			margin-bottom: 1rem;
 			font-size: 2rem;
 			text-transform: uppercase;
+
+			@include tablet {
+				font-size: 1.5rem;
+			}
 		}
 
 		&--description {
@@ -619,6 +708,10 @@
 			width: 60%;
 			display: flex;
 			flex-wrap: wrap;
+
+			@include tablet {
+				width: 90%;
+			}
 		}
 
 		&--skill {
@@ -868,7 +961,6 @@
 }
 
 @supports (background: paint(houdini)) {
-
 	@property --angle2 {
 		syntax: "<angle>";
 		initial-value: 0deg;
