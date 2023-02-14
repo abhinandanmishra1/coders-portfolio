@@ -1,65 +1,81 @@
 .nav {
     @include flex;
     @include justify-between;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-    padding-top: 1rem;
+    padding: 1rem;
     max-height: 10vh;
     position: sticky;
     top: 0;
     left: 0;
-    
-    &__left {
+    background: #ffffff;
+    border-bottom: 0.1rem solid $select-border-color;
+
+    &__logo {
+        @include flex;
+        @include align-c;
+
+        height: 100%;
+        width: 7rem;
+        cursor: pointer;
+        position: relative;
+
+        &--img {
+            height: 100%;
+            width: 100%;
+        }
+
         &--title {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-left: 1rem;
-            cursor: pointer;
+            font-weight: bold;
+            position: absolute;
+            left: 4.5rem;
+            line-height: 2rem;
 
-            &::after {
-                content: "";
-                display: inline-block;
-                background: lighten($hr-green-color, 10);
-                margin-left: 0.1rem;
-                height: 2rem;
-                width: 1.2rem;
-            }
-
-            @include tablet {
-                font-size: 1.5rem;
+            @include mobile {
+                display: none;
             }
         }
-    }
-
-    &__middle {
-        color: green;
+        
     }
 
     &__right {
         @include flex;
         @include justify-between;
         @include align-c;
+        gap: 0.5rem;
     }
 
     &__login-btn {
         text-decoration: none;
-        line-height: 1.538em;
-        font-size: 1.8rem;
-        font-weight: 600;
-        margin-right: 2rem;
+        font-size: clamp(1vw, 1.8rem, 2.5vw);
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
         color: $hr-black-color;
+        border: 0.1rem solid $select-border-color;
+        transition: 0.7s;
+
+        &:hover {
+            background-color: #000;
+            color: #f5f5f5;
+            border: 0.1rem solid #f5f5f5;
+        }
     }
 
     &__signup-btn {
-        font-size: 1.8rem;
+        font-size: clamp(1vw, 1.8rem, 2.5vw);
         text-decoration: none;
         color: $white;
         padding: 1rem 2rem;
-        background-color: $hr-green-color;
+        background-color: #684ec8;
+        border: 0.1rem solid #684ec8;
         border-radius: 0.5rem;
-        transition: 1s;
+        transition: 0.5s;
 
         &:hover {
-            background-color: lighten($hr-green-color, 5);
+            background-color: #5640a4;
+            border: 0.1rem solid #f5f5f5;
         }
     }
 }

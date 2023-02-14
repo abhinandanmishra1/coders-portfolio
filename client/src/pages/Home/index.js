@@ -1,44 +1,60 @@
-import React from 'react';
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "components/Button";
-import Navbar from 'components/Navbar';
+import Navbar from "components/Navbar";
+import About from "./About";
 
 const Home = () => {
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
-    const signUp = () => {
-        navigate("/auth/signup");
-    }
+	const signUp = () => {
+		navigate("/auth/signup");
+	};
 
-    const defaultProfile = () => {
-        navigate("/abhinandanmishra1/profile");
-    }
+	const defaultProfile = () => {
+		navigate("/abhinandanmishra1/profile");
+	};
 
-    const ViewProfile = () => {
-        navigate("/viewProfile");
-    }
+	const ViewProfile = () => {
+		navigate("/viewProfile");
+	};
 
-    return (
-        <>
-            <Navbar />
-            <div className="home">
-                <div className="home__intro-title">
-                    <h1>
-                        Skills speak louder than words
-                    </h1>
+	return (
+		<>
+			<Navbar />
+			<div className="home">
+				<div className="home__intro-title">
+					<h1>
+						Platform for{" "}
+						<span>
+							{"<"}coders {"/>"}
+						</span>{" "}
+						to showcase their <span>coding experience</span>
+					</h1>
+				</div>
+				<p className="home__intro-subtitle">
+					{" "}
+					This application integrates
+					with leading coding platforms, such as GitHub, LeetCode, Codechef,
+					Codeforces, and Hackerrank<span>
+                    , to fetch your data and create a stunning
+					page that showcases your achievements across all these platforms
+                    </span>
+				</p>
+				<div className="home__create-portfolio">
+                    <div className="home__create-portfolio--input-container">
+                        <span className="home__create-portfolio--input-text">potfolio.render.com/</span>
+                        <input className="home__create-portfolio--input" type="text" placeholder="yourUsername" />
+                    </div>
+                    <div class="home__create-portfolio--btn">
+                        Create
+                    </div>
                 </div>
-                <div className="home__intro-subtitle">
-                    Do you want to see <span>Abhinandan's</span> Portfolio or create your portfolio?
-                </div>
-                <div className="home__next">
-                    <Button type="type1" title="Abhinandan's Portfolio" onClick={defaultProfile} customClass="home__btn" />
-                    <Button type="type1" title="Create Portfolio" onClick={signUp} customClass="home__btn" />
-                    <Button type="type1" title="See User's Portfolio" onClick={ViewProfile} customClass="home__btn" />
-                </div>
-            </div>
-        </>
-    )
-}
+			</div>
+            <About />
+		</>
+	);
+};
 
 export default Home;
