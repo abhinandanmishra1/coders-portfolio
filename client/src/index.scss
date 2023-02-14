@@ -8,6 +8,7 @@ html {
     font-size: 62.5%;
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 }
+
 body {
     font-size: 1.6rem;
 }
@@ -16,10 +17,10 @@ body {
     height: 100%;
 }
 
-@import "./common/styles/gradients";
-@import "./common/styles/common";
-@import "./common/styles/button";
-@import "./common/styles/navbar";
+@import "./components/styles/gradients";
+@import "./components/styles/common";
+@import "./components/styles/button";
+@import "./components/styles/navbar";
 @import "./styles/home.scss";
 @import "./styles/hrProfileUi";
 @import "./styles/hackerrankProfile.scss";

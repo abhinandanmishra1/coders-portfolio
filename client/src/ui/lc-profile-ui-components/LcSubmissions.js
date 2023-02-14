@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import moment from 'moment';
-import Timeline from 'common/components/CalendarHeatmap';
+import Timeline from 'components/CalendarHeatmap';
 import { getDateKey } from 'utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUserProfileCalendar } from 'stores/leetcodeProfile';

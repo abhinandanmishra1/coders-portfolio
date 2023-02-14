@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import moment from 'moment';
-import Timeline from 'common/components/CalendarHeatmap';
+import Timeline from 'components/CalendarHeatmap';
 import { getDateKey } from 'utils/helpers';
 
 const CfSubmissionsGraph = ({submissionsData}) => {

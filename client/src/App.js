@@ -1,18 +1,18 @@
 import { Route, Routes } from 'react-router-dom'; 
 
-import Home from "components/Home";
-import About from "components/About";
-import UserProfile from 'components/UserProfile';
-import HackerrankProfile from 'components/UserProfile/Hackerrank';
-import LeetcodeProfile from 'components/UserProfile/Leetcode';
-import CodeforcesProfile from 'components/UserProfile/Codeforces';
-import CodechefProfile from 'components/UserProfile/Codechef';
-import GithubProfile from 'components/UserProfile/Github';
-import ViewProfile from 'components/ViewProfile';
-import Auth from 'components/Auth';
-import UnknownComponent from 'components/UnknownComponent';
-import Profile from 'components/Auth/Profile';
-import Portfolio from 'components/Portfolio';
+import Home from "pages/Home";
+import About from "pages/About";
+import UserProfile from 'pages/UserProfile';
+import HackerrankProfile from 'pages/UserProfile/Hackerrank';
+import LeetcodeProfile from 'pages/UserProfile/Leetcode';
+import CodeforcesProfile from 'pages/UserProfile/Codeforces';
+import CodechefProfile from 'pages/UserProfile/Codechef';
+import GithubProfile from 'pages/UserProfile/Github';
+import ViewProfile from 'pages/ViewProfile';
+import Auth from 'pages/Auth';
+import UnknownComponent from 'pages/UnknownComponent';
+import Profile from 'pages/Auth/Profile';
+import Portfolio from 'pages/Portfolio';
 
 function App(){
     return (

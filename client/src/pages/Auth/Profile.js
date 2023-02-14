@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import { FaPlusCircle } from "react-icons/fa";
 import { loadUser, updateUser } from "stores/userProfile";
-import Bracket from "common/components/JsonInput/Bracket";
-import Button from "common/components/Button";
+import Bracket from "components/JsonInput/Bracket";
+import Button from "components/Button";
 import EducationInput from "./EducationInput";
 import ExperienceInput from "./ExperienceInput";
 import ProfileInput from "./ProfileInput";

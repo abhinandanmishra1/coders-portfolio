@@ -5,11 +5,11 @@ import { RiLinkedinLine } from "react-icons/ri";
 import { CgShapeHexagon } from "react-icons/cg";
 
 import { getMonthName } from "utils/helpers";
-import Section from "common/components/SectionCard";
+import Section from "components/SectionCard";
 import HrBadge from "ui/hr-profile-ui-components/HrBadge";
 import HrCertificate from "ui/hr-profile-ui-components/HrCertificate";
 import HrSectionHeader from "ui/hr-profile-ui-components/HrSectionHeader";
-import FixedNavigation from "common/components/FixedNavigation";
+import FixedNavigation from "components/FixedNavigation";
 import { useParams } from "react-router-dom";
 import { loadUser } from "stores/userProfile";
 import { loadHackerrankProfile } from "stores/hackerrankProfile";

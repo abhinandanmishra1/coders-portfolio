@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import FixedNavigation from 'common/components/FixedNavigation';
+import FixedNavigation from 'components/FixedNavigation';
 
 import {
   loadLeetcodeProfile

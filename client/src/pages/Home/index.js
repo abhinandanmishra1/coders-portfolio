@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 
-import Button from "common/components/Button";
-import Navbar from 'common/components/Navbar';
+import Button from "components/Button";
+import Navbar from 'components/Navbar';
 
 const Home = () => {
     const navigate = useNavigate();

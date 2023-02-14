@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CfChart from "ui/cf-profile-ui-components/CfChart";
 import CfHistogram from "ui/cf-profile-ui-components/CfHistogram";
 import CfSubmissionsGraph from "ui/cf-profile-ui-components/CfSubmissionsGraph";
-import FixedNavigation from 'common/components/FixedNavigation';
+import FixedNavigation from 'components/FixedNavigation';
 import { loadCodeforcesProfile } from "stores/codeforcesProfile";
 import { loadUser } from "stores/userProfile";
 import { useParams } from "react-router-dom";

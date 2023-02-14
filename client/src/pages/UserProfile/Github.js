@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FixedNavigation from 'common/components/FixedNavigation';
+import FixedNavigation from 'components/FixedNavigation';
 
 import { ReactComponent as GhConnectionsIcon } from "assets/svg/gh/connections.svg";
-import { ReactComponent as GhForkIcon } from "assets/svg/gh/fork.svg";
-import { ReactComponent as GhStarIcon } from "assets/svg/gh/star.svg";
-import { ReactComponent as GhTimeIcon } from "assets/svg/gh/time.svg";
 import { ReactComponent as GhLocationIcon } from "assets/svg/gh/location.svg";
 import { ReactComponent as GhOverviewIcon } from "assets/svg/gh/overview.svg";
 import { ReactComponent as GhReposIcon } from "assets/svg/gh/repos.svg";

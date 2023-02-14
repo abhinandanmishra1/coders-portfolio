@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
-import CircularProgressBar from "common/components/CircularProgressBar";
-import ProgressBar from "common/components/ProgressBar";
+import CircularProgressBar from "components/CircularProgressBar";
+import ProgressBar from "components/ProgressBar";
 
 const LcSolvedProblems = ({solvedProblems}) => {
   const getPercentage = (userTotal, total) => {

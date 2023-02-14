@@ -1,5 +1,5 @@
-import Bracket from "common/components/JsonInput/Bracket";
-import JsonInput from "common/components/JsonInput/JsonInput";
+import Bracket from "components/JsonInput/Bracket";
+import JsonInput from "components/JsonInput/JsonInput";
 import React from "react";
 
 const ProjectInput = ({ project, handleProjectsChange }) => {

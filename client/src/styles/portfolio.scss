@@ -21,6 +21,7 @@
 		width: 100%;
 		left: 0;
 		overflow: scroll;
+		margin-left: 2rem;
 	}
 
 	&__container {
@@ -33,14 +34,12 @@
 	}
 
 	&__header {
+		width: 10rem;
 		margin-right: 2rem;
-		position: relative;
-		left: -1rem;
 		top: 1.5rem;
 		position: absolute;
 		left: -3rem;
 		bottom: 1.5rem;
-		width: 10rem;
 		height: 100%;
 		z-index: 100;
 		text-align: center;
@@ -49,8 +48,11 @@
 		border-radius: 0.4rem;
 
 		@include tablet {
-			width: 100%;
-			top: -3rem;
+			top: 550px;
+			position: absolute;
+			left: -4rem;
+			padding: 0.5rem;
+			right: 0;
 		}
 	}
 
@@ -62,27 +64,12 @@
 		opacity: 0.8;
 		border-radius: 0.5rem;
 
-		@include tablet {
-			width: 90%;
-			height: 6rem;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: center;
-		}
-
 		ul {
 			list-style: none;
 
 			li {
 				display: block;
 				padding: 0.5rem 0;
-			}
-
-			@include tablet {
-				display: flex;
-				flex-direction: row;
-				align-items: center;
 			}
 		}
 
@@ -138,6 +125,7 @@
 			top: 2rem;
 			left: -6rem;
 			margin: auto;
+			margin-left: 6rem;
 		}
 
 		@include mobile {
@@ -297,6 +285,7 @@
 			height: 70vh;
 			width: 90%;
 			padding-left: 0;
+			margin-left: 6rem;
 		}
 
 		@include mobile {
@@ -352,7 +341,7 @@
 		flex-direction: column;
 
 		&--title {
-			font-size: 2.2rem;
+			font-size: clamp(1.5vw, 2.2rem, 2vw);
 			margin-top: 1rem;
 			line-height: 32px;
 			font-weight: 400;
@@ -366,7 +355,7 @@
 
 		&--name {
 			color: #ffb71b;
-			font-size: 3rem;
+			font-size: clamp(2vw, 3rem, 3vw);
 			background: rgba(6, 71, 131, 0.4);
 			backdrop-filter: blur(10px);
 		}

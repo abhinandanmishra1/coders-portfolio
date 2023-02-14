@@ -1,4 +1,4 @@
-import JsonInput from 'common/components/JsonInput/JsonInput'
+import JsonInput from 'components/JsonInput/JsonInput'
 import React from 'react'
 
 const ProfileInput = ({formData, handleChange}) => {
