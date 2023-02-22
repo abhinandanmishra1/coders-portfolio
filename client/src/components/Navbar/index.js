@@ -1,7 +1,5 @@
 import React from 'react'
-import NavItem from './NavItem';
 import { Link } from 'react-router-dom';
-import Logo from 'assets/images/CodersPortfolio.png';
 import Logo2 from 'assets/images/logo2.png';
 
 const Navbar = ({left, middle, right}) => {

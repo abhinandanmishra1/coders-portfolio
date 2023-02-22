@@ -1,0 +1,41 @@
+@import "../styles/responsive";
+
+.step {
+  padding: 15px;
+  display: grid;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+
+
+  &--active {
+    background: rgba(35,181,54,.1);
+  }
+
+  &__title {
+    align-self: self-start;
+    font-size: 1.8rem;
+    justify-self: left;
+    color: #576871;
+  }
+
+  &__description {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #22b339;
+  }
+
+  @include mobile {
+    &__description {
+      display: none;
+    }
+  }
+}

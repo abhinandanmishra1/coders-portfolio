@@ -13,10 +13,8 @@ body {
     font-size: 1.6rem;
 }
 
-#root {
-    height: 100%;
-}
-
+@import "./components/styles/flex";
+@import "./components/styles/responsive";
 @import "./components/styles/gradients";
 @import "./components/styles/common";
 @import "./components/styles/button";

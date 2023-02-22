@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "components/Button";
 import Navbar from "components/Navbar";
 import About from "./About";
+import Working from "./Working";
 
 const Home = () => {
 	const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Home = () => {
 	};
 
 	return (
-		<>
+		<div className="main">
 			<Navbar />
 			<div className="home">
 				<div className="home__intro-title">
@@ -35,25 +36,30 @@ const Home = () => {
 				</div>
 				<p className="home__intro-subtitle">
 					{" "}
-					This application integrates
-					with leading coding platforms, such as GitHub, LeetCode, Codechef,
-					Codeforces, and Hackerrank<span>
-                    , to fetch your data and create a stunning
-					page that showcases your achievements across all these platforms
-                    </span>
+					This application integrates with leading coding platforms, such as
+					GitHub, LeetCode, Codechef, Codeforces, and Hackerrank
+					<span>
+						, to fetch your data and create a stunning page that showcases your
+						achievements across all these platforms
+					</span>
 				</p>
 				<div className="home__create-portfolio">
-                    <div className="home__create-portfolio--input-container">
-                        <span className="home__create-portfolio--input-text">potfolio.render.com/</span>
-                        <input className="home__create-portfolio--input" type="text" placeholder="yourUsername" />
-                    </div>
-                    <div class="home__create-portfolio--btn">
-                        Create
-                    </div>
-                </div>
+					<div className="home__create-portfolio--input-container">
+						<span className="home__create-portfolio--input-text">
+							potfolio.render.com/
+						</span>
+						<input
+							className="home__create-portfolio--input"
+							type="text"
+							placeholder="yourUsername"
+						/>
+					</div>
+					<div class="home__create-portfolio--btn">Create Portfolio</div>
+				</div>
 			</div>
-            <About />
-		</>
+			<About />
+			<Working />
+		</div>
 	);
 };
 
