@@ -21,15 +21,7 @@ const Portfolio = () => {
 	}, [dispatch, isLoggedIn, profile, username]);
 
 	return (
-		<div className="container">
-			<img className="background" alt="" src={BgImage} />
-			{[...Array(100)].map((_, i) => (
-				<div key={i} className="circle-container">
-					<div className="circle"></div>
-				</div>
-			))}
-			<Main />
-		</div>
+		<Main />
 	);
 };
 
