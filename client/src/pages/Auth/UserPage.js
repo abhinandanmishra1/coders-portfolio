@@ -1,3 +1,4 @@
+import Usercard from 'pages/Components/Usercard'
 import React from 'react'
 
 const UserPage = () => {
@@ -51,7 +52,9 @@ const UserPage = () => {
                     </div>
                 </div>
             </div>
-            <div className='centerCol' ></div>
+            <div className='centerCol' >
+                <Usercard />
+            </div>
         </div>
     )
 }
