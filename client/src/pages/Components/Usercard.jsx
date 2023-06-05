@@ -34,7 +34,7 @@ const Usercard = () => {
                     <Card sx={{ height: 120 }}>
                         <CardContent>
                             <div className='user-profile-name-div'>
-                                <p className='user-profile-name'>Ankit Kishore Singh</p>
+                                <p className='user-profile-name'>Anaisha Goyal</p>
                                 <div className="greenbadge"><p className='user-profile-green-badge'>Pro</p></div>
                                 <div className="bluebage"><p className='user-profile-blue-badge'>Looking for job</p></div>
                             </div>

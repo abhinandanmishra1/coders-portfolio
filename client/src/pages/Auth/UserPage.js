@@ -1,3 +1,5 @@
+import PortfolioResumeBar from 'pages/Components/PortfolioResumeBar'
+import Stats from 'pages/Components/Stats'
 import Usercard from 'pages/Components/Usercard'
 import React from 'react'
 
@@ -54,6 +56,8 @@ const UserPage = () => {
             </div>
             <div className='centerCol' >
                 <Usercard />
+                <PortfolioResumeBar />
+                <Stats />
             </div>
         </div>
     )

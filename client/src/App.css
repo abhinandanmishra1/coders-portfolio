@@ -240,7 +240,8 @@ Description TBD
     height: 2432px;
     left: 15%;
     top: 135px;
-    background-color: lightgray;
+    background-color: #fff;
+    border: 1px solid black;
 
 }
 
@@ -447,4 +448,63 @@ Description TBD
 .social-icons-a {
     border-radius: 0px !important;
     padding-left: 6px !important;
+}
+
+.por-res-div {
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    width: 100%;
+    height: 8vh;
+    padding: 1.3vh;
+}
+
+.portfolio-chip {
+    width: 15%;
+    font-size: 2.2vh !important;
+    font-weight: 800;
+    border-radius: 2px !important;
+    /* height: 60% !important; */
+}
+
+.portfolio-chip:hover {
+    color: #4338CA;
+}
+
+.font-mont {
+    font-family: 'Montserrat Alternates', sans-serif !important;
+}
+
+.font-rocker {
+    font-family: 'New Rocker', cursive !important;
+}
+
+.font-rubik {
+    font-family: 'Rubik', sans-serif !important;
+}
+
+.stats-upper-div {
+    width: 100%;
+}
+
+.stats-div {
+    border: 1px solid black !important;
+    width: 100%;
+    height: 30vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.streak-chip {
+    margin: auto;
+    margin: 8px;
+    width: 48%;
+    /* gap: 2vh; */
+    height: 42% !important;
+    border-radius: 2px !important;
+}
+
+.stats-images {
+    height: 4vw !important;
+    width: 2.5vh !important;
 }
