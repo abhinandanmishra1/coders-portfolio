@@ -1,0 +1,250 @@
+.userPage {
+    position: relative;
+    width: 100%;
+    height: 2700px;
+
+    background: #FFFFFF;
+}
+
+.profileNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: 20%;
+    /* background-color: red; */
+
+    position: relative;
+    width: 80vw;
+    height: 8vh;
+    left: 10vw;
+    top: 1vw;
+}
+
+.textFrame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 16px;
+
+    width: 15%;
+    height: 60%;
+
+    /* background-color: blue; */
+
+}
+
+.coderPortfolioText {
+    /* width: 20%; */
+    /* height: 32px; */
+
+    /* text-2xl / font-bold */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.1vw;
+    line-height: 1vh;
+    /* identical to box height, or 133% */
+
+    display: flex;
+    align-items: flex-end;
+
+    /* Zink/900 */
+
+    color: #18181B;
+}
+
+.secondFrame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 24px;
+    isolation: isolate;
+
+    width: 60%;
+    height: 80%;
+}
+
+.searchFrame {
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 9px 13px;
+    gap: 8px;
+
+    width: 60%;
+    height: 100%;
+
+    /* Shades/White */
+
+    /* background: #FFFFFF; */
+    border: 1px solid black;
+    /* background-color: aqua; */
+    /* Zink/100
+
+Description TBD
+*/
+    border: 1px solid #F4F4F5;
+    border-radius: 10px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    z-index: 0;
+}
+
+.searchFrame svg {
+    /* position: relative; */
+    /* top: 10%; */
+    width: 40px;
+    height: 30px;
+}
+
+.searchFrame input {
+    background-color: white;
+    /* background-color:; */
+    /* background: none; */
+    width: 60%;
+    height: 150%;
+    border-radius: 10px;
+    border: none;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+
+    /* Zink/500 */
+
+    color: #71717A;
+    /* padding-left: 2%; */
+}
+
+.searchFrame select {
+    width: 40%;
+    height: 150%;
+    border-radius: 10px;
+    border: none;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    border: 1px solid black;
+    /* Zink/500 */
+
+    color: #71717A;
+}
+
+.iconsandprofileFrame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 24px;
+
+    width: 35%;
+    height: 42px;
+    /* background-color: pink; */
+
+}
+
+.lightbellFrame {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+
+    width: 65%;
+    height: 40px;
+
+    /* background-color: red; */
+}
+
+.lightnumberFrame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+
+    width: 66px;
+    height: 40px;
+
+    backdrop-filter: blur(8px);
+    /* Note: backdrop-filter has minimal browser support */
+
+    border-radius: 24px;
+    /* background-color: yellow; */
+}
+
+.bellFrame {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 8px;
+    gap: 8px;
+    isolation: isolate;
+
+    width: 40px;
+    height: 40px;
+
+    /* Shades/White */
+
+    background: #FFFFFF;
+    border-radius: 12px;
+    /* background-color: lavender; */
+}
+
+.lightnumberFrame svg {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    /* background-color: red; */
+}
+
+.navProfile {
+    width: 42px;
+    height: 42px;
+    border-radius: 26px;
+    /* background-color: aqua; */
+}
+
+.centerCol {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 40px;
+    isolation: isolate;
+
+    position: relative;
+    width: 70%;
+    height: 2432px;
+    left: 15%;
+    top: 135px;
+    background-color: lightgray;
+
+}
+
+.navProfile {
+    width: 30px;
+    height: 30px;
+}

@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'; 
+import { Route, Routes } from 'react-router-dom';
 
 import Home from "pages/Home";
 import About from "pages/About";
@@ -13,34 +13,38 @@ import Auth from 'pages/Auth';
 import UnknownComponent from 'pages/UnknownComponent';
 import Profile from 'pages/Auth/Profile';
 import Portfolio from 'pages/Portfolio';
+import UserPage from 'pages/Auth/UserPage';
+import './App.css';
+// anubhav // anubhavanubhav
 
-function App(){
+function App() {
     return (
         <>
-        <Routes>
-            <Route path='/' element={<Home />}/>
-            <Route path='/about' element={<About />}/>
-            <Route path='/dashboard' element={<Profile />}/>
-            <Route path='/auth'>
-                <Route path='signup' element={<Auth type="Signup"/>}/>
-                <Route path='login' element={<Auth type="Login"/>}/>
-            </Route>
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/dashboard' element={<Profile />} />
+                {/* <Route path='/dashboard' element={<UserPage />} /> */}
+                <Route path='/auth'>
+                    <Route path='signup' element={<Auth type="Signup" />} />
+                    <Route path='login' element={<Auth type="Login" />} />
+                </Route>
 
-            <Route path='/:username/portfolio' element={<Portfolio />} />
+                <Route path='/:username/portfolio' element={<Portfolio />} />
 
-            <Route path='/:username/profile'>
-                <Route path='' element={<UserProfile />} />
-                <Route path='hackerrank' element={<HackerrankProfile />} />
-                <Route path='leetcode' element={<LeetcodeProfile />} />
-                <Route path='codeforces' element={<CodeforcesProfile />} />
-                <Route path='codechef' element={<CodechefProfile />} />
-                <Route path='github' element={<GithubProfile />} />
-            </Route>
+                <Route path='/:username/profile'>
+                    <Route path='' element={<UserProfile />} />
+                    <Route path='hackerrank' element={<HackerrankProfile />} />
+                    <Route path='leetcode' element={<LeetcodeProfile />} />
+                    <Route path='codeforces' element={<CodeforcesProfile />} />
+                    <Route path='codechef' element={<CodechefProfile />} />
+                    <Route path='github' element={<GithubProfile />} />
+                </Route>
 
-            <Route path='viewProfile' element={<ViewProfile />} />
+                <Route path='viewProfile' element={<ViewProfile />} />
 
-            <Route path='*' element={<UnknownComponent />} />
-        </Routes>
+                <Route path='*' element={<UnknownComponent />} />
+            </Routes>
         </>
     )
 }
