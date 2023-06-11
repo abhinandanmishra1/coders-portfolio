@@ -1,8 +1,12 @@
 import PortfolioResumeBar from 'pages/Components/PortfolioResumeBar'
+import Projects from 'pages/Components/Projects'
 import Stats from 'pages/Components/Stats'
 import Usercard from 'pages/Components/Usercard'
+import Stack from '@mui/material/Stack';
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
 import React from 'react'
-
+import user1 from '../../assets/images/user1.png'
 const UserPage = () => {
     return (
         <div className='userPage'>
@@ -39,17 +43,16 @@ const UserPage = () => {
                                 <h4>5</h4>
                             </div>
                             <div className='bellFrame' >
-                                <svg className='bellIconed' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5" />
-                                </svg>
-
+                                <Badge color="secondary" badgeContent={99}>
+                                    <MailIcon className='size-mail' />
+                                </Badge>
                             </div>
                         </div>
                         <div className='navProfile' >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                            </svg>
 
+                            <Badge color="primary" badgeContent={5}>
+                                <img className='user1' src={user1}></img>
+                            </Badge>
                         </div>
                     </div>
                 </div>
@@ -57,7 +60,8 @@ const UserPage = () => {
             <div className='centerCol' >
                 <Usercard />
                 <PortfolioResumeBar />
-                <Stats />
+                {/* <Stats /> */}
+                <Projects />
             </div>
         </div>
     )

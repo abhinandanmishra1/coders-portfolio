@@ -23,8 +23,8 @@ function App() {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/about' element={<About />} />
-                {/* <Route path='/dashboard' element={<Profile />} /> */}
-                <Route path='/dashboard' element={<UserPage />} />
+                <Route path='/dashboard' element={<Profile />} />
+                <Route path='/dashboard-new' element={<UserPage />} />
                 <Route path='/auth'>
                     <Route path='signup' element={<Auth type="Signup" />} />
                     <Route path='login' element={<Auth type="Login" />} />
