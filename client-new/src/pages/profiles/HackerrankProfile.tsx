@@ -1,0 +1,8 @@
+export default function HackerrankProfile() {
+    return (
+        <div className="container mx-auto px-4 py-8">
+            <h1 className="text-3xl font-bold mb-6">Hackerrank Profile</h1>
+            <p className="text-muted-foreground">Hackerrank profile data coming soon...</p>
+        </div>
+    )
+}
