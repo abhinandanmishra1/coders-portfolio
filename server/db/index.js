@@ -2,15 +2,15 @@ const mongoose = require('mongoose')
 const dotenv = require("dotenv");
 dotenv.config();
 
-const url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.h12imup.mongodb.net/?retryWrites=true&w=majority`;
+const url = process.env.MONGODB_URI;
 
-mongoose.connect(url, { 
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      dbName: 'portfolioDb',
-    })
-    .then(()=>console.log('connected'))
-    .catch(e=>console.log(e));
+mongoose.connect(url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  dbName: 'portfolioDb',
+})
+  .then(() => console.log('connected'))
+  .catch(e => console.log(e));
 
 const db = mongoose.connection
 

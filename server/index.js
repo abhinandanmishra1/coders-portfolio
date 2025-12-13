@@ -15,7 +15,7 @@ const server = require('http').Server(app);
 app.use(errorHandler);
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 const db = require('./db');
 
@@ -42,5 +42,5 @@ app.use('/github', ghRoutes);
 app.use('/codechef', ccRoutes);
 app.use('/user', userRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 server.listen(PORT, () => console.log(`listening on ${PORT}`));
