@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
-import { SignIn, SignUp, SignedIn } from '@clerk/clerk-react'
+import { SignIn, SignUp } from '@clerk/clerk-react'
 import Layout from './components/layout/Layout'
-import Home from './pages/Home'
+import HomeRoute from './components/auth/HomeRoute'
+import ProtectedRoute from './components/auth/ProtectedRoute'
 import Admin from './pages/Admin'
 import Portfolio from './pages/Portfolio'
 import UserProfile from './pages/profiles/UserProfile'
@@ -15,28 +16,34 @@ import NotFound from './pages/NotFound'
 function App() {
     return (
         <Routes>
+            {/* Auth routes - outside of Layout */}
             <Route path="/sign-in/*" element={
                 <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-                    <SignIn routing="path" path="/sign-in" />
+                    <SignIn routing="path" path="/sign-in" afterSignInUrl="/admin" />
                 </div>
             } />
             <Route path="/sign-up/*" element={
                 <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-                    <SignUp routing="path" path="/sign-up" />
+                    <SignUp routing="path" path="/sign-up" afterSignUpUrl="/admin" />
                 </div>
             } />
-            <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
 
+            {/* Main app routes - inside Layout */}
+            <Route path="/" element={<Layout />}>
+                {/* Home route - shows landing page if not signed in, redirects to admin if signed in */}
+                <Route index element={<HomeRoute />} />
+
+                {/* Protected admin route */}
                 <Route
                     path="/admin"
                     element={
-                        <SignedIn>
+                        <ProtectedRoute>
                             <Admin />
-                        </SignedIn>
+                        </ProtectedRoute>
                     }
                 />
 
+                {/* Public portfolio routes */}
                 <Route path="/:username/portfolio" element={<Portfolio />} />
                 <Route path="/:username/profile">
                     <Route index element={<UserProfile />} />
